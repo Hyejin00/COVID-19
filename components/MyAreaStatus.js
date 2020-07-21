@@ -5,13 +5,15 @@ import { AntDesign } from '@expo/vector-icons';
 function Circle({data}){
   const list=[]
   console.log(data)
-  for(let i; i<data; i++){
-    list.append(i)
+  for(var i=0; i<data; i++){
+    console.log(i)
+    list.push(i)
   }
+  console.log(list)
   return(
     list.map((l, i) => (
       <View style={styles.circle} key={i}>
-        <AntDesign name="frowno" size={40} color="black" style={{ margin: 3 }}/>
+        <AntDesign name="frowno" size={37} color="black" style={{ margin: 3 }}/>
       </View>
     ))
   );
@@ -27,7 +29,8 @@ export default function MyAreaStatus(){
           서울
       </Text>
       <View style={styles.circles}>
-        <Circle data={9}/>
+        {/* 유동적으로 수 바꾸기! */}
+        <Circle data={23}/>
       </View>
       {/* 지역 확진자 추가 정보 */}
       <View>
@@ -55,7 +58,7 @@ const styles = StyleSheet.create({
     circles: {
       flex: 1,
       flexDirection: 'row',
-      justifyContent: 'space-around',
+      justifyContent: 'center',
       alignItems: 'center',
       flexWrap: 'wrap',
       width: '80%',
