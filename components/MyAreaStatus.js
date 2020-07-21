@@ -2,10 +2,12 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 
-const x = 3
-
-function Circle(x){
-  const list=[1,2,3,4,5,6,7,8,9,0]
+function Circle({data}){
+  const list=[]
+  console.log(data)
+  for(let i; i<data; i++){
+    list.append(i)
+  }
   return(
     list.map((l, i) => (
       <View style={styles.circle} key={i}>
@@ -19,11 +21,19 @@ export default function MyAreaStatus(){
 
   return(
     <View style={styles.main}>
+
+      {/* 지역 이름 */}
       <Text style={styles.areaName}>
           서울
       </Text>
       <View style={styles.circles}>
-        <Circle/>
+        <Circle data={9}/>
+      </View>
+      {/* 지역 확진자 추가 정보 */}
+      <View>
+      <Text style={styles.areaPlus}>
+          +10
+      </Text>
       </View>
     </View>
   );

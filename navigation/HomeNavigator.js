@@ -39,9 +39,10 @@ export default function HomeNavigator({ navigation, route }) {
                     onPress={()=>{}}
                   >
                     <Entypo 
-                      name="map" size={24} 
+                      name="map" 
+                      size={25} 
                       color="black" 
-                      style={{margin:20, marginRight:3}}
+                      style={{margin:2, marginRight:18}}
                     />
                   </TouchableWithoutFeedback>
                   <TouchableWithoutFeedback
@@ -49,9 +50,9 @@ export default function HomeNavigator({ navigation, route }) {
                   >
                     <Entypo 
                       name="plus"
-                      size={24} 
+                      size={25} 
                       color="black" 
-                      style={{margin:20}}
+                      style={{margin:2, marginRight:18}}
                     />
                   </TouchableWithoutFeedback>
                 </View>
