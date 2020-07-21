@@ -1,16 +1,10 @@
 import React, { useRef, useEffect } from 'react';
-import {  Animated, StyleSheet, View, Text } from 'react-native';
+import {  Animated, StyleSheet, View, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
 
 function Circle({data}){
-  const list=[]
-  console.log(data)
-  for(var i=0; i<data; i++){
-    console.log(i)
-    list.push(i)
-  }
-  console.log(list)
+  const list = new Array(data).fill('0');
   return(
     list.map((l, i) => (
       <View style={styles.circle} key={i}>
@@ -50,10 +44,36 @@ const FadeInView = (props) => {
 export default function MyAreaStatus(){
 
   // 현재 확진자 수
-  const confirmedNum = 0;
+  const confirmedNum = 20;
+
+  const scrollX = useRef(new Animated.Value(0)).current;
+
+  // const { width: windowWidth } = useWindowDimensions();
+  
+  const MyArea = new Array(3).fill('1');
+
 
   return(
     <FadeInView>
+      <ScrollView
+        // 추후에 관심목록 추가하면 옆에 추가하고 가로로 스크롤
+        // horizontal={true}
+        style={styles.scrollViewStyle}
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onScroll={Animated.event(
+          null, 
+          {
+            nativeEvent: {
+              contentOffset: {
+                x: scrollX
+              },
+            },
+            useNativeDriver: true,
+          },
+        )}
+        scrollEventThrottle={1}
+      >
       <View style={styles.main}>
 
         {/* 지역 이름 */}
@@ -79,6 +99,26 @@ export default function MyAreaStatus(){
         </View>
         
       </View>
+      </ScrollView>
+      <View style={styles.indicatorContainer}>
+          {MyArea.map((areas, area) => {
+            const width = scrollX.interpolate({
+              inputRange: [
+                (area - 1),
+                area,
+                (area + 1)
+              ],
+              outputRange: [8, 16, 8],
+              extrapolate: "clamp"
+            });
+            return (
+              <Animated.View
+                key={area}
+                style={[styles.normalDot, { width }]}
+              />
+            );
+          })}
+        </View>
     </FadeInView>
   );
 }
@@ -117,5 +157,17 @@ const styles = StyleSheet.create({
       fontSize: 30,
       fontWeight: '600',
       marginBottom: 20
+    },
+    normalDot: {
+      height: 8,
+      width: 8,
+      borderRadius: 4,
+      backgroundColor: "black",
+      marginHorizontal: 4
+    },
+    indicatorContainer: {
+      flexDirection: "row",
+      alignItems: "center",
+      justifyContent: "center"
     }
 })
