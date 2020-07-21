@@ -14,6 +14,6 @@ export default function CountryStatus(){
 
 const styles = StyleSheet.create({
     main: {
-        height: '300%'
+        height: 300
     }
 })
