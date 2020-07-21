@@ -21,6 +21,9 @@ function Circle({data}){
 
 export default function MyAreaStatus(){
 
+  // 현재 확진자 수
+  const confirmedNum = 23;
+
   return(
     <View style={styles.main}>
 
@@ -30,7 +33,7 @@ export default function MyAreaStatus(){
       </Text>
       <View style={styles.circles}>
         {/* 유동적으로 수 바꾸기! */}
-        <Circle data={23}/>
+        <Circle data={confirmedNum}/>
       </View>
       {/* 지역 확진자 추가 정보 */}
       <View>
