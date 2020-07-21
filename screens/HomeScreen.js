@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { ScrollView } from 'react-native-gesture-handler';
 import { StyleSheet, Text, RefreshControl, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 
 import MyAreaStatus from '../components/MyAreaStatus';
 import CountryStatus from '../components/CountryStatus';
@@ -21,25 +22,29 @@ export default function HomeScreen(){
   }, []);
 
   return (
-    <View style={styles.container}>
-      <ScrollView 
-        contentContainerStyle={styles.scrollView} //아직 스타일 없음
-        refreshControl={
-          <RefreshControl tintColor='#fff' refreshing={refreshing} onRefresh={onRefresh} />
-        }
-        style={styles.container} contentContainerStyle={styles.contentContainer}>
+    <ScrollView 
+      contentContainerStyle={styles.scroll_container}
+      refreshControl={
+        <RefreshControl tintColor='#fff' refreshing={refreshing} onRefresh={onRefresh} />
+      }
+    >
+      <LinearGradient
+        style={styles.container}
+        colors={["#83a4d4","#b6fbff"]}
+      >
         <MyAreaStatus/>
         <CountryStatus/>
-      </ScrollView>
-      
-    </View>
+      </LinearGradient>
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'rgb(151, 242, 250)',
+  scroll_container:{
+    flex:1
+  },
+  container:{
+    flex:1,
   },
   loading: {
     color:'#fff'
