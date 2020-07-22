@@ -16,8 +16,8 @@ export function fetchCOVIDNews(){
         display: 50,
         start: 1,
         sort: "sim"
-      }}, {NEWS_HEADER});
-      dispatch({type: 'FETCH_COVID_NEWS', payload: result.data})
+      }}, NEWS_HEADER);
+      dispatch({type: 'FETCH_COVID_NEWS', payload: result.data.items})
     }catch(error){
       console.error(error);
     }
