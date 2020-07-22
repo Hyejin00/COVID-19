@@ -33,12 +33,7 @@ export default function NewsNavigator({ navigation, route }) {
                 color='black'
                 style={{marginLeft:20}}/>
             </TouchableWithoutFeedback>
-            )},
-            headerStyle:{
-              backgroundColor: null,
-              elevation: 0,
-              shadowOpacity: 0,
-            },
+            )}
           }
         }
       />
