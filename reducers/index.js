@@ -17,14 +17,21 @@ const baseState = {
     },
   ],
   countryData: {
-    'confirmedNum': 10909,
-    'confirmedNumChanged': 23,
-    'release': 9632,
-    'releaseChanged': 173,
-    'underExam': 28245,
-    'underExamChanged': 11,
-    'death': 256,
-    'deathChanged': 0,
+    // 'deathChanged': 0,
+    // "accDefRate": 0.9439441754,
+    // "accExamCnt": 1492071,
+    // "accExamCompCnt": 1470320,
+    // "careCnt": 884,
+    // "clearCnt": 12698,
+    // "createDt": "2020-07-22 10:27:17.21",
+    // "deathCnt": 297,
+    // "decideCnt": 13879,
+    // "examCnt": 21751,
+    // "resutlNegCnt": 1456441,
+    // "seq": 207,
+    // "stateDt": 20200722,
+    // "stateTime": "00:00",
+    // "updateDt": "null",
   }
 };
 
@@ -35,6 +42,9 @@ const reducer = produce((state, action) => {
       action.payload.forEach(cnews => {
         state.covidnews[cnews.title] = cnews;
       });
+      break;
+    case 'FETCH_COVID_COUNTRY':
+      state.countryData = action.payload;
       break;
     default:
       break;

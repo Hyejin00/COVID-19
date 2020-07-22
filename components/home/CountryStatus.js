@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux';
 import colors from '../../constants/Colors'
 
 function addComma(num) {
+  num *= 1;
   var regexp = /\B(?=(\d{3})+(?!\d))/g;
   return num.toString().replace(regexp, ',');
 }
@@ -14,7 +15,21 @@ function addComma(num) {
 export default function CountryStatus(){
 
   const countryData = useSelector(state => state.countryData);
-
+    // 'deathChanged': 0,
+    // "accDefRate": 0.9439441754,
+    // "accExamCnt": 1492071,
+    // "accExamCompCnt": 1470320,
+    // "careCnt": 884,
+    // "clearCnt": 12698,
+    // "createDt": "2020-07-22 10:27:17.21",
+    // "deathCnt": 297,
+    // "decideCnt": 13879,
+    // "examCnt": 21751,
+    // "resutlNegCnt": 1456441,
+    // "seq": 207,
+    // "stateDt": 20200722,
+    // "stateTime": "00:00",
+    // "updateDt": "null",
   return(
     <View style={styles.container}>
         <Card 
@@ -29,10 +44,10 @@ export default function CountryStatus(){
                   <Text style={styles.confirmedNumTitle}>확진환자</Text>
               </Row>
               <Row style={styles.bigRow}>
-                  <Text style={styles.confirmedNum}>{addComma(countryData.confirmedNum)}</Text>
+                  <Text style={styles.confirmedNum}>{addComma(countryData.decideCnt)}</Text>
               </Row>
               <Row style={styles.bigRow}>
-                  <Text style={styles.confirmedNumChanged}>(+{countryData.confirmedNumChanged})</Text>
+                  <Text style={styles.confirmedNumChanged}>(데이터 없음)</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -40,10 +55,10 @@ export default function CountryStatus(){
                   <Text style={styles.smallTitle}>격리해제</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>{addComma(countryData.release)}</Text>
+                  <Text style={styles.smallData}>{addComma(countryData.clearCnt)}</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}>(+{countryData.releaseChanged})</Text>
+                  <Text style={styles.smallDataChanged}>(데이터 없음)</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -51,10 +66,10 @@ export default function CountryStatus(){
                   <Text style={styles.smallTitle}>검사중</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>{addComma(countryData.underExam)}</Text>
+                  <Text style={styles.smallData}>{addComma(countryData.examCnt)}</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}>(+{countryData.underExamChanged})</Text>
+                  <Text style={styles.smallDataChanged}>(데이터 없음)</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -62,10 +77,10 @@ export default function CountryStatus(){
                   <Text style={styles.smallTitle}>사망자</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>{addComma(countryData.death)}</Text>
+                  <Text style={styles.smallData}>{addComma(countryData.deathCnt)}</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}>(+{countryData.deathChanged})</Text>
+                  <Text style={styles.smallDataChanged}>(데이터 없음)</Text>
               </Row>
             </Col>
           </Grid>
@@ -119,6 +134,6 @@ const styles = StyleSheet.create({
     },
     smallDataChanged: {
       color: 'white',
-
+      fontSize: 10,
     }
 })
