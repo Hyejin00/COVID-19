@@ -9,11 +9,11 @@ export default {
     tabIconDefault: '#ccc',
     tabIconSelected: tintColorLight,
     //bad color
-    maxColor: '#FF2828',
-    minColor: '#FF8585',
+    // maxColor: '#FF2828',
+    // minColor: '#FF8585',
     //good color
-    // maxColor: '#83a4d4',
-    // minColor: '#b6fbff',
+    maxColor: '#83a4d4',
+    minColor: '#b6fbff',
   },
   dark: {
     text: '#fff',
