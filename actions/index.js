@@ -4,32 +4,28 @@ const NEWS_API = "https://openapi.naver.com/v1/search/news.json";
 const NEWS_ID = "dVWdGSs2FWC3OwDyBPI_";
 const NEWS_PW = "0Ja5lIgz1N";
 
-// const COVID_API = "http://openapi.data.go.kr/openapi/service/rest/Covid19/";
-// const COVID_SERVICE_KEY = "x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfgntc7M2Ih8WPpxISF6Q%2FTpuMO3f4ab2VfKVDQc1orY0mq38ZCl0AI0A%3D%3D";
+const COVID_API = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson";
+const COVID_SERVICE_KEY = "x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfgntc7M2Ih8WPpxISF6Q%2FTpuMO3f4ab2VfKVDQc1orY0mq38ZCl0AI0A%3D%3D";
 
-// export function fetchCOVID(){
-//   return async (dispatch) => {
-//     try{
-//       const instance = await axios.create({
-//         baseURL: COVID_API,
-//         withCredentials: false,
-//         headers: {
-//           'Access-Control-Allow-Origin' : '*',
-//           'Access-Control-Allow-Methods':'GET,PUT,POST,DELETE,PATCH,OPTIONS',
-//           }
-//       });
-//       const result = await instance.get('getCovid19InfStateJson?serviceKey=x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfgntc7M2Ih8WPpxISF6Q%2FTpuMO3f4ab2VfKVDQc1orY0mq38ZCl0AI0A%3D%3D&pageNo=1&numOfRows=10&startCreateDt=20200722&endCreateDt=20200722', 
-//         {
+const getCOVID = async() =>{
+  return await axios.get(COVID_API,{
+    params:{
+      serviceKey: COVID_SERVICE_KEY,
+      pageNo: '1',
+      numOfRows: '10',
+      startCreateDt: '20200722',
+      endCreateDt: '20200722'
+    }
+  })
+}
 
-//         }
-//         );
-//       console.log("결과!",result)
-//       dispatch({type: 'FETCH_COVID', payload: result.data})
-//     }catch(error){
-//       console.error(error);
-//     }
-//   }
-// }
+export function fetchCOVID(){
+  return (dispatch) => {
+    getCOVID().then((res)=>{
+      console.log(res.data);
+    })
+  }
+}
 
 export function fetchCOVIDNews(){
   return async (dispatch) => {
