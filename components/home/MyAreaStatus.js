@@ -1,7 +1,7 @@
 import React, { useRef } from 'react';
 import {  Animated, StyleSheet, View, Text, ScrollView, useWindowDimensions } from 'react-native';
-import { AntDesign } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons'; 
 import { useSelector } from 'react-redux';
 
 function Circle({data}){
@@ -21,7 +21,7 @@ export default function MyAreaStatus(){
 
   const { width: windowWidth } = useWindowDimensions();
   
-  const areaData = useSelector(state => state.areaData);
+  const myAreaData = useSelector(state => state.myAreaData);
 
   return(
     <View>
@@ -38,12 +38,11 @@ export default function MyAreaStatus(){
               },
             },
           }],
-          // true로 바꾸면 워닝 사라지지만 dot기능 사라짐
           { useNativeDriver: false }
           )}
         scrollEventThrottle={1}
       >
-        {areaData.map((area, areaIndex) => {
+        {myAreaData.map((area, areaIndex) => {
             return (
               <View
                 style={{ 
@@ -52,11 +51,9 @@ export default function MyAreaStatus(){
                   height: 420, alignItems:'center' }}
                 key={areaIndex}
               >
-                  {/* 지역 이름 */}
                   <Text style={styles.areaName}>
                       {area.gubun}
                   </Text>
-                  {/* 지역 확진자 추가 정보 */}
                   <View>
                   {area.incDec>0 ? 
                     <Text style={styles.areaBad}>
@@ -79,7 +76,7 @@ export default function MyAreaStatus(){
       
       </Animated.ScrollView>
       <View style={styles.indicatorContainer}>
-          {areaData.map((area, areaIndex) => {
+          {myAreaData.map((area, areaIndex) => {
             const width = scrollX.interpolate({
               inputRange: [
                 windowWidth * (areaIndex - 1),

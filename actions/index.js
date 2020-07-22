@@ -21,7 +21,7 @@ const getCOVIDCountry = async() =>{
 }
 
 export function fetchCOVIDCountry(){
-  return (dispatch) => {
+  return async (dispatch) => {
     getCOVIDCountry().then((res)=>{
       dispatch({type: 'FETCH_COVID_COUNTRY', payload: res.data.response.body.items.item})
     });
@@ -41,7 +41,7 @@ const getCOVIDArea = async() =>{
 }
 
 export function fetchCOVIDArea(){
-  return (dispatch) => {
+  return async (dispatch) => {
     getCOVIDArea().then((res)=>{
       dispatch({type: 'FETCH_COVID_AREA', payload: res.data.response.body.items.item})
     });
