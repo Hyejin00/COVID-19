@@ -2,8 +2,9 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Card } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
+import { useSelector } from 'react-redux';
 
-import colors from '../constants/Colors'
+import colors from '../../constants/Colors'
 
 function addComma(num) {
   var regexp = /\B(?=(\d{3})+(?!\d))/g;
@@ -12,16 +13,7 @@ function addComma(num) {
 
 export default function CountryStatus(){
 
-  const countryData = {
-    'confirmedNum': 10909,
-    'confirmedNumChanged': 23,
-    'release': 9632,
-    'releaseChanged': 173,
-    'underExam': 28245,
-    'underExamChanged': 11,
-    'death': 256,
-    'deathChanged': 0,
-  }
+  const countryData = useSelector(state => state.countryData);
 
   return(
     <View style={styles.container}>

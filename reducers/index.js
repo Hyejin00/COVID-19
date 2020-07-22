@@ -1,7 +1,31 @@
 import produce from "immer";
 
 const baseState = {
-  covidnews: {}
+  covidnews: {},
+  myArea: [
+    {
+      areaName:'경기도',
+      confirmedNum: 20,
+    },
+    {
+      areaName:'서울',
+      confirmedNum: 25,
+    },
+    {
+      areaName:'부안',
+      confirmedNum: 0,
+    },
+  ],
+  countryData: {
+    'confirmedNum': 10909,
+    'confirmedNumChanged': 23,
+    'release': 9632,
+    'releaseChanged': 173,
+    'underExam': 28245,
+    'underExamChanged': 11,
+    'death': 256,
+    'deathChanged': 0,
+  }
 };
 
 const reducer = produce((state, action) => {

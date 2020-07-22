@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef } from 'react';
 import {  Animated, StyleSheet, View, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { AntDesign } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
+import { useSelector } from 'react-redux';
 
 function Circle({data}){
   const list = new Array(data).fill('0');
@@ -15,59 +16,16 @@ function Circle({data}){
 }
 
 
-const FadeInView = (props) => {
-  const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
-
-  React.useEffect(() => {
-    Animated.timing(
-      fadeAnim,
-      {
-        toValue: 1,
-        duration: 3000,
-        useNativeDriver: true,
-      }
-    ).start();
-  }, [fadeAnim])
-
-  return (
-    <Animated.View                 // Special animatable View
-      style={{
-        ...props.style,
-        opacity: fadeAnim,         // Bind opacity to animated value
-      }}
-    >
-      {props.children}
-    </Animated.View>
-  );
-}
-
 export default function MyAreaStatus(){
-
-  // 현재 확진자 수
-  const confirmedNum = 20;
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
   const { width: windowWidth } = useWindowDimensions();
   
-  // 관심목록
-  const MyArea = [
-                  {
-                    areaName:'경기도',
-                    confirmedNum: 20,
-                  },
-                  {
-                    areaName:'서울',
-                    confirmedNum: 25,
-                  },
-                  {
-                    areaName:'부안',
-                    confirmedNum: 0,
-                  },
-                ];
+  const myArea = useSelector(state => state.myArea);
 
   return(
-    <FadeInView>
+    <View>
       <Animated.ScrollView
         horizontal={true}
         style={styles.scrollViewStyle}
@@ -86,7 +44,7 @@ export default function MyAreaStatus(){
           )}
         scrollEventThrottle={1}
       >
-        {MyArea.map((area, areaIndex) => {
+        {myArea.map((area, areaIndex) => {
             return (
               <View
                 style={{ width: windowWidth, height: 420, alignItems:'center' }}
@@ -119,7 +77,7 @@ export default function MyAreaStatus(){
       
       </Animated.ScrollView>
       <View style={styles.indicatorContainer}>
-          {MyArea.map((area, areaIndex) => {
+          {myArea.map((area, areaIndex) => {
             const width = scrollX.interpolate({
               inputRange: [
                 windowWidth * (areaIndex - 1),
@@ -137,7 +95,7 @@ export default function MyAreaStatus(){
             );
           })}
         </View>
-    </FadeInView>
+      </View>
   );
 }
 
