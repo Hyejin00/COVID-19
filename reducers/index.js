@@ -2,19 +2,24 @@ import produce from "immer";
 
 const baseState = {
   covidnews: {},
-  myArea: [
-    {
-      areaName:'경기도',
-      confirmedNum: 20,
-    },
-    {
-      areaName:'서울',
-      confirmedNum: 25,
-    },
-    {
-      areaName:'부안',
-      confirmedNum: 0,
-    },
+  areaData: [
+    // {
+    //   "createDt": "2020-07-22 10:52:29.546",
+    //   "deathCnt": 11,
+    //   "defCnt": 1514,
+    //   "gubun": "서울",
+    //   "gubunCn": "首尔",
+    //   "gubunEn": "Seoul",
+    //   "incDec": 16,
+    //   "isolClearCnt": 1346,
+    //   "isolIngCnt": 157,
+    //   "localOccCnt": 16,
+    //   "overFlowCnt": 0,
+    //   "qurRate": 15.55,
+    //   "seq": 3163,
+    //   "stdDay": "2020년 07월 22일 00시",
+    //   "updateDt": "null",
+    // }
   ],
   countryData: {
     // 'deathChanged': 0,
@@ -45,6 +50,9 @@ const reducer = produce((state, action) => {
       break;
     case 'FETCH_COVID_COUNTRY':
       state.countryData = action.payload;
+      break;
+    case 'FETCH_COVID_AREA':
+      state.areaData = action.payload;
       break;
     default:
       break;

@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux';
 import colors from '../constants/Colors'
 import MyAreaStatus from '../components/home/MyAreaStatus';
 import CountryStatus from '../components/home/CountryStatus';
-import { fetchCOVIDCountry } from '../actions';
+import { fetchCOVIDCountry, fetchCOVIDArea } from '../actions';
 export default function HomeScreen(){
 
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -19,6 +19,7 @@ export default function HomeScreen(){
   const dispatch = useDispatch();
   useEffect(()=> {
     dispatch(fetchCOVIDCountry());
+    dispatch(fetchCOVIDArea());
   },[])
 
   const FadeInView = (props) => {

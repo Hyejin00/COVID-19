@@ -15,14 +15,13 @@ function Circle({data}){
   );
 }
 
-
 export default function MyAreaStatus(){
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
   const { width: windowWidth } = useWindowDimensions();
   
-  const myArea = useSelector(state => state.myArea);
+  const areaData = useSelector(state => state.areaData);
 
   return(
     <View>
@@ -44,7 +43,7 @@ export default function MyAreaStatus(){
           )}
         scrollEventThrottle={1}
       >
-        {myArea.map((area, areaIndex) => {
+        {areaData.map((area, areaIndex) => {
             return (
               <View
                 style={{ 
@@ -55,13 +54,13 @@ export default function MyAreaStatus(){
               >
                   {/* 지역 이름 */}
                   <Text style={styles.areaName}>
-                      {area.areaName}
+                      {area.gubun}
                   </Text>
                   {/* 지역 확진자 추가 정보 */}
                   <View>
-                  {area.confirmedNum>0 ? 
+                  {area.incDec>0 ? 
                     <Text style={styles.areaBad}>
-                      <Text style={{fontSize:20}}>추가 확진자</Text> {area.confirmedNum} <Text style={{fontSize:20}}>명</Text>
+                      <Text style={{fontSize:20}}>추가 확진자</Text> {area.incDec} <Text style={{fontSize:20}}>명</Text>
                     </Text> :
                       <Text style={styles.areaGood}>
                         오늘 확진자는 없습니다!
@@ -69,8 +68,8 @@ export default function MyAreaStatus(){
                     }
                   </View>
                   <View style={styles.circles}>
-                  {area.confirmedNum>0 ? 
-                    <Circle data={area.confirmedNum}/> :
+                  {area.incDec>0 ? 
+                    <Circle data={area.incDec}/> :
                     <Entypo name="emoji-happy" size={120} color="white" />
                   }
                   </View>
@@ -80,7 +79,7 @@ export default function MyAreaStatus(){
       
       </Animated.ScrollView>
       <View style={styles.indicatorContainer}>
-          {myArea.map((area, areaIndex) => {
+          {areaData.map((area, areaIndex) => {
             const width = scrollX.interpolate({
               inputRange: [
                 windowWidth * (areaIndex - 1),
