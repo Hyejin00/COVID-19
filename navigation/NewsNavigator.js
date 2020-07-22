@@ -1,12 +1,20 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import NewsScreen from '../screens/NewsScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
+import { fetchCOVIDNews } from '../actions/index';
+import { useDispatch } from 'react-redux';
 
 const HomeStack = createStackNavigator();
 
 export default function NewsNavigator({ navigation, route }) {
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchCOVIDNews());
+  })
+
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
