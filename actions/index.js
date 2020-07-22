@@ -3,10 +3,6 @@ import axios from 'axios';
 const NEWS_API = "https://openapi.naver.com/v1/search/news.json";
 const NEWS_ID = "dVWdGSs2FWC3OwDyBPI_";
 const NEWS_PW = "0Ja5lIgz1N";
-const NEWS_HEADER = {
-  'X-Naver-Client-Id': NEWS_ID,
-  'X-Naver-Client-Secret': NEWS_PW
-}
 
 export function fetchCOVIDNews(){
   return async (dispatch) => {
