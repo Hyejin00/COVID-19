@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
-import { StyleSheet, RefreshControl, ScrollView} from 'react-native';
+import React, { useState , useRef, useEffect } from 'react';
+import { Animated, StyleSheet, RefreshControl, ScrollView} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 
 import colors from '../constants/Colors'
-import MyAreaStatus from '../components/MyAreaStatus';
-import CountryStatus from '../components/CountryStatus';
-
+import MyAreaStatus from '../components/home/MyAreaStatus';
+import CountryStatus from '../components/home/CountryStatus';
 
 export default function HomeScreen(){
 
@@ -15,6 +14,32 @@ export default function HomeScreen(){
     setIsRefreshing(true);
     setTimeout(function() { console.log('loading..')}, 3000);
     setIsRefreshing(false);
+  }
+
+  const FadeInView = (props) => {
+    const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
+  
+    React.useEffect(() => {
+      Animated.timing(
+        fadeAnim,
+        {
+          toValue: 1,
+          duration: 3000,
+          useNativeDriver: true,
+        }
+      ).start();
+    }, [fadeAnim])
+  
+    return (
+      <Animated.View                 // Special animatable View
+        style={{
+          ...props.style,
+          opacity: fadeAnim,         // Bind opacity to animated value
+        }}
+      >
+        {props.children}
+      </Animated.View>
+    );
   }
   
 
@@ -28,7 +53,10 @@ export default function HomeScreen(){
         // colors={["#83a4d4","#b6fbff"]}
         colors={[colors.light.maxColor,colors.light.minColor]}
       >
-        <MyAreaStatus/>
+        
+        <FadeInView>
+          <MyAreaStatus/>
+        </FadeInView>
         <CountryStatus/>
       </LinearGradient>
     </ScrollView>
