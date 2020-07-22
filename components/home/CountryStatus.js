@@ -34,7 +34,8 @@ export default function CountryStatus(){
     <View style={styles.container}>
         <Card 
           title="국내 확진자 현황"
-          titleStyle={{color: 'white'}}
+          titleStyle={{color: 'white', marginBottom:-5}}
+          dividerStyle={{height:0}}
           containerStyle={{backgroundColor: colors.light.maxColor, borderRadius: 12, 
                       borderColor:  colors.light.maxColor, height: '60%', marginTop: 40}}>
         {/*react-native-elements Card*/}
