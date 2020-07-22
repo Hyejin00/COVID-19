@@ -9,11 +9,11 @@ export default function OptionItem({ name }){
   return(
     <TouchableHighlight
       activeOpacity={0.6}
-      underlayColor="#D6EAF8"
-      onPress={() => alert('Pressed!')}
+      underlayColor="#ccc"
+      onPress={() => setIsSelected((cur)=>!cur)}
     >
-      <View style = {styles.item_container}>
-        <Ionicons name="md-radio-button-off" size={24} color="black" />
+      <View style = {isSelected?{...styles.item_container,...{backgroundColor: '#EAF2F8'}}:{...styles.item_container,...{backgroundColor: '#FBFCFC'}}}>
+        <Ionicons name={isSelected?"md-checkmark-circle":"md-radio-button-off"} size={24} color={isSelected?"#3498DB":"#777777"} />
         <Text style = {styles.name_font}>{name}</Text>
       </View>
     </TouchableHighlight>
@@ -29,7 +29,6 @@ const styles = StyleSheet.create({
     paddingEnd:20,
     borderBottomWidth:.5,
     borderColor: '#ccc',
-    backgroundColor: '#FBFCFC',
   },
   name_font:{
     fontSize: 20,
