@@ -11,7 +11,7 @@ export const COVIDNews = ({ cnews }) => {
 
   const pubDate = cnews.pubDate;
   const date = new Date(pubDate);
-  const real_date = date.getFullYear()+'년 '+date.getMonth()+'월 '+date.getDate()+'일 '+date.getHours()+":"+date.getMinutes();
+  const real_date = date.getFullYear()+'년 '+date.getMonth()+'월 '+date.getDate()+'일 '+(date.getHours()<10?'0':'')+date.getHours()+":"+(date.getMinutes()<10?'0':'')+date.getMinutes();
 
   return(
     <TouchableOpacity style={styles.container} onPress={() => Linking.openURL(cnews.originallink)}>
@@ -31,9 +31,11 @@ export const COVIDNews = ({ cnews }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#FBFCFC'
   },
   item: {
-    borderBottomWidth: .5,
+    borderBottomWidth: 1,
+    borderColor: '#ccc',
     padding: 10,
     marginLeft: 5,
     marginRight: 5
