@@ -5,7 +5,7 @@ const NEWS_ID = "dVWdGSs2FWC3OwDyBPI_";
 const NEWS_PW = "0Ja5lIgz1N";
 
 const COVID_API = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson";
-const COVID_SERVICE_KEY = "x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfgntc7M2Ih8WPpxISF6Q%2FTpuMO3f4ab2VfKVDQc1orY0mq38ZCl0AI0A%3D%3D";
+const COVID_SERVICE_KEY = decodeURIComponent("x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfgntc7M2Ih8WPpxISF6Q%2FTpuMO3f4ab2VfKVDQc1orY0mq38ZCl0AI0A%3D%3D");
 
 const getCOVID = async() =>{
   return await axios.get(COVID_API,{
