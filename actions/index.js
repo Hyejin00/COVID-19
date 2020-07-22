@@ -19,11 +19,12 @@ const getCOVID = async() =>{
   })
 }
 
-export function fetchCOVID(){
+export function fetchCOVIDCountry(){
   return (dispatch) => {
     getCOVID().then((res)=>{
-      console.log(res.data);
-    })
+      console.log(res.data.response.body.items.item);
+      dispatch({type: 'FETCH_COVID_COUNTRY', payload: res.data.response.body.items.item})
+    });
   }
 }
 
