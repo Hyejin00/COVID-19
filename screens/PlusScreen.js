@@ -1,30 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet,FlatList } from 'react-native';
+import Loading from '../components/Loading';
 import AreaItem from '../components/plus/AreaItem';
-
-const DATA = [
-  {
-    id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-    title: "First Item",
-  },
-  {
-    id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-    title: "Second Item",
-  },
-  {
-    id: "58694a0f-3da1-471f-bd96-145571e29d72",
-    title: "Third Item",
-  },
-];
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default function PlusScreen(){
 
+  const [myAreaList, setMyAreaList] = useState();
+  const [isLoading, setIsLoading] = useState(true);
+
+  const getMyArea = async () => {
+    try {
+      const myArea = await AsyncStorage.getItem('MyArea');
+      console.log(myArea);
+      return myArea != null ? JSON.parse(jsonValue) : [];
+    } catch(e) {
+      console.log(e);
+    }
+  }
+
+  useEffect(() => {
+    setMyAreaList(getMyArea);
+    console.log(myAreaList);
+    console.log('zz');
+  });
+
   return(
-    <FlatList 
-      data={DATA}
-      renderItem={({ item }) => <AreaItem name = {item.title}/>}
-      keyExtractor={item => item.id.toString()}
-    />
+    isLoading?<FlatList data={[]} renderItem={({ item }) => <AreaItem name = {item.title}/>} keyExtractor={item => item.id.toString()}
+    />:<Loading />
   );
 }
 

@@ -6,7 +6,7 @@ export default function AreaItem({ name }){
   return(
     <View style = {styles.item_container}>
       <Text style = {styles.name_font}>{name}</Text>
-      <FontAwesome name="trash-o" size={24} color="black" />
+      <FontAwesome name="trash-o" size={24} color="#C0392B" />
     </View>
   );
 }

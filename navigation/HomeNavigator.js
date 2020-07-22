@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
   },
   fontRight:{
     fontSize: 18,
-    color:'#666666',
+    color:'#3498DB',
     marginRight: 19
   }
 })
