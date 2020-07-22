@@ -1,11 +1,12 @@
 import React, { useState , useRef, useEffect } from 'react';
 import { Animated, StyleSheet, RefreshControl, ScrollView} from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
+// import { useDispatch } from 'react-redux';
 
 import colors from '../constants/Colors'
 import MyAreaStatus from '../components/home/MyAreaStatus';
 import CountryStatus from '../components/home/CountryStatus';
-
+// import { fetchCOVID } from '../actions';
 export default function HomeScreen(){
 
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -15,6 +16,10 @@ export default function HomeScreen(){
     setTimeout(function() { console.log('loading..')}, 3000);
     setIsRefreshing(false);
   }
+  // const dispatch = useDispatch();
+  // useEffect(()=> {
+  //   dispatch(fetchCOVID())
+  // },[])
 
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0

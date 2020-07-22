@@ -47,7 +47,10 @@ export default function MyAreaStatus(){
         {myArea.map((area, areaIndex) => {
             return (
               <View
-                style={{ width: windowWidth, height: 420, alignItems:'center' }}
+                style={{ 
+                  // width: 320, 
+                  width: windowWidth, 
+                  height: 420, alignItems:'center' }}
                 key={areaIndex}
               >
                   {/* 지역 이름 */}
