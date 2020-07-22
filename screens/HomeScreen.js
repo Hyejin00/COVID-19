@@ -12,7 +12,8 @@ export default function HomeScreen(){
   return (
     <LinearGradient
       style={styles.container}
-      colors={["#83a4d4","#b6fbff"]}
+      // colors={["#83a4d4","#b6fbff"]}
+      colors={["#FF2828","#FFD4D4"]}
     >
       <MyAreaStatus/>
       <CountryStatus/>

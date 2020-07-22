@@ -28,7 +28,8 @@ export default function HomeNavigator({ navigation, route }) {
             </TouchableWithoutFeedback>
             )},
             headerStyle:{
-              backgroundColor: "#83a4d4",
+              // backgroundColor: "#83a4d4",
+              backgroundColor: "#FF2828",
               elevation: 0,
               shadowOpacity: 0,
             },

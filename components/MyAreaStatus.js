@@ -8,7 +8,7 @@ function Circle({data}){
   return(
     list.map((l, i) => (
       <View style={styles.circle} key={i}>
-        <AntDesign name="frowno" size={37} color="black" style={{ margin: 3 }}/>
+        <AntDesign name="frowno" size={37} color="white" style={{ margin: 3 }}/>
       </View>
     ))
   );
@@ -89,7 +89,7 @@ export default function MyAreaStatus(){
         {MyArea.map((area, areaIndex) => {
             return (
               <View
-                style={{ width: windowWidth, height: 410, alignItems:'center' }}
+                style={{ width: windowWidth, height: 420, alignItems:'center' }}
                 key={areaIndex}
               >
                   {/* 지역 이름 */}
@@ -110,7 +110,7 @@ export default function MyAreaStatus(){
                   <View style={styles.circles}>
                   {area.confirmedNum>0 ? 
                     <Circle data={area.confirmedNum}/> :
-                    <Entypo name="emoji-happy" size={120} color="black" />
+                    <Entypo name="emoji-happy" size={120} color="white" />
                   }
                   </View>
               </View>
@@ -144,15 +144,16 @@ export default function MyAreaStatus(){
 const styles = StyleSheet.create({
     main: {
       height: 400,
-      alignItems: 'center'
+      alignItems: 'center',
     },
     areaName: {
         fontSize: 40,
         width: '100%',
         textAlign: 'center',
-        marginTop: 30,
-        marginBottom: 20,
-        fontWeight: '600'
+        marginTop: 60,
+        marginBottom: 10,
+        fontWeight: '600',
+        color: '#fff'
     },
     circles: {
       flex: 1,
@@ -167,20 +168,23 @@ const styles = StyleSheet.create({
     },
     areaBad: {
       fontSize: 40,
+      color: '#fff',
       // color: '#9d0208',
       fontWeight: '600',
       marginBottom: 20
     },
     areaGood: {
       fontSize: 30,
+      color: '#fff',
       fontWeight: '600',
-      marginBottom: 60
+      marginBottom: 30,
+      marginTop: 20
     },
     normalDot: {
       height: 8,
       width: 8,
       borderRadius: 4,
-      backgroundColor: "black",
+      backgroundColor: "white",
       marginHorizontal: 4
     },
     indicatorContainer: {
