@@ -55,9 +55,6 @@ export default function ScrollEx() {
         </ScrollView>
         <View style={styles.indicatorContainer}>
           {images.map((image, imageIndex) => {
-              console.log(windowWidth * (imageIndex - 1),
-              windowWidth * imageIndex,
-              windowWidth * (imageIndex + 1))
             const width = scrollX.interpolate({
               inputRange: [
                 windowWidth * (imageIndex - 1),
@@ -124,3 +121,4 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+

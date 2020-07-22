@@ -48,72 +48,90 @@ export default function MyAreaStatus(){
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
-  // const { width: windowWidth } = useWindowDimensions();
+  const { width: windowWidth } = useWindowDimensions();
   
-  const MyArea = new Array(3).fill('1');
-
+  // 관심목록
+  const MyArea = [
+                  {
+                    areaName:'경기도',
+                    confirmedNum: 20,
+                  },
+                  {
+                    areaName:'서울',
+                    confirmedNum: 25,
+                  },
+                  {
+                    areaName:'부안',
+                    confirmedNum: 0,
+                  },
+                ];
 
   return(
     <FadeInView>
-      <ScrollView
-        // 추후에 관심목록 추가하면 옆에 추가하고 가로로 스크롤
-        // horizontal={true}
+      <Animated.ScrollView
+        horizontal={true}
         style={styles.scrollViewStyle}
         pagingEnabled
         showsHorizontalScrollIndicator={false}
         onScroll={Animated.event(
-          null, 
-          {
+          [{
             nativeEvent: {
               contentOffset: {
                 x: scrollX
               },
             },
-            useNativeDriver: true,
-          },
-        )}
+          }],
+          // true로 바꾸면 워닝 사라지지만 dot기능 사라짐
+          { useNativeDriver: false }
+          )}
         scrollEventThrottle={1}
       >
-      <View style={styles.main}>
-
-        {/* 지역 이름 */}
-        <Text style={styles.areaName}>
-            서울
-        </Text>
-        {/* 지역 확진자 추가 정보 */}
-        <View>
-        {confirmedNum>0 ? 
-          <Text style={styles.areaBad}>
-            + {confirmedNum}
-          </Text> :
-            <Text style={styles.areaGood}>
-              오늘 확진자는 없습니다!
-            </Text> 
-          }
-        </View>
-        <View style={styles.circles}>
-        {confirmedNum>0 ? 
-          <Circle data={confirmedNum}/> :
-          <Entypo name="emoji-happy" size={120} color="black" />
-        }
-        </View>
-        
-      </View>
-      </ScrollView>
+        {MyArea.map((area, areaIndex) => {
+            return (
+              <View
+                style={{ width: windowWidth, height: 410, alignItems:'center' }}
+                key={areaIndex}
+              >
+                  {/* 지역 이름 */}
+                  <Text style={styles.areaName}>
+                      {area.areaName}
+                  </Text>
+                  {/* 지역 확진자 추가 정보 */}
+                  <View>
+                  {area.confirmedNum>0 ? 
+                    <Text style={styles.areaBad}>
+                      <Text style={{fontSize:20}}>추가 확진자</Text> {area.confirmedNum} <Text style={{fontSize:20}}>명</Text>
+                    </Text> :
+                      <Text style={styles.areaGood}>
+                        오늘 확진자는 없습니다!
+                      </Text> 
+                    }
+                  </View>
+                  <View style={styles.circles}>
+                  {area.confirmedNum>0 ? 
+                    <Circle data={area.confirmedNum}/> :
+                    <Entypo name="emoji-happy" size={120} color="black" />
+                  }
+                  </View>
+              </View>
+            );
+          })}
+      
+      </Animated.ScrollView>
       <View style={styles.indicatorContainer}>
-          {MyArea.map((areas, area) => {
+          {MyArea.map((area, areaIndex) => {
             const width = scrollX.interpolate({
               inputRange: [
-                (area - 1),
-                area,
-                (area + 1)
+                windowWidth * (areaIndex - 1),
+                windowWidth * areaIndex,
+                windowWidth * (areaIndex + 1)
               ],
               outputRange: [8, 16, 8],
               extrapolate: "clamp"
             });
             return (
               <Animated.View
-                key={area}
+                key={areaIndex}
                 style={[styles.normalDot, { width }]}
               />
             );
@@ -149,14 +167,14 @@ const styles = StyleSheet.create({
     },
     areaBad: {
       fontSize: 40,
-      color: '#9d0208',
+      // color: '#9d0208',
       fontWeight: '600',
       marginBottom: 20
     },
     areaGood: {
       fontSize: 30,
       fontWeight: '600',
-      marginBottom: 20
+      marginBottom: 60
     },
     normalDot: {
       height: 8,
