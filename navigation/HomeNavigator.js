@@ -5,6 +5,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Entypo } from '@expo/vector-icons'; 
 import { StyleSheet, TouchableWithoutFeedback, View } from 'react-native';
 
+import colors from '../constants/Colors'
+
 const HomeStack = createStackNavigator();
 
 export default function HomeNavigator({ navigation, route }) {
@@ -23,13 +25,12 @@ export default function HomeNavigator({ navigation, route }) {
                 <Ionicons
                 name= 'md-menu'
                 size={24}
-                color='black'
+                color='white'
                 style={{marginLeft:20}}/>
             </TouchableWithoutFeedback>
             )},
             headerStyle:{
-              // backgroundColor: "#83a4d4",
-              backgroundColor: "#FF2828",
+              backgroundColor: colors.light.maxColor,
               elevation: 0,
               shadowOpacity: 0,
             },
@@ -42,7 +43,7 @@ export default function HomeNavigator({ navigation, route }) {
                     <Entypo 
                       name="map" 
                       size={25} 
-                      color="black" 
+                      color="white" 
                       style={{margin:2, marginRight:18}}
                     />
                   </TouchableWithoutFeedback>
@@ -52,7 +53,7 @@ export default function HomeNavigator({ navigation, route }) {
                     <Entypo 
                       name="plus"
                       size={25} 
-                      color="black" 
+                      color="white" 
                       style={{margin:2, marginRight:18}}
                     />
                   </TouchableWithoutFeedback>
