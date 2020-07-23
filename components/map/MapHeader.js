@@ -4,12 +4,13 @@ import { useSelector } from 'react-redux';
 import { Col, Row, Grid } from "react-native-easy-grid";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Entypo } from '@expo/vector-icons'; 
+import { AntDesign } from '@expo/vector-icons'; 
 import { useNavigation } from '@react-navigation/native';
 
 import colors from '../../constants/Colors'
 
 
-export default function Header(){
+export default function MapHeader(){
   const [color, setColor] = useState(colors.bad.maxColor);
 
 	const curPage = useSelector(state => state.curPage);
@@ -18,8 +19,8 @@ export default function Header(){
 
   return(
 		<SafeAreaView style={styles.container}>
-			<Grid style={{ width: '100%' }}>
-				<Col size={10} >
+			<Grid >
+				<Col size={3} style={{height:30}}>
 					<TouchableWithoutFeedback
 						onPress={()=>{navigation.openDrawer()}}>
 							<Ionicons
@@ -29,21 +30,21 @@ export default function Header(){
 							style={{marginLeft:30}}/>
 					</TouchableWithoutFeedback>
 				</Col>
-				<Col size={0.1} >
+				<Col size={0.5} style={{height:30}}>
 					<TouchableWithoutFeedback
 						onPress={()=>{
-								navigation.navigate('EditScreen')
+								navigation.navigate('HomeScreen')
 						}}
 					>
-						<Entypo 
-							name="map"
-							size={25} 
-							color="white" 
+						<AntDesign 
+							name="staro" 
+							size={27} 
+							color="white"
 							style={{margin:2, marginRight:18}}
 						/>
 					</TouchableWithoutFeedback>
 				</Col>
-				<Col size={0.1} >
+				<Col size={0.5} style={{height:30}}>
 					<TouchableWithoutFeedback
 						onPress={()=>{
 						navigation.navigate('PlusScreen')

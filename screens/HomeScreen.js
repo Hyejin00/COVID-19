@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import colors from '../constants/Colors'
 import MyAreaStatus from '../components/home/MyAreaStatus';
 import CountryStatus from '../components/home/CountryStatus';
-import Header from '../components/home/Header';
+import HomeHeader from '../components/home/HomeHeader';
 import { fetchCOVIDCountry, fetchCOVIDArea } from '../actions';
 
 function getColor(incDec){
@@ -96,7 +96,7 @@ export default function HomeScreen(){
                 contentContainerStyle={styles.scroll_container}
                 refreshControl = {<RefreshControl refreshing={isLoading} onRefresh={ onRefresh }/>}
               >
-                <Header/>
+                <HomeHeader/>
                 <FadeInView>
                   <MyAreaStatus area={area}/>
                   <View style={styles.indicatorContainer}>

@@ -6,6 +6,7 @@ import { Entypo } from '@expo/vector-icons';
 import { StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
 
 import colors from '../constants/Colors'
+import MapScreen from '../screens/MapScreen';
 import PlusScreen from '../screens/PlusScreen';
 import EditScreen from '../screens/EditScreen';
 
@@ -70,6 +71,11 @@ export default function HomeNavigator({ navigation, route }) {
         //   }
         // }
       />
+      <HomeStack.Screen
+        name="MapScreen"
+        component={MapScreen}
+        options={{ headerShown: false }}
+        />
       <HomeStack.Screen
         name="PlusScreen"
         component={PlusScreen}
