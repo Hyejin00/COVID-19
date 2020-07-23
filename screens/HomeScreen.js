@@ -2,6 +2,8 @@ import React, { useState , useRef, useEffect } from 'react';
 import { Animated, StyleSheet, RefreshControl, ScrollView, useWindowDimensions, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
+import { StatusBar } from 'expo-status-bar';
+import Constants from 'expo-constants';
 
 import colors from '../constants/Colors'
 import MyAreaStatus from '../components/home/MyAreaStatus';
@@ -100,6 +102,7 @@ export default function HomeScreen(){
                 contentContainerStyle={styles.scroll_container}
                 refreshControl = {<RefreshControl refreshing={isLoading} onRefresh={ onRefresh }/>}
               >
+                <StatusBar style="light"/>
                 <HomeHeader/>
                 <FadeInView>
                   <MyAreaStatus area={area}/>
@@ -136,7 +139,8 @@ export default function HomeScreen(){
 
 const styles = StyleSheet.create({
   scroll_container:{
-    flex:1
+    flex:1,
+    marginTop: Constants.statusBarHeight,
   },
   container:{
     flex:1,
