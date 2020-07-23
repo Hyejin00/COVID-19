@@ -17,88 +17,38 @@ function Circle({data}){
   );
 }
 
-export default function MyAreaStatus(){
-
-  const scrollX = useRef(new Animated.Value(0)).current;
-
-  const { width: windowWidth } = useWindowDimensions();
+export default function MyAreaStatus({area}){
   
-  const myAreaData = useSelector(state => state.myAreaData);
+  const { width: windowWidth } = useWindowDimensions();
 
   const curPage = useSelector(state => state.curPage);
 
   return(
-    <View>
-      <Animated.ScrollView
-        horizontal={true}
-        style={styles.scrollViewStyle}
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onScroll={Animated.event(
-          [{
-            nativeEvent: {
-              contentOffset: {
-                x: scrollX
-              },
-            },
-          }],
-          { useNativeDriver: false }
-          )}
-        scrollEventThrottle={1}
-      >
-        {myAreaData.map((area, areaIndex) => {
-            return (
-              <View
-                style={{ 
-                  // width: 320, 
-                  width: windowWidth, 
-                  height: 420, alignItems:'center' }}
-                key={areaIndex}
-              >
-                  <Text style={styles.areaName}>
-                      {area.gubun}
-                  </Text>
-                  <View>
-                  {area.incDec>0 ? 
-                    <Text style={styles.areaBad}>
-                      <Text style={{fontSize:20}}>추가 확진자</Text> {area.incDec} <Text style={{fontSize:20}}>명</Text>
-                    </Text> :
-                      <Text style={styles.areaGood}>
-                        오늘 확진자는 없습니다!
-                      </Text> 
-                    }
-                  </View>
-                  <View style={styles.circles}>
-                  {area.incDec>0 ? 
-                    <Circle data={area.incDec}/> :
-                    <Entypo name="emoji-happy" size={120} color="white" />
-                  }
-                  </View>
-              </View>
-            );
-          })}
-      
-      </Animated.ScrollView>
-      <View style={styles.indicatorContainer}>
-          {myAreaData.map((area, areaIndex) => {
-            const width = scrollX.interpolate({
-              inputRange: [
-                windowWidth * (areaIndex - 1),
-                windowWidth * areaIndex,
-                windowWidth * (areaIndex + 1)
-              ],
-              outputRange: [8, 16, 8],
-              extrapolate: "clamp"
-            });
-            return (
-              <Animated.View
-                key={areaIndex}
-                style={[styles.normalDot, { width }]}
-              />
-            );
-          })}
+    <View
+      style={{ 
+        width: windowWidth, 
+        height: 420, alignItems:'center' }}
+    >
+        <Text style={styles.areaName}>
+            {area.gubun}
+        </Text>
+        <View>
+        {area.incDec>0 ? 
+          <Text style={styles.areaBad}>
+            <Text style={{fontSize:20}}>추가 확진자</Text> {area.incDec} <Text style={{fontSize:20}}>명</Text>
+          </Text> :
+            <Text style={styles.areaGood}>
+              오늘 확진자는 없습니다!
+            </Text> 
+          }
         </View>
-      </View>
+        <View style={styles.circles}>
+        {area.incDec>0 ? 
+          <Circle data={area.incDec}/> :
+          <Entypo name="emoji-happy" size={120} color="white" />
+        }
+        </View>
+    </View>
   );
 }
 
@@ -141,16 +91,4 @@ const styles = StyleSheet.create({
       marginBottom: 30,
       marginTop: 20
     },
-    normalDot: {
-      height: 8,
-      width: 8,
-      borderRadius: 4,
-      backgroundColor: "white",
-      marginHorizontal: 4
-    },
-    indicatorContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center"
-    }
 })

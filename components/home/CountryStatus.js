@@ -51,7 +51,7 @@ export default function CountryStatus(){
                   <Text style={styles.confirmedNum}>{addComma(countryData.decideCnt)}</Text>
               </Row>
               <Row style={styles.bigRow}>
-                  <Text style={styles.confirmedNumChanged}>+(데이터 없음))</Text>
+                  <Text style={styles.confirmedNumChanged}>+(데이터 없음)</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>

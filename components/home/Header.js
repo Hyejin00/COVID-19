@@ -19,7 +19,7 @@ export default function Header(){
   return(
 		<SafeAreaView style={styles.container}>
 			<Grid style={{ width: '100%' }}>
-				<Col size={3} >
+				<Col size={10} >
 					<TouchableWithoutFeedback
 						onPress={()=>{navigation.openDrawer()}}>
 							<Ionicons
@@ -29,7 +29,7 @@ export default function Header(){
 							style={{marginLeft:30}}/>
 					</TouchableWithoutFeedback>
 				</Col>
-				<Col size={0.5} >
+				<Col size={0.1} >
 					<TouchableWithoutFeedback
 						onPress={()=>{
 								navigation.navigate('EditScreen')
@@ -43,7 +43,7 @@ export default function Header(){
 						/>
 					</TouchableWithoutFeedback>
 				</Col>
-				<Col size={0.5} >
+				<Col size={0.1} >
 					<TouchableWithoutFeedback
 						onPress={()=>{
 						navigation.navigate('PlusScreen')

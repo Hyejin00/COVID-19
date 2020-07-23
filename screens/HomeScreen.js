@@ -1,14 +1,22 @@
 import React, { useState , useRef, useEffect } from 'react';
-import { Animated, StyleSheet, RefreshControl, ScrollView } from 'react-native';
+import { Animated, StyleSheet, RefreshControl, ScrollView, useWindowDimensions, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
 import colors from '../constants/Colors'
 import MyAreaStatus from '../components/home/MyAreaStatus';
 import CountryStatus from '../components/home/CountryStatus';
 import Header from '../components/home/Header';
 import { fetchCOVIDCountry, fetchCOVIDArea } from '../actions';
+
+
 export default function HomeScreen(){
+
+  const scrollX = useRef(new Animated.Value(0)).current;
+
+  const myAreaData = useSelector(state => state.myAreaData);
+
+  const { width: windowWidth } = useWindowDimensions();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -55,22 +63,66 @@ export default function HomeScreen(){
   
 
   return (
-    <LinearGradient
-        style={styles.container}
-        // colors={["#83a4d4","#b6fbff"]}
-        colors={[colors.bad.maxColor,colors.bad.minColor]}
+    <Animated.ScrollView
+        horizontal={true}
+        style={styles.scrollViewStyle}
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onScroll={Animated.event(
+          [{
+            nativeEvent: {
+              contentOffset: {
+                x: scrollX
+              },
+            },
+          }],
+          { useNativeDriver: false }
+          )}
+        scrollEventThrottle={1}
       >
-      <ScrollView
-        contentContainerStyle={styles.scroll_container}
-        refreshControl = {<RefreshControl refreshing={isRefreshing} onRefresh={ onRefresh }/>}
-      >
-        <Header/>
-        <FadeInView>
-          <MyAreaStatus/>
-        </FadeInView>
-        <CountryStatus/>
-      </ScrollView>
-    </LinearGradient>
+        {myAreaData.map((area, areaIndex) => {
+            return (
+              <LinearGradient
+                style={styles.container}
+                // colors={["#83a4d4","#b6fbff"]}
+                colors={[colors.bad.maxColor,colors.bad.minColor]}
+                key={areaIndex}
+              >
+              <ScrollView
+                contentContainerStyle={styles.scroll_container}
+                refreshControl = {<RefreshControl refreshing={isRefreshing} onRefresh={ onRefresh }/>}
+              >
+                <Header/>
+                <FadeInView>
+                  <MyAreaStatus area={area}/>
+                  <View style={styles.indicatorContainer}>
+                    {myAreaData.map((area, areaIndex) => {
+                      const width = scrollX.interpolate({
+                        inputRange: [
+                          windowWidth * (areaIndex - 1),
+                          windowWidth * areaIndex,
+                          windowWidth * (areaIndex + 1)
+                        ],
+                        outputRange: [8, 16, 8],
+                        extrapolate: "clamp"
+                      });
+                      return (
+                        <Animated.View
+                          key={areaIndex}
+                          style={[styles.normalDot, { width }]}
+                        />
+                      );
+                    })}
+                  </View>
+                </FadeInView>
+                <CountryStatus/>
+              </ScrollView>
+            </LinearGradient>
+            );
+          })}
+      
+      </Animated.ScrollView>
+    
   );
 }
 
@@ -81,4 +133,16 @@ const styles = StyleSheet.create({
   container:{
     flex:1,
   },
+  normalDot: {
+    height: 8,
+    width: 8,
+    borderRadius: 4,
+    backgroundColor: "white",
+    marginHorizontal: 4
+  },
+  indicatorContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center"
+  }
 })
