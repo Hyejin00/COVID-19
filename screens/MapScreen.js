@@ -27,10 +27,10 @@ export default function MapScreen(){
         <MapView 
           style={styles.mapStyle}
           initialRegion={{
-            latitude: 35.6,
+            latitude: 35.4,
             longitude: 127.8,
-            latitudeDelta: 4.25,
-            longitudeDelta: 4.25
+            latitudeDelta: 5,
+            longitudeDelta: 5
           }} 
         />
       </View>
