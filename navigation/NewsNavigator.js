@@ -6,6 +6,8 @@ import { StyleSheet, TouchableWithoutFeedback } from 'react-native';
 import { fetchCOVIDNews } from '../actions/index';
 import { useDispatch } from 'react-redux';
 
+import colors from '../constants/Colors'
+
 const HomeStack = createStackNavigator();
 
 export default function NewsNavigator({ navigation, route }) {
@@ -21,6 +23,9 @@ export default function NewsNavigator({ navigation, route }) {
         name="NewsScreen"
         component={NewsScreen}
         options={{ 
+          headerStyle: {
+            backgroundColor: colors.news.color,
+          },
           headerTitle: 'News',
           headerLeft: () => 
           { 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { StyleSheet, TouchableOpacity, View, Text, Linking } from 'react-native';
 
-
+import colors from '../../constants/Colors'
 
 export const COVIDNews = ({ cnews }) => {
   var title = cnews.title.replace(/<(\/)?([a-zA-Z]*)(\s[a-zA-Z]*=[^>]*)?(\s)*(\/)?>/ig, "");
@@ -31,7 +31,7 @@ export const COVIDNews = ({ cnews }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FBFCFC'
+    backgroundColor: colors.news.color
   },
   item: {
     borderBottomWidth: 1,

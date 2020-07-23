@@ -22,4 +22,7 @@ export default {
     maxColor: "#80B918",
     minColor: "#CDF08D",
   },
+  news: {
+    color: "#eee5e8"
+  }
 };
