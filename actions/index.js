@@ -31,18 +31,33 @@ const getCOVIDCountry = async() =>{
   })
 }
 
+const getCOVIDCountryYesterday = async() =>{
+  return await axios.get(COVID_API_COUNTRY,{
+    params:{
+      serviceKey: COVID_SERVICE_KEY,
+      pageNo: '1',
+      numOfRows: '10',
+      startCreateDt: date*1-1,
+      endCreateDt: date*1-1
+    }
+  })
+}
+
 export function fetchCOVIDCountry(){
   return (dispatch) => {
-    dispatch({ type: 'START_LOADING' });
     try{
-      getCOVIDCountry().then((res)=>{
-        dispatch({type: 'FETCH_COVID_COUNTRY', payload: res.data.response.body.items.item})
+      getCOVIDCountryYesterday().then((resYesterday)=>{
+        getCOVIDCountry().then((res)=>{
+          const result = res.data.response.body.items.item; 
+          const resultYesterday = resYesterday.data.response.body.items.item; 
+          result.decideCntChanged = result.decideCnt - resultYesterday.decideCnt
+          result.clearCntChanged = result.clearCnt - resultYesterday.clearCnt
+          result.careCntChanged = result.careCnt - resultYesterday.careCnt
+          result.deathCntChanged = result.deathCnt - resultYesterday.deathCnt
+          dispatch({type: 'FETCH_COVID_COUNTRY', payload: result})
+        });
       });
     }catch(error){
-      console.log("에러!!!", error)
-    }finally{
-    dispatch({ type: 'END_LOADING' });
-
     }
   }
 }
@@ -61,6 +76,7 @@ const getCOVIDArea = async() =>{
 
 export function fetchCOVIDArea(){
   return (dispatch) => {
+    dispatch({ type: 'START_LOADING' });
     try{
       getCOVIDArea().then((res)=>{
         console.log("응답",res);
@@ -68,6 +84,8 @@ export function fetchCOVIDArea(){
       });
     }catch(error){
       console.log("에러!!!", error)
+    }finally{
+      dispatch({ type: 'END_LOADING' });
     }
   }
 }

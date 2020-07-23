@@ -29,7 +29,6 @@ const baseState = {
     
   ],
   countryData: {
-    // 'deathChanged': 0,
     // "accDefRate": 0.9439441754,
     // "accExamCnt": 1492071,
     // "accExamCompCnt": 1470320,

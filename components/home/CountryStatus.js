@@ -48,7 +48,18 @@ export default function CountryStatus({color}){
                   <Text style={styles.confirmedNum}>{addComma(countryData.decideCnt)}</Text>
               </Row>
               <Row style={styles.bigRow}>
-                  <Text style={styles.confirmedNumChanged}>+(데이터 없음)</Text>
+                  <Text style={styles.confirmedNumChanged}>(+{countryData.decideCntChanged})</Text>
+              </Row>
+            </Col>
+            <Col size={1} style={styles.smallCol}>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallTitle}>격리중</Text>
+              </Row>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallData}>{addComma(countryData.careCnt)}</Text>
+              </Row>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallDataChanged}>(+{countryData.careCntChanged})</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -59,18 +70,7 @@ export default function CountryStatus({color}){
                   <Text style={styles.smallData}>{addComma(countryData.clearCnt)}</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}>+(데이터 없음)</Text>
-              </Row>
-            </Col>
-            <Col size={1} style={styles.smallCol}>
-              <Row style={styles.smallRow}>
-                  <Text style={styles.smallTitle}>검사중</Text>
-              </Row>
-              <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>{addComma(countryData.examCnt)}</Text>
-              </Row>
-              <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}>+(데이터 없음)</Text>
+                  <Text style={styles.smallDataChanged}>(+{countryData.clearCntChanged})</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -81,7 +81,7 @@ export default function CountryStatus({color}){
                   <Text style={styles.smallData}>{addComma(countryData.deathCnt)}</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}>+(데이터 없음)</Text>
+                  <Text style={styles.smallDataChanged}>(+{countryData.deathCntChanged})</Text>
               </Row>
             </Col>
           </Grid>
@@ -119,7 +119,7 @@ const styles = StyleSheet.create({
     },
     confirmedNumChanged: {
       color: 'white',
-      fontSize: 14,
+      fontSize: 16,
 
     },
     smallTitle: {
@@ -135,6 +135,6 @@ const styles = StyleSheet.create({
     },
     smallDataChanged: {
       color: 'white',
-      fontSize: 10,
+      fontSize: 15,
     }
 })
