@@ -4,6 +4,7 @@ import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from 'react-redux';
 
 import MapHeader from '../components/map/MapHeader';
+import colors from '../constants/Colors'
 
 export default function MapScreen(){
   const myAreaData = useSelector(state => state.myAreaData);
@@ -11,7 +12,7 @@ export default function MapScreen(){
   return(
     <LinearGradient
 			style={styles.container}
-			colors={["#80B918","#CDF08D"]}
+			colors={[colors.map.maxColor,colors.map.minColor]}
 		>
 			<MapHeader/>
 		</LinearGradient>
