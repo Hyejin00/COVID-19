@@ -8,6 +8,8 @@ const COVID_API_COUNTRY = "http://openapi.data.go.kr/openapi/service/rest/Covid1
 const COVID_API_AREA = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?";
 const COVID_SERVICE_KEY = decodeURIComponent("x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfgntc7M2Ih8WPpxISF6Q%2FTpuMO3f4ab2VfKVDQc1orY0mq38ZCl0AI0A%3D%3D");
 
+// const TODAY_COVID_URL = "https://livecorona.co.kr/data/koreaRegionalData.js";
+
 const today = new Date();
 
 function yyyymmdd(dateIn) {
@@ -18,6 +20,10 @@ function yyyymmdd(dateIn) {
 }
 
 const date = yyyymmdd(today);
+
+// const getTodayCOVID = async() =>{
+//   return await axios.get(TODAY_COVID_URL)
+// }
 
 const getCOVIDCountry = async() =>{
   return await axios.get(COVID_API_COUNTRY,{
@@ -42,6 +48,21 @@ const getCOVIDCountryYesterday = async() =>{
     }
   })
 }
+
+// export function fetchTodayCOVID(){
+//   return (dispatch) => {
+//     try{
+//       getTodayCOVID().then((res)=>{
+//         var result = []
+//         var jsonData = JSON.parse(res.data.split('= ')[1]);
+//         result.push(jsonData.slice(0,18));
+//         result.push(jsonData[18]);
+//         dispatch({type: 'FETCH_TODAY_COVID', payload: result})
+//       });
+//     }catch(error){
+//     }
+//   }
+// }
 
 export function fetchCOVIDCountry(){
   return (dispatch) => {
