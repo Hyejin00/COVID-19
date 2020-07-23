@@ -33,12 +33,16 @@ const getCOVIDCountry = async() =>{
 
 export function fetchCOVIDCountry(){
   return (dispatch) => {
+    dispatch({ type: 'START_LOADING' });
     try{
       getCOVIDCountry().then((res)=>{
         dispatch({type: 'FETCH_COVID_COUNTRY', payload: res.data.response.body.items.item})
       });
     }catch(error){
       console.log("에러!!!", error)
+    }finally{
+    dispatch({ type: 'END_LOADING' });
+
     }
   }
 }

@@ -18,6 +18,7 @@ function getColor(incDec){
 }
 
 export default function HomeScreen(){
+  const isLoading = useSelector(state => state.loading);
 
   const scrollX = useRef(new Animated.Value(0)).current;
 
@@ -28,15 +29,11 @@ export default function HomeScreen(){
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const onRefresh = async() =>{
-    setIsRefreshing(true);
-    setTimeout(function() { 
-      // console.log('loading..')
-      dispatch(fetchCOVIDCountry());
-      dispatch(fetchCOVIDArea());
-    }, 5000);
-    setIsRefreshing(false);
+    dispatch(fetchCOVIDCountry());
+    dispatch(fetchCOVIDArea());
   }
   const dispatch = useDispatch();
+  
   useEffect(()=> {
     dispatch(fetchCOVIDCountry());
     dispatch(fetchCOVIDArea());
@@ -50,7 +47,7 @@ export default function HomeScreen(){
         fadeAnim,
         {
           toValue: 1,
-          duration: 3000,
+          duration: 2000,
           useNativeDriver: true,
         }
       ).start();
@@ -97,7 +94,7 @@ export default function HomeScreen(){
               >
               <ScrollView
                 contentContainerStyle={styles.scroll_container}
-                refreshControl = {<RefreshControl refreshing={isRefreshing} onRefresh={ onRefresh }/>}
+                refreshControl = {<RefreshControl refreshing={isLoading} onRefresh={ onRefresh }/>}
               >
                 <Header/>
                 <FadeInView>

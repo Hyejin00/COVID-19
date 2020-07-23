@@ -4,6 +4,7 @@ import produce from "immer";
   const myArea = ['서울', '제주', '충남'];
 
 const baseState = {
+  loading: true,
   covidnews: {},
   areaData: {
     // {
@@ -77,6 +78,12 @@ const reducer = produce((state, action) => {
     case 'SET_PAGE':
       state.curPage = action.payload;
       break;
+    case 'START_LOADING':
+            state.loading = true;
+            break;
+    case 'END_LOADING':
+        state.loading = false;
+        break;
     default:
       break;
   }
