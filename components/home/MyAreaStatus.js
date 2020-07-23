@@ -32,6 +32,9 @@ export default function MyAreaStatus({area}){
         <Text style={styles.areaName}>
             {area.gubun}
         </Text>
+        <Text style={styles.dateTime}>
+            기준 일시 : {area.stdDay}
+        </Text>
         <View>
         {area.incDec>0 ? 
           <Text style={styles.areaBad}>
@@ -61,10 +64,19 @@ const styles = StyleSheet.create({
         fontSize: 40,
         width: '100%',
         textAlign: 'center',
-        marginTop: 60,
+        marginTop: 55,
         marginBottom: 10,
         fontWeight: '600',
         color: '#fff'
+    },
+    dateTime: {
+      fontSize: 18,
+      width: '100%',
+      textAlign: 'center',
+      // marginTop: 60,
+      marginBottom: 10,
+      fontWeight: '300',
+      color: '#fff'
     },
     circles: {
       flex: 1,

@@ -8,14 +8,25 @@ const COVID_API_COUNTRY = "http://openapi.data.go.kr/openapi/service/rest/Covid1
 const COVID_API_AREA = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?";
 const COVID_SERVICE_KEY = decodeURIComponent("x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfgntc7M2Ih8WPpxISF6Q%2FTpuMO3f4ab2VfKVDQc1orY0mq38ZCl0AI0A%3D%3D");
 
+const today = new Date();
+
+function yyyymmdd(dateIn) {
+  var yyyy = dateIn.getFullYear();
+  var mm = dateIn.getMonth() + 1; // getMonth() is zero-based
+  var dd = dateIn.getDate() - 1;
+  return String(10000 * yyyy + 100 * mm + dd); // Leading zeros for mm and dd
+}
+
+const date = yyyymmdd(today);
+
 const getCOVIDCountry = async() =>{
   return await axios.get(COVID_API_COUNTRY,{
     params:{
       serviceKey: COVID_SERVICE_KEY,
       pageNo: '1',
       numOfRows: '10',
-      startCreateDt: '20200722',
-      endCreateDt: '20200722'
+      startCreateDt: date,
+      endCreateDt: date
     }
   })
 }
@@ -38,8 +49,8 @@ const getCOVIDArea = async() =>{
       serviceKey: COVID_SERVICE_KEY,
       pageNo: '1',
       numOfRows: '10',
-      startCreateDt: '20200722',
-      endCreateDt: '20200722'
+      startCreateDt: date,
+      endCreateDt: date
     }
   })
 }
