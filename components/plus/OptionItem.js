@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, TouchableHighlight, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 
-export default function OptionItem({ name }){
+export default function OptionItem({ name, handleClick }){
 
   const [isSelected, setIsSelected] = useState(false);
 
@@ -10,7 +10,10 @@ export default function OptionItem({ name }){
     <TouchableHighlight
       activeOpacity={0.6}
       underlayColor="#ccc"
-      onPress={() => setIsSelected((cur)=>!cur)}
+      onPress={() => {
+        setIsSelected((cur)=>!cur);
+        handleClick(name, isSelected);
+      }}
     >
       <View style = {isSelected?{...styles.item_container,...{backgroundColor: '#EAF2F8'}}:{...styles.item_container,...{backgroundColor: '#FBFCFC'}}}>
         <Ionicons name={isSelected?"md-checkmark-circle":"md-radio-button-off"} size={24} color={isSelected?"#3498DB":"#777777"} />

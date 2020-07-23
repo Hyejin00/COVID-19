@@ -25,9 +25,6 @@ const baseState = {
     //   "updateDt": "null",
     // }
   },
-  myAreaData: [
-    
-  ],
   countryData: {
     // "accDefRate": 0.9439441754,
     // "accExamCnt": 1492071,
@@ -44,9 +41,7 @@ const baseState = {
     // "stateTime": "00:00",
     // "updateDt": "null",
   },
-  myAreaData: [
-
-  ],
+  myAreaData: [],
   curPage : 0
 };
 
