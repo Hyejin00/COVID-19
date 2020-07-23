@@ -6,6 +6,12 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setPage } from '../../actions';
 
+function addComma(num) {
+  num *= 1;
+  var regexp = /\B(?=(\d{3})+(?!\d))/g;
+  return num.toString().replace(regexp, ',');
+}
+
 function Circle({data}){
   const list = new Array(data).fill('0');
   var size = 37;
@@ -38,27 +44,26 @@ export default function MyAreaStatus({area}){
         height: 420, alignItems:'center' }}
     >
         <Text style={styles.areaName}>
-            {area.gubun}
+          {area.gubun}
         </Text>
-        <Text style={styles.dateTime}>
-            기준 일시 : {area.stdDay}
-        </Text>
-        <View>
         {area.incDec>0 ? 
           <Text style={styles.areaBad}>
             <Text style={{fontSize:20}}>추가 확진자</Text> {area.incDec} <Text style={{fontSize:20}}>명</Text>
           </Text> :
-            <Text style={styles.areaGood}>
-              오늘 확진자는 없습니다!
-            </Text> 
+          <Text style={styles.areaGood}>
+            오늘 확진자는 없습니다!
+          </Text> 
           }
-        </View>
+        <Text style={styles.defCnt}> (누적 {addComma(area.defCnt)} 명) </Text>
         <View style={styles.circles}>
         {area.incDec>0 ? 
           <Circle data={area.incDec}/> :
           <Entypo name="emoji-happy" size={120} color="white" />
         }
         </View>
+        <Text style={styles.dateTime}>
+          {area.stdDay}
+        </Text>
     </View>
   );
 }
@@ -69,13 +74,14 @@ const styles = StyleSheet.create({
       alignItems: 'center',
     },
     areaName: {
-        fontSize: 40,
-        width: '100%',
-        textAlign: 'center',
-        marginTop: 55,
-        marginBottom: 10,
-        fontWeight: '600',
-        color: '#fff'
+      fontSize: 40,
+      width: '100%',
+      textAlign: 'center',
+      marginBottom: 10,
+      marginTop: 10,
+      fontWeight: '600',
+      marginTop: 55,
+      color: '#fff',
     },
     dateTime: {
       fontSize: 18,
@@ -93,6 +99,7 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       flexWrap: 'wrap',
       width: '80%',
+      marginTop: 20
     },
     circle: {
       
@@ -102,13 +109,16 @@ const styles = StyleSheet.create({
       color: '#fff',
       // color: '#9d0208',
       fontWeight: '600',
-      marginBottom: 20
     },
     areaGood: {
-      fontSize: 30,
+      fontSize: 27,
       color: '#fff',
       fontWeight: '600',
-      marginBottom: 30,
       marginTop: 20
     },
+    defCnt: {
+      fontSize:17, 
+      marginBottom: 10,
+      color:'white',
+    }
 })
