@@ -58,9 +58,6 @@ export default function CountryStatus({color}){
               <Row style={styles.smallRow}>
                   <Text style={styles.smallData}>{addComma(countryData.careCnt)}</Text>
               </Row>
-              <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}>(+{countryData.careCntChanged})</Text>
-              </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
               <Row style={styles.smallRow}>

@@ -15,7 +15,7 @@ const today = new Date();
 function yyyymmdd(dateIn) {
   var yyyy = dateIn.getFullYear();
   var mm = dateIn.getMonth() + 1; // getMonth() is zero-based
-  var dd = dateIn.getDate() - 1;
+  var dd = dateIn.getDate();
   return String(10000 * yyyy + 100 * mm + dd); // Leading zeros for mm and dd
 }
 
@@ -73,7 +73,6 @@ export function fetchCOVIDCountry(){
           const resultYesterday = resYesterday.data.response.body.items.item; 
           result.decideCntChanged = result.decideCnt - resultYesterday.decideCnt
           result.clearCntChanged = result.clearCnt - resultYesterday.clearCnt
-          result.careCntChanged = result.careCnt - resultYesterday.careCnt
           result.deathCntChanged = result.deathCnt - resultYesterday.deathCnt
           dispatch({type: 'FETCH_COVID_COUNTRY', payload: result})
         });
