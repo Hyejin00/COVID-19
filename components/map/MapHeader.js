@@ -11,9 +11,6 @@ import colors from '../../constants/Colors'
 
 
 export default function MapHeader(){
-  const [color, setColor] = useState(colors.bad.maxColor);
-
-	const curPage = useSelector(state => state.curPage);
 	
   const navigation = useNavigation();
 
