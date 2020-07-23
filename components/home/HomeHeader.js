@@ -25,7 +25,7 @@ export default function HomeHeader(){
 							name= 'md-menu'
 							size={30}
 							color='white'
-							style={{marginLeft:30}}/>
+							style={{marginLeft:30, zIndex: 1}}/>
 					</TouchableWithoutFeedback>
 				</Col>
 				<Col size={0.1}>
@@ -38,7 +38,7 @@ export default function HomeHeader(){
 							name="map"
 							size={25} 
 							color="white" 
-							style={{margin:2, marginRight:18}}
+							style={{margin:2, marginRight:18, zIndex: 1}}
 						/>
 					</TouchableWithoutFeedback>
 				</Col>
@@ -52,7 +52,7 @@ export default function HomeHeader(){
 							name="plus"
 							size={25} 
 							color="white" 
-							style={{margin:2, marginRight:18}}
+							style={{margin:2, marginRight:18, zIndex: 1}}
 						/>
 					</TouchableWithoutFeedback>
 				</Col>
