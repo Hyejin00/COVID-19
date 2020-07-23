@@ -8,10 +8,18 @@ import { setPage } from '../../actions';
 
 function Circle({data}){
   const list = new Array(data).fill('0');
+  var size = 37;
+  if(data==1){
+    size = 120;
+  }else if(data<=5){
+    size = 60;
+  }else if(data>20){
+    size = 20;
+  }
   return(
     list.map((l, i) => (
       <View style={styles.circle} key={i}>
-        <AntDesign name="frowno" size={37} color="white" style={{ margin: 3 }}/>
+        <AntDesign name="frowno" size={size} color="white" style={{ margin: 3 }}/>
       </View>
     ))
   );

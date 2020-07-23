@@ -1,7 +1,7 @@
 import produce from "immer";
 
   //추후에 스토리지로 들어갈 관심목록 리스트
-  const myArea = ['서울', '제주', '충남'];
+  const myArea = ['검역', '제주', '경남', '경북', '전남', '전북', '충남', '충북', '강원', '경기', '세종', '울산', '대전', '광주', '인천', '대구', '부산', '서울', '합계'];
 
 const baseState = {
   loading: true,
