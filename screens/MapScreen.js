@@ -9,8 +9,6 @@ import MapHeader from '../components/map/MapHeader';
 import colors from '../constants/Colors'
 
 <script
-  async
-  defer
   src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_aX-q10zRK9ryYyWMIjVKaol8F63Erek"
 />
 
