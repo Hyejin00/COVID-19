@@ -8,9 +8,6 @@ import { useNavigation } from '@react-navigation/native';
 
 import colors from '../../constants/Colors'
 
-function clickCheck(){
-	console.log("Check!!")
-}
 
 export default function HomeHeader(){
 
@@ -24,13 +21,11 @@ export default function HomeHeader(){
 				<Col size={10} >
 					<TouchableWithoutFeedback
 						onPress={()=>{navigation.openDrawer()}}>
-							<View>
-								<Ionicons
-								name= 'md-menu'
-								size={30}
-								color='white'
-								style={{marginLeft:30}}/>
-							</View>
+							<Ionicons
+							name= 'md-menu'
+							size={30}
+							color='white'
+							style={{marginLeft:30}}/>
 					</TouchableWithoutFeedback>
 				</Col>
 				<Col size={0.1}>
