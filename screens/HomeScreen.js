@@ -12,8 +12,12 @@ import { fetchCOVIDCountry, fetchCOVIDArea } from '../actions';
 function getColor(incDec){
   if(incDec<=0){
     return [colors.good.maxColor,colors.good.minColor]
+  }else if(incDec<10){
+    return [colors.bad1.maxColor,colors.bad1.minColor]
+  }else if(incDec<20){
+    return [colors.bad2.maxColor,colors.bad2.minColor]
   }else{
-    return [colors.bad.maxColor,colors.bad.minColor]
+    return [colors.bad3.maxColor,colors.bad3.minColor]
   }
 }
 
