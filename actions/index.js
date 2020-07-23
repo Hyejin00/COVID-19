@@ -21,10 +21,14 @@ const getCOVIDCountry = async() =>{
 }
 
 export function fetchCOVIDCountry(){
-  return async (dispatch) => {
-    getCOVIDCountry().then((res)=>{
-      dispatch({type: 'FETCH_COVID_COUNTRY', payload: res.data.response.body.items.item})
-    });
+  return (dispatch) => {
+    try{
+      getCOVIDCountry().then((res)=>{
+        dispatch({type: 'FETCH_COVID_COUNTRY', payload: res.data.response.body.items.item})
+      });
+    }catch(error){
+      console.log("에러!!!", error)
+    }
   }
 }
 
@@ -41,10 +45,15 @@ const getCOVIDArea = async() =>{
 }
 
 export function fetchCOVIDArea(){
-  return async (dispatch) => {
-    getCOVIDArea().then((res)=>{
-      dispatch({type: 'FETCH_COVID_AREA', payload: res.data.response.body.items.item})
-    });
+  return (dispatch) => {
+    try{
+      getCOVIDArea().then((res)=>{
+        console.log("응답",res);
+        dispatch({type: 'FETCH_COVID_AREA', payload: res.data.response.body.items.item})
+      });
+    }catch(error){
+      console.log("에러!!!", error)
+    }
   }
 }
 
@@ -66,6 +75,16 @@ export function fetchCOVIDNews(){
         }
         );
       dispatch({type: 'FETCH_COVID_NEWS', payload: result.data.items})
+    }catch(error){
+      console.error(error);
+    }
+  }
+}
+
+export function setPage({pageNo}){
+  return async (dispatch) => {
+    try{
+      dispatch({type: 'SET_PAGE', payload: pageNo})
     }catch(error){
       console.error(error);
     }

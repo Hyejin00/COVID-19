@@ -46,7 +46,8 @@ const baseState = {
   },
   myAreaData: [
 
-  ]
+  ],
+  curPage : 0
 };
 
 const reducer = produce((state, action) => {
@@ -67,10 +68,14 @@ const reducer = produce((state, action) => {
         state.areaData[areaName[i]]=area
       })
       
+      const myList = []
       myArea.forEach(area => {
-        state.myAreaData.push(state.areaData[area]);
+        myList.push(state.areaData[area]);
       });
-      
+      state.myAreaData = myList;
+      break;
+    case 'SET_PAGE':
+      state.curPage = action.payload;
       break;
     default:
       break;

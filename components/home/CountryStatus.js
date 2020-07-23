@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState }  from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { Card } from 'react-native-elements';
 import { Col, Row, Grid } from "react-native-easy-grid";
@@ -13,6 +13,9 @@ function addComma(num) {
 }
 
 export default function CountryStatus(){
+  const [color, setColor] = useState(colors.bad.maxColor);
+
+  const curPage = useSelector(state => state.curPage);
 
   const countryData = useSelector(state => state.countryData);
     // 'deathChanged': 0,
@@ -36,8 +39,8 @@ export default function CountryStatus(){
           title="국내 확진자 현황"
           titleStyle={{color: 'white', marginBottom:-5}}
           dividerStyle={{height:0}}
-          containerStyle={{backgroundColor: colors.light.maxColor, borderRadius: 12, 
-                      borderColor:  colors.light.maxColor, height: '60%', marginTop: 40}}>
+          containerStyle={{backgroundColor: color, borderRadius: 12, 
+                      borderColor:  color, height: '60%', marginTop: 40}}>
         {/*react-native-elements Card*/}
           <Grid style={{ width: '100%' }}>
             <Col size={1.5} >
@@ -48,7 +51,7 @@ export default function CountryStatus(){
                   <Text style={styles.confirmedNum}>{addComma(countryData.decideCnt)}</Text>
               </Row>
               <Row style={styles.bigRow}>
-                  <Text style={styles.confirmedNumChanged}>(데이터 없음)</Text>
+                  <Text style={styles.confirmedNumChanged}>+(데이터 없음))</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -59,7 +62,7 @@ export default function CountryStatus(){
                   <Text style={styles.smallData}>{addComma(countryData.clearCnt)}</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}>(데이터 없음)</Text>
+                  <Text style={styles.smallDataChanged}>+(데이터 없음)</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -70,7 +73,7 @@ export default function CountryStatus(){
                   <Text style={styles.smallData}>{addComma(countryData.examCnt)}</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}>(데이터 없음)</Text>
+                  <Text style={styles.smallDataChanged}>+(데이터 없음)</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -81,7 +84,7 @@ export default function CountryStatus(){
                   <Text style={styles.smallData}>{addComma(countryData.deathCnt)}</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}>(데이터 없음)</Text>
+                  <Text style={styles.smallDataChanged}>+(데이터 없음)</Text>
               </Row>
             </Col>
           </Grid>

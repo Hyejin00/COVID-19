@@ -2,7 +2,9 @@ import React, { useRef } from 'react';
 import {  Animated, StyleSheet, View, Text, ScrollView, useWindowDimensions } from 'react-native';
 import { Entypo } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setPage } from '../../actions';
 
 function Circle({data}){
   const list = new Array(data).fill('0');
@@ -22,6 +24,8 @@ export default function MyAreaStatus(){
   const { width: windowWidth } = useWindowDimensions();
   
   const myAreaData = useSelector(state => state.myAreaData);
+
+  const curPage = useSelector(state => state.curPage);
 
   return(
     <View>

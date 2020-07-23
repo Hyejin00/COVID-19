@@ -17,57 +17,58 @@ export default function HomeNavigator({ navigation, route }) {
       <HomeStack.Screen
         name="HomeScreen"
         component={HomeScreen}
-        options={{ 
-          headerTitle: '',
-          headerLeft: () => 
-          { 
-            return (
-            <TouchableWithoutFeedback
-              onPress={()=>{navigation.openDrawer()}}>
-                <Ionicons
-                name= 'md-menu'
-                size={24}
-                color='white'
-                style={{marginLeft:20}}/>
-            </TouchableWithoutFeedback>
-            )},
-            headerStyle:{
-              backgroundColor: colors.light.maxColor,
-              elevation: 0,
-              shadowOpacity: 0,
-            },
-            headerRight: () =>{
-              return(
-                <View style={styles.iconRight}>
-                  <TouchableWithoutFeedback
-                    onPress={()=>{
-                      navigation.navigate('EditScreen')
-                    }}
-                  >
-                    <Entypo 
-                      name="map"
-                      size={25} 
-                      color="white" 
-                      style={{margin:2, marginRight:18}}
-                    />
-                  </TouchableWithoutFeedback>
-                  <TouchableWithoutFeedback
-                    onPress={()=>{
-                      navigation.navigate('PlusScreen')
-                    }}
-                  >
-                    <Entypo 
-                      name="plus"
-                      size={25} 
-                      color="white" 
-                      style={{margin:2, marginRight:18}}
-                    />
-                  </TouchableWithoutFeedback>
-                </View>
-              )
-            }
-          }
-        }
+        options={{ headerShown: false }}
+        // options={{ 
+        //   headerTitle: '',
+        //   headerLeft: () => 
+        //   { 
+        //     return (
+        //     <TouchableWithoutFeedback
+        //       onPress={()=>{navigation.openDrawer()}}>
+        //         <Ionicons
+        //         name= 'md-menu'
+        //         size={24}
+        //         color='white'
+        //         style={{marginLeft:20}}/>
+        //     </TouchableWithoutFeedback>
+        //     )},
+        //     headerStyle:{
+        //       backgroundColor: colors.bad.maxColor,
+        //       elevation: 0,
+        //       shadowOpacity: 0,
+        //     },
+        //     headerRight: () =>{
+        //       return(
+        //         <View style={styles.iconRight}>
+        //           <TouchableWithoutFeedback
+        //             onPress={()=>{
+        //               navigation.navigate('EditScreen')
+        //             }}
+        //           >
+        //             <Entypo 
+        //               name="map"
+        //               size={25} 
+        //               color="white" 
+        //               style={{margin:2, marginRight:18}}
+        //             />
+        //           </TouchableWithoutFeedback>
+        //           <TouchableWithoutFeedback
+        //             onPress={()=>{
+        //               navigation.navigate('PlusScreen')
+        //             }}
+        //           >
+        //             <Entypo 
+        //               name="plus"
+        //               size={25} 
+        //               color="white" 
+        //               style={{margin:2, marginRight:18}}
+        //             />
+        //           </TouchableWithoutFeedback>
+        //         </View>
+        //       )
+        //     }
+        //   }
+        // }
       />
       <HomeStack.Screen
         name="PlusScreen"
