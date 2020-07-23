@@ -1,7 +1,7 @@
 import produce from "immer";
 
   //추후에 스토리지로 들어갈 관심목록 리스트
-  const myArea = ['서울', '제주'];
+  const myArea = ['서울', '제주', '충남'];
 
 const baseState = {
   covidnews: {},

@@ -9,6 +9,13 @@ import CountryStatus from '../components/home/CountryStatus';
 import Header from '../components/home/Header';
 import { fetchCOVIDCountry, fetchCOVIDArea } from '../actions';
 
+function getColor(incDec){
+  if(incDec<=0){
+    return [colors.good.maxColor,colors.good.minColor]
+  }else{
+    return [colors.bad.maxColor,colors.bad.minColor]
+  }
+}
 
 export default function HomeScreen(){
 
@@ -85,7 +92,7 @@ export default function HomeScreen(){
               <LinearGradient
                 style={styles.container}
                 // colors={["#83a4d4","#b6fbff"]}
-                colors={[colors.bad.maxColor,colors.bad.minColor]}
+                colors={getColor(area.incDec)}
                 key={areaIndex}
               >
               <ScrollView
@@ -115,7 +122,7 @@ export default function HomeScreen(){
                     })}
                   </View>
                 </FadeInView>
-                <CountryStatus/>
+                <CountryStatus color={getColor(area.incDec)}/>
               </ScrollView>
             </LinearGradient>
             );

@@ -12,10 +12,7 @@ function addComma(num) {
   return num.toString().replace(regexp, ',');
 }
 
-export default function CountryStatus(){
-  const [color, setColor] = useState(colors.bad.maxColor);
-
-  const curPage = useSelector(state => state.curPage);
+export default function CountryStatus({color}){
 
   const countryData = useSelector(state => state.countryData);
     // 'deathChanged': 0,
@@ -39,8 +36,8 @@ export default function CountryStatus(){
           title="국내 확진자 현황"
           titleStyle={{color: 'white', marginBottom:-5}}
           dividerStyle={{height:0}}
-          containerStyle={{backgroundColor: color, borderRadius: 12, 
-                      borderColor:  color, height: '60%', marginTop: 40}}>
+          containerStyle={{backgroundColor: color[0], borderRadius: 12, 
+                      borderColor:  color[0], height: '60%', marginTop: 40}}>
         {/*react-native-elements Card*/}
           <Grid style={{ width: '100%' }}>
             <Col size={1.5} >
