@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Dimensions } from 'react-native';
+import React from 'react';
+import { StyleSheet, View, Dimensions } from 'react-native';
 import MapView from 'react-native-maps';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from 'react-redux';
@@ -11,8 +11,7 @@ import colors from '../constants/Colors'
 <script
   async
   defer
-  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_aX-q10zRK9ryYyWMIjVKaol8F63Erek&zoom=14"
-  type="text/javascript"
+  src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB_aX-q10zRK9ryYyWMIjVKaol8F63Erek"
 />
 
 export default function MapScreen(){
@@ -43,7 +42,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   mapStyle: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
+    width: Dimensions.get('screen').width,
+    height: Dimensions.get('screen').height,
   }
 });

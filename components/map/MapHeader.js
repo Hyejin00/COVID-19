@@ -1,7 +1,6 @@
-import React, { useState }  from 'react';
-import { StyleSheet, View, Text, TouchableWithoutFeedback, SafeAreaView  } from 'react-native';
-import { useSelector } from 'react-redux';
-import { Col, Row, Grid } from "react-native-easy-grid";
+import React  from 'react';
+import { StyleSheet, TouchableWithoutFeedback, SafeAreaView  } from 'react-native';
+import { Col, Grid } from "react-native-easy-grid";
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Entypo } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
@@ -9,9 +8,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import colors from '../../constants/Colors'
 
-
 export default function MapHeader(){
-	
   const navigation = useNavigation();
 
   return(
@@ -62,6 +59,8 @@ export default function MapHeader(){
 
 const styles = StyleSheet.create({
   container: {
-		flex: 1
+		flex: 1,
+		marginTop: 5,
+		maxHeight: 150
 	}
 })
