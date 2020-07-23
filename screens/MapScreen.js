@@ -24,7 +24,15 @@ export default function MapScreen(){
 		>
 			<MapHeader/>
       <View style={styles.mapview}>
-        <MapView style={styles.mapStyle} />
+        <MapView 
+          style={styles.mapStyle}
+          initialRegion={{
+            latitude: 35.6,
+            longitude: 127.8,
+            latitudeDelta: 4.25,
+            longitudeDelta: 4.25
+          }} 
+        />
       </View>
 		</LinearGradient>
   );
