@@ -1,103 +1,65 @@
 import React, { useRef } from 'react';
 import {  Animated, StyleSheet, View, Text, ScrollView, useWindowDimensions } from 'react-native';
-import { AntDesign } from '@expo/vector-icons'; 
 import { Entypo } from '@expo/vector-icons'; 
-import { useSelector } from 'react-redux';
+import { AntDesign } from '@expo/vector-icons'; 
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setPage } from '../../actions';
 
 function Circle({data}){
   const list = new Array(data).fill('0');
+  var size = 37;
+  if(data==1){
+    size = 120;
+  }else if(data<=5){
+    size = 60;
+  }else if(data>20){
+    size = 20;
+  }
   return(
     list.map((l, i) => (
       <View style={styles.circle} key={i}>
-        <AntDesign name="frowno" size={37} color="white" style={{ margin: 3 }}/>
+        <AntDesign name="frowno" size={size} color="white" style={{ margin: 3 }}/>
       </View>
     ))
   );
 }
 
-export default function MyAreaStatus(){
-
-  const scrollX = useRef(new Animated.Value(0)).current;
-
-  const { width: windowWidth } = useWindowDimensions();
+export default function MyAreaStatus({area}){
   
-  const areaData = useSelector(state => state.areaData);
+  const { width: windowWidth } = useWindowDimensions();
+
+  const curPage = useSelector(state => state.curPage);
 
   return(
-    <View>
-      <Animated.ScrollView
-        horizontal={true}
-        style={styles.scrollViewStyle}
-        pagingEnabled
-        showsHorizontalScrollIndicator={false}
-        onScroll={Animated.event(
-          [{
-            nativeEvent: {
-              contentOffset: {
-                x: scrollX
-              },
-            },
-          }],
-          // true로 바꾸면 워닝 사라지지만 dot기능 사라짐
-          { useNativeDriver: false }
-          )}
-        scrollEventThrottle={1}
-      >
-        {areaData.map((area, areaIndex) => {
-            return (
-              <View
-                style={{ 
-                  // width: 320, 
-                  width: windowWidth, 
-                  height: 420, alignItems:'center' }}
-                key={areaIndex}
-              >
-                  {/* 지역 이름 */}
-                  <Text style={styles.areaName}>
-                      {area.gubun}
-                  </Text>
-                  {/* 지역 확진자 추가 정보 */}
-                  <View>
-                  {area.incDec>0 ? 
-                    <Text style={styles.areaBad}>
-                      <Text style={{fontSize:20}}>추가 확진자</Text> {area.incDec} <Text style={{fontSize:20}}>명</Text>
-                    </Text> :
-                      <Text style={styles.areaGood}>
-                        오늘 확진자는 없습니다!
-                      </Text> 
-                    }
-                  </View>
-                  <View style={styles.circles}>
-                  {area.incDec>0 ? 
-                    <Circle data={area.incDec}/> :
-                    <Entypo name="emoji-happy" size={120} color="white" />
-                  }
-                  </View>
-              </View>
-            );
-          })}
-      
-      </Animated.ScrollView>
-      <View style={styles.indicatorContainer}>
-          {areaData.map((area, areaIndex) => {
-            const width = scrollX.interpolate({
-              inputRange: [
-                windowWidth * (areaIndex - 1),
-                windowWidth * areaIndex,
-                windowWidth * (areaIndex + 1)
-              ],
-              outputRange: [8, 16, 8],
-              extrapolate: "clamp"
-            });
-            return (
-              <Animated.View
-                key={areaIndex}
-                style={[styles.normalDot, { width }]}
-              />
-            );
-          })}
+    <View
+      style={{ 
+        width: windowWidth, 
+        height: 420, alignItems:'center' }}
+    >
+        <Text style={styles.areaName}>
+            {area.gubun}
+        </Text>
+        <Text style={styles.dateTime}>
+            기준 일시 : {area.stdDay}
+        </Text>
+        <View>
+        {area.incDec>0 ? 
+          <Text style={styles.areaBad}>
+            <Text style={{fontSize:20}}>추가 확진자</Text> {area.incDec} <Text style={{fontSize:20}}>명</Text>
+          </Text> :
+            <Text style={styles.areaGood}>
+              오늘 확진자는 없습니다!
+            </Text> 
+          }
         </View>
-      </View>
+        <View style={styles.circles}>
+        {area.incDec>0 ? 
+          <Circle data={area.incDec}/> :
+          <Entypo name="emoji-happy" size={120} color="white" />
+        }
+        </View>
+    </View>
   );
 }
 
@@ -110,10 +72,19 @@ const styles = StyleSheet.create({
         fontSize: 40,
         width: '100%',
         textAlign: 'center',
-        marginTop: 60,
+        marginTop: 55,
         marginBottom: 10,
         fontWeight: '600',
         color: '#fff'
+    },
+    dateTime: {
+      fontSize: 18,
+      width: '100%',
+      textAlign: 'center',
+      // marginTop: 60,
+      marginBottom: 10,
+      fontWeight: '300',
+      color: '#fff'
     },
     circles: {
       flex: 1,
@@ -140,16 +111,4 @@ const styles = StyleSheet.create({
       marginBottom: 30,
       marginTop: 20
     },
-    normalDot: {
-      height: 8,
-      width: 8,
-      borderRadius: 4,
-      backgroundColor: "white",
-      marginHorizontal: 4
-    },
-    indicatorContainer: {
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "center"
-    }
 })
