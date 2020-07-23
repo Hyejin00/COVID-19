@@ -79,7 +79,6 @@ export function fetchCOVIDArea(){
     dispatch({ type: 'START_LOADING' });
     try{
       getCOVIDArea().then((res)=>{
-        console.log("응답",res);
         dispatch({type: 'FETCH_COVID_AREA', payload: res.data.response.body.items.item})
       });
     }catch(error){
