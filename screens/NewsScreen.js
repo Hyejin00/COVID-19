@@ -3,7 +3,7 @@ import _ from 'lodash';
 import { useSelector } from 'react-redux';
 import { StyleSheet, SafeAreaView, ScrollView } from 'react-native';
 import { COVIDNews } from '../components/news/COVIDNews';
-import { Tile } from 'react-native-elements';
+import { Image, Divider } from 'react-native-elements';
 
 import colors from '../constants/Colors'
 
@@ -12,15 +12,11 @@ export default function NewsScreen() {
 
   return(
     <SafeAreaView style={styles.container}>
-      <Tile
-        imageSrc={require('../assets/splash.png')}
-        title=""
-        titleStyle={{fontWeight:"300", color:"#FFF", fontStyle:"italic", fontSize:20}}
-        height={300}
-        featured
-        caption=""
-        captionStyle={{fontWeight:"200", color:"#e0aaff", fontStyle:"italic"}}
+      <Image
+        source={ require('../assets/news_image.png')}
+        style={{ width: 400, height: 200, marginBottom: 10}}
       />
+      <Divider/>
       <ScrollView>
         {_.map(covidnews, cnews => <COVIDNews key={cnews.title} cnews={cnews}/>)}
       </ScrollView>
