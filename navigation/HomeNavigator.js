@@ -1,8 +1,10 @@
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { Entypo } from '@expo/vector-icons'; 
+import { Entypo } from '@expo/vector-icons';
+import { fetchMyAreaData } from '../actions/index';
+import { useDispatch } from 'react-redux';
 import { StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
 
 import colors from '../constants/Colors'
@@ -13,6 +15,12 @@ import EditScreen from '../screens/EditScreen';
 const HomeStack = createStackNavigator();
 
 export default function HomeNavigator({ navigation, route }) {
+
+  const dispatch = useDispatch();
+
+  useEffect(()=> {
+    dispatch(fetchMyAreaData());
+  });
 
   return (
     <HomeStack.Navigator>

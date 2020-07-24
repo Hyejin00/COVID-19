@@ -46,8 +46,7 @@ export default function HomeScreen(){
     // dispatch(fetchTodayCOVID());
     dispatch(fetchCOVIDCountry());
     dispatch(fetchCOVIDArea());
-    dispatch(fetchMyAreaData());
-  },[])
+  },[myAreaList])
 
   const FadeInView = (props) => {
     const fadeAnim = useRef(new Animated.Value(0)).current  // Initial value for opacity: 0
