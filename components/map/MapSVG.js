@@ -323,33 +323,33 @@ export default function MapSVG(props) {
 
           <Text x="55" y="81" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("충북",stateFocus)} fontSize={setTextSize("충북",stateFocus)} >{areaData['충북'].defCnt}명</Text>
           <Text x="55" y="71" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("충북",stateFocus)} fontSize={setTextSize("충북",stateFocus)} >충북</Text>
-          {/* 여기까지 함 */}
-          <Text x="84" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경기",stateFocus)} fontSize={setTextSize("경기",stateFocus)} >{areaData['경기'].defCnt}명</Text>
-          <Text x="70" y="35" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경기",stateFocus)} fontSize={setTextSize("경기",stateFocus)} >경기도</Text>
+
+          <Text x="28" y="30" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경기",stateFocus)} fontSize={setTextSize("경기",stateFocus)} >{areaData['경기'].defCnt}명</Text>
+          <Text x="28" y="20" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경기",stateFocus)} fontSize={setTextSize("경기",stateFocus)} >경기도</Text>
           
-          <Text x="84" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("서울",stateFocus)} fontSize={setTextSize("서울",stateFocus)} >{areaData['서울'].defCnt}명</Text>
-          <Text x="70" y="35" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("서울",stateFocus)} fontSize={setTextSize("서울",stateFocus)} >서울</Text>
+          <Text x="26" y="52" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("서울",stateFocus)} fontSize={setTextSize("서울",stateFocus)} >{areaData['서울'].defCnt}명</Text>
+          <Text x="32" y="42" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("서울",stateFocus)} fontSize={setTextSize("서울",stateFocus)} >서울</Text>
           
-          <Text x="84" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대구",stateFocus)} fontSize={setTextSize("대구",stateFocus)} >{areaData['대구'].defCnt}명</Text>
-          <Text x="70" y="35" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대구",stateFocus)} fontSize={setTextSize("대구",stateFocus)} >대구</Text>
+          <Text x="80" y="122" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대구",stateFocus)} fontSize={setTextSize("대구",stateFocus)} >{areaData['대구'].defCnt}명</Text>
+          <Text x="85" y="112" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대구",stateFocus)} fontSize={setTextSize("대구",stateFocus)} >대구</Text>
           
-          <Text x="84" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("세종",stateFocus)} fontSize={setTextSize("세종",stateFocus)} >{areaData['세종'].defCnt}명</Text>
-          <Text x="70" y="35" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("세종",stateFocus)} fontSize={setTextSize("세종",stateFocus)} >세종</Text>
+          <Text x="38" y="88" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("세종",stateFocus)} fontSize={setTextSize("세종",stateFocus)} >{areaData['세종'].defCnt}명</Text>
+          <Text x="38" y="78" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("세종",stateFocus)} fontSize={setTextSize("세종",stateFocus)} >세종</Text>
           
-          <Text x="84" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("광주",stateFocus)} fontSize={setTextSize("광주",stateFocus)} >{areaData['광주'].defCnt}명</Text>
-          <Text x="70" y="35" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("광주",stateFocus)} fontSize={setTextSize("광주",stateFocus)} >광주</Text>
+          <Text x="24" y="150" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("광주",stateFocus)} fontSize={setTextSize("광주",stateFocus)} >{areaData['광주'].defCnt}명</Text>
+          <Text x="26" y="140" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("광주",stateFocus)} fontSize={setTextSize("광주",stateFocus)} >광주</Text>
           
-          <Text x="84" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("울산",stateFocus)} fontSize={setTextSize("울산",stateFocus)} >{areaData['울산'].defCnt}명</Text>
-          <Text x="70" y="35" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("울산",stateFocus)} fontSize={setTextSize("울산",stateFocus)} >울산</Text>
+          <Text x="110" y="134" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("울산",stateFocus)} fontSize={setTextSize("울산",stateFocus)} >{areaData['울산'].defCnt}명</Text>
+          <Text x="110" y="124" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("울산",stateFocus)} fontSize={setTextSize("울산",stateFocus)} >울산</Text>
           
-          <Text x="84" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("부산",stateFocus)} fontSize={setTextSize("부산",stateFocus)} >{areaData['부산'].defCnt}명</Text>
-          <Text x="70" y="35" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("부산",stateFocus)} fontSize={setTextSize("부산",stateFocus)} >부산</Text>
+          <Text x="94" y="150" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("부산",stateFocus)} fontSize={setTextSize("부산",stateFocus)} >{areaData['부산'].defCnt}명</Text>
+          <Text x="96" y="140" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("부산",stateFocus)} fontSize={setTextSize("부산",stateFocus)} >부산</Text>
           
-          <Text x="84" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대전",stateFocus)} fontSize={setTextSize("대전",stateFocus)} >{areaData['대전'].defCnt}명</Text>
-          <Text x="70" y="35" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대전",stateFocus)} fontSize={setTextSize("대전",stateFocus)} >대전</Text>
+          <Text x="43" y="102" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대전",stateFocus)} fontSize={setTextSize("대전",stateFocus)} >{areaData['대전'].defCnt}명</Text>
+          <Text x="44" y="92" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대전",stateFocus)} fontSize={setTextSize("대전",stateFocus)} >대전</Text>
           
-          <Text x="84" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("인천",stateFocus)} fontSize={setTextSize("인천",stateFocus)} >{areaData['인천'].defCnt}명</Text>
-          <Text x="70" y="35" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("인천",stateFocus)} fontSize={setTextSize("인천",stateFocus)} >인천</Text>
+          <Text x="6" y="47" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("인천",stateFocus)} fontSize={setTextSize("인천",stateFocus)} >{areaData['인천'].defCnt}명</Text>
+          <Text x="9" y="37" stroke="rgba(0,0,0,0)" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("인천",stateFocus)} fontSize={setTextSize("인천",stateFocus)} >인천</Text>
         </G>
       </Svg>
     </View>
