@@ -19,8 +19,10 @@ export default {
     minColor: '#b6fbff',
   },
   map: {
-    maxColor: "#80B918",
-    minColor: "#CDF08D",
+    // maxColor: "#80B918",
+    // minColor: "#CDF08D",
+    maxColor: '#83a4d4',
+    minColor: '#b6fbff',
   },
   news: {
     color: "#eee5e8"
