@@ -72,7 +72,6 @@ function RootNavigator() {
 const styles = StyleSheet.create({
   drawerheader: {
     marginTop: 25,
-    marginBottom: 10,
     width: 'auto',
     height: 180
   },
