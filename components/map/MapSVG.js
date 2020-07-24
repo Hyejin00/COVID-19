@@ -12,7 +12,6 @@ function setAreaFocus(area, dispatch){
 }
 
 function setColor(area, focusedArea){
-  console.log(area, focusedArea)
   if(area==focusedArea){
     return colors.map.focused
   }else{
@@ -24,8 +23,6 @@ export default function MapSVG(props) {
   const dispatch = useDispatch();
 
   const stateFocus = useSelector(state => state.stateFocus);
-
-  console.log("선택된 지역",stateFocus)
 
   const stateColors = {
     seoul: '#fff',
