@@ -8,10 +8,8 @@ import Constants from 'expo-constants';
 import MapHeader from '../components/map/MapHeader';
 import colors from '../constants/Colors'
 
-
 export default function MapScreen(){
   const myAreaData = useSelector(state => state.myAreaData);
-  const point = {x:35.4, y:127.8};
 
   return(
     <LinearGradient
@@ -23,6 +21,7 @@ export default function MapScreen(){
         <MapView 
           style={styles.mapStyle}
           scrollEnabled={false}
+          zoomEnabled={false}
           initialRegion={{
             latitude: 35.4,
             longitude: 127.8,
@@ -33,7 +32,6 @@ export default function MapScreen(){
           <Marker
             title='서울'
             description={"안녕 난 서울이야~"}
-            centerOffset={point}
             coordinate={{
               latitude: 37.5642135,
               longitude: 127.0016985
@@ -41,7 +39,6 @@ export default function MapScreen(){
           />
           <Marker
             title='경기'
-            centerOffset={point}
             coordinate={{
               latitude: 37.897100,
               longitude: 127.150334
