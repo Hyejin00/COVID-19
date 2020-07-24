@@ -21,7 +21,7 @@ export default function MapHeader(){
 							name= 'md-menu'
 							size={30}
 							color='white'
-							style={{marginLeft:30}}/>
+							style={{marginLeft:30, zIndex: 1}}/>
 					</TouchableWithoutFeedback>
 				</Col>
 				<Col size={0.5} style={{height:30}}>
@@ -34,7 +34,7 @@ export default function MapHeader(){
 							name="staro" 
 							size={27} 
 							color="white"
-							style={{margin:2, marginRight:18}}
+							style={{margin:2, marginRight:18, zIndex: 1}}
 						/>
 					</TouchableWithoutFeedback>
 				</Col>
@@ -48,7 +48,7 @@ export default function MapHeader(){
 							name="plus"
 							size={25} 
 							color="white" 
-							style={{margin:2, marginRight:18}}
+							style={{margin:2, marginRight:18, zIndex: 1}}
 						/>
 					</TouchableWithoutFeedback>
 				</Col>
