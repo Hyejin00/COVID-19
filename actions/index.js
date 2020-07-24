@@ -100,7 +100,6 @@ export function fetchMyAreaData () {
       }else{
         init = JSON.parse(data);
       }
-      console.log('mydata: ',init);
       dispatch({type:'FETCH_MYAREA', payload: init})
     });
   }
@@ -175,7 +174,7 @@ export function fetchCOVIDNews(){
   }
 }
 
-export function setStateFocus({area}){
+export function setStateFocus(area){
   return async (dispatch) => {
     try{
       dispatch({type: 'SET_STATE_FOCUS', payload: area})
