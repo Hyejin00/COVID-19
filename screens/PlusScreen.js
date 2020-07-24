@@ -13,13 +13,24 @@ export default function PlusScreen(){
     setIsLoading(true);
     AsyncStorage.getItem('MyArea').then(data =>{
       const myArea = JSON.parse(data || '[]');
+      console.log(myArea);
       setMyAreaList(myArea);
       setIsLoading(false);
-    })
+    });
   },[]);
 
+  const removeValue = async () => {
+    try {
+      await AsyncStorage.removeItem('MyArea')
+    } catch(e) {
+      // remove error
+    }
+  
+    console.log('Done.')
+  }
+
   return(
-    isLoading?<Loading />:<FlatList data={myAreaList} renderItem={({ item }) => <AreaItem name = {item.title}/>} keyExtractor={item => item.id.toString()}
+    isLoading?<Loading />:<FlatList data={myAreaList} renderItem={({ item }) => <AreaItem name = {item}/>} keyExtractor={item => item}
     />
   );
 }
