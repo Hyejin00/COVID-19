@@ -17,7 +17,6 @@ export default function MapCardView(){
   const areaData = useSelector(state => state.areaData);
 
   const info = areaData[stateFocus];
-  console.log(info)
   
   return(
     <View style={styles.container}>

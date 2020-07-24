@@ -9,7 +9,7 @@ import colors from '../constants/Colors'
 import MyAreaStatus from '../components/home/MyAreaStatus';
 import CountryStatus from '../components/home/CountryStatus';
 import HomeHeader from '../components/home/HomeHeader';
-import { fetchCOVIDCountry, fetchCOVIDArea, fetchTodayCOVID, fetchMyAreaData } from '../actions';
+import { fetchCOVIDCountry, fetchCOVIDArea, fetchTodayCOVID } from '../actions';
 
 function getColor(incDec){
   if(incDec<=0){
@@ -43,7 +43,6 @@ export default function HomeScreen(){
   const dispatch = useDispatch();
   
   useEffect(()=> {
-    // dispatch(fetchTodayCOVID());
     dispatch(fetchCOVIDCountry());
     dispatch(fetchCOVIDArea());
   },[myAreaList])

@@ -12,7 +12,7 @@ const COVID_API_COUNTRY = "http://openapi.data.go.kr/openapi/service/rest/Covid1
 const COVID_API_AREA = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?";
 const COVID_SERVICE_KEY = decodeURIComponent("x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfgntc7M2Ih8WPpxISF6Q%2FTpuMO3f4ab2VfKVDQc1orY0mq38ZCl0AI0A%3D%3D");
 
-// const TODAY_COVID_URL = "https://livecorona.co.kr/data/koreaRegionalData.js";
+const TODAY_COVID_URL = "https://livecorona.co.kr/data/koreaRegionalData.js";
 
 const today = new Date();
 
@@ -25,9 +25,9 @@ const yyyymmdd = (dateIn) => {
 
 const date = yyyymmdd(today);
 
-// const getTodayCOVID = async() =>{
-//   return await axios.get(TODAY_COVID_URL)
-// }
+const getTodayCOVID = async() =>{
+  return await axios.get(TODAY_COVID_URL)
+}
 
 
 
@@ -66,20 +66,21 @@ const getCOVIDCountryYesterday = async() =>{
   })
 }
 
-// export function fetchTodayCOVID(){
-//   return (dispatch) => {
-//     try{
-//       getTodayCOVID().then((res)=>{
-//         var result = []
-//         var jsonData = JSON.parse(res.data.split('= ')[1]);
-//         result.push(jsonData.slice(0,18));
-//         result.push(jsonData[18]);
-//         dispatch({type: 'FETCH_TODAY_COVID', payload: result})
-//       });
-//     }catch(error){
-//     }
-//   }
-// }
+export function fetchTodayCOVID(){
+  return (dispatch) => {
+    try{
+      getTodayCOVID().then((res)=>{
+        var result = []
+        var jsonData = JSON.parse(res.data.split('= ')[1]);
+        result.push(jsonData.slice(0,18));
+        result.push(jsonData[18]);
+        console.log(result)
+        dispatch({type: 'FETCH_TODAY_COVID', payload: result})
+      });
+    }catch(error){
+    }
+  }
+}
 
 const nameFilter = (name) => {
   switch(name){
@@ -131,7 +132,6 @@ export function fetchMyAreaData (lat,lng) {
       }else{
         init = JSON.parse(data);
       }
-      console.log('Area',init);
       getAreaName(lat,lng).then((res)=>{
         const area_name = res.data.results[0]["address_components"][3]["long_name"];
         init.splice(0,0,nameFilter(area_name));
@@ -170,13 +170,49 @@ const getCOVIDArea = async() =>{
     }
   })
 }
+// "격리해제수": 1260,
+//       "사망자수": 29,
+//       "십만명당발생율": 11.22,
+//       "지역별확진자비율": 10.64,
+//       "지역이름": "경기",
+//       "확진자수": 1487,
 
+// "createDt": "2020-07-24 10:47:49.533",
+//     "deathCnt": 0,
+//     "defCnt": 26,
+//     "gubun": "제주",
+//     "gubunCn": "济州",
+//     "gubunEn": "Jeju",
+//     "incDec": 0,
+//     "isolClearCnt": 18,
+//     "isolIngCnt": 8,
+//     "localOccCnt": 0,
+//     "overFlowCnt": 0,
+//     "qurRate": 3.88,
+//     "seq": 3274,
+//     "stdDay": "2020년 07월 24일 00시",
+//     "updateDt": "null",
 export function fetchCOVIDArea(){
   return (dispatch) => {
     dispatch({ type: 'START_LOADING' });
     try{
-      getCOVIDArea().then((res)=>{
-        dispatch({type: 'FETCH_COVID_AREA', payload: res.data.response.body.items.item})
+      getTodayCOVID().then((today)=>{
+        var todayList = []
+        var jsonData = JSON.parse(today.data.split('= ')[1]);
+        todayList.push(jsonData.slice(0,18));
+        todayList.push(jsonData[18]);
+        getCOVIDArea().then((res)=>{
+          var yesterday = res.data.response.body.items.item
+          yesterday = yesterday.slice(1,18);
+          yesterday = yesterday.reverse();
+
+          for(var i; i<18; i++){
+            console.log("오늘",todayList[0])
+          }
+          // console.log('오늘',todayList[1]["확진자수"])
+          // console.log()
+          dispatch({type: 'FETCH_COVID_AREA', payload: res.data.response.body.items.item})
+        });
       });
     }catch(error){
       console.log("에러!!!", error)
