@@ -20,6 +20,8 @@ function Circle({data}){
   }else if(data<=5){
     size = 60;
   }else if(data>20){
+    size = 30;
+  }else{
     size = 20;
   }
   return(
@@ -42,25 +44,25 @@ export default function MyAreaStatus({area}){
         height: 420, alignItems:'center' }}
     >
         <Text style={styles.areaName}>
-          {area.gubun}
+          {area["지역이름"]}
         </Text>
-        {area.incDec>0 ? 
+        {area["전일대비"]>0 ? 
           <Text style={styles.areaBad}>
-            <Text style={{fontSize:20}}>추가 확진자</Text> {area.incDec} <Text style={{fontSize:20}}>명</Text>
+            <Text style={{fontSize:20}}>추가 확진자</Text> {area["전일대비"]} <Text style={{fontSize:20}}>명</Text>
           </Text> :
           <Text style={styles.areaGood}>
             오늘 확진자는 없습니다!
           </Text> 
           }
-        <Text style={styles.defCnt}> (누적 {addComma(area.defCnt)} 명) </Text>
+        <Text style={styles.defCnt}> (누적 {addComma(area["확진자수"])} 명) </Text>
         <View style={styles.circles}>
-        {area.incDec>0 ? 
-          <Circle data={area.incDec}/> :
+        {area["전일대비"]>0 ? 
+          <Circle data={area["전일대비"]}/> :
           <Entypo name="emoji-happy" size={120} color="white" />
         }
         </View>
         <Text style={styles.dateTime}>
-          {area.stdDay}
+          {area["업데이트날짜"]}
         </Text>
     </View>
   );

@@ -20,7 +20,7 @@ export default function MapScreen(props) {
 			colors={[colors.map.maxColor,colors.map.minColor]}
 		>
 			<MapHeader/>
-      <Text style={styles.areaTitle}>{info.gubun} 확진자 현황</Text>
+      <Text style={styles.areaTitle}>{info["지역이름"]} 확진자 현황</Text>
       <MapSVG/>
       <MapCardView/>
     </LinearGradient>

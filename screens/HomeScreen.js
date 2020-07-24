@@ -93,11 +93,12 @@ export default function HomeScreen(){
         scrollEventThrottle={1}
       >
         {myAreaData.map((area, areaIndex) => {
+            console.log(area)
             return (
               <LinearGradient
                 style={styles.container}
                 // colors={["#83a4d4","#b6fbff"]}
-                colors={getColor(area.incDec)}
+                colors={getColor(area["전일대비"])}
                 key={areaIndex}
               >
               <ScrollView
@@ -128,7 +129,7 @@ export default function HomeScreen(){
                     })}
                   </View>
                 </FadeInView>
-                <CountryStatus color={getColor(area.incDec)}/>
+                <CountryStatus color={getColor(area["전일대비"])}/>
               </ScrollView>
             </LinearGradient>
             );

@@ -1,9 +1,9 @@
 import produce from "immer";
 
   //추후에 스토리지로 들어갈 관심목록 리스트
-  // const AREA_NAME_TODAY = ['전국', '서울', '부산', '대구', '인천', '광주', '대전', '울산', '세종', '경기', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주']
-  const AREA_NAME_PUBLIC = ['검역', '제주', '경남', '경북', '전남', '전북', '충남', '충북', '강원', '경기', '세종', '울산', '대전', '광주', '인천', '대구', '부산', '서울']
-
+  const AREA_NAME_PUBLIC = ['서울', '부산', '대구', '인천', '광주', '대전', '울산', '세종', '경기', '강원', '충북', '충남', '전북', '전남', '경북', '경남', '제주']
+  // const AREA_NAME_PUBLIC = ['검역', '제주', '경남', '경북', '전남', '전북', '충남', '충북', '강원', '경기', '세종', '울산', '대전', '광주', '인천', '대구', '부산', '서울']
+  
 const baseState = {
   loading: true,
   covidnews: {},
@@ -26,7 +26,7 @@ const reducer = produce((state, action) => {
       state.countryData = action.payload;
       break;
     case 'FETCH_COVID_AREA':
-      action.payload.map((area, i) => {
+      action.payload[0].map((area, i) => {
         state.areaData[AREA_NAME_PUBLIC[i]]=area
       })
       
@@ -36,21 +36,7 @@ const reducer = produce((state, action) => {
       });
       state.myAreaData = myList;
       break;
-    // case 'FETCH_TODAY_COVID':
-    //   var data = action.payload[0];
-    //   data.map((area, i) => {
-    //     state.todayData[AREA_NAME_TODAY[i]]=area;
-    //   })
-    //   state.todayData.timestamp = action.payload[1]["업데이트날짜"];
-    //   console.log(state.todayData)
-    //   const myList = []
-    //   myArea.forEach(area => {
-    //     myList.push(state.todayData[area]);
-    //   });
-    //   state.myAreaData = myList;
-    //   break;
     case 'FETCH_MYAREA':
-      console.log('넘어온 데이터',action.payload);
       state.myArea = action.payload;
       break;
     case 'FETCH_AREANAME':

@@ -10,7 +10,7 @@ const AREA_NAME_API = "https://maps.googleapis.com/maps/api/geocode/json";
 
 const COVID_API_COUNTRY = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson";
 const COVID_API_AREA = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?";
-const COVID_SERVICE_KEY = decodeURIComponent("x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfgntc7M2Ih8WPpxISF6Q%2FTpuMO3f4ab2VfKVDQc1orY0mq38ZCl0AI0A%3D%3D");
+const COVID_SERVICE_KEY = decodeURIComponent("Ifw%2BUYBOclnl%2FWjCzM20G6cJravAPb0GB4JI1r6ZL9WGN0RGCu%2FhoIX2E0DHMy%2BsrFuKDVrq7bZgSsGjbQU0lQ%3D%3D");
 
 const TODAY_COVID_URL = "https://livecorona.co.kr/data/koreaRegionalData.js";
 
@@ -29,7 +29,19 @@ const getTodayCOVID = async() =>{
   return await axios.get(TODAY_COVID_URL)
 }
 
-
+function isSameDate(yesterday,today){
+  var yearYes = yesterday.split("년")
+  var monthYes = yearYes[1].split("월")
+  var dayYes = monthYes[1].split("일")
+  var todayDate = today.split(".")
+  if(monthYes[0]===todayDate[0]){
+    if(dayYes[0]=todayDate[1]){
+      return true
+    }
+  }else{
+    return false
+  }
+}
 
 const getAreaName = async (lat, lon) => {
   return await axios.get(AREA_NAME_API,{
@@ -74,7 +86,6 @@ export function fetchTodayCOVID(){
         var jsonData = JSON.parse(res.data.split('= ')[1]);
         result.push(jsonData.slice(0,18));
         result.push(jsonData[18]);
-        console.log(result)
         dispatch({type: 'FETCH_TODAY_COVID', payload: result})
       });
     }catch(error){
@@ -199,19 +210,21 @@ export function fetchCOVIDArea(){
       getTodayCOVID().then((today)=>{
         var todayList = []
         var jsonData = JSON.parse(today.data.split('= ')[1]);
-        todayList.push(jsonData.slice(0,18));
+        todayList.push(jsonData.slice(1,18));
         todayList.push(jsonData[18]);
         getCOVIDArea().then((res)=>{
           var yesterday = res.data.response.body.items.item
           yesterday = yesterday.slice(1,18);
           yesterday = yesterday.reverse();
-
-          for(var i; i<18; i++){
-            console.log("오늘",todayList[0])
+          for(var i=0; i<17; i++){
+            if(isSameDate(yesterday[0]["stdDay"],todayList[1]["업데이트날짜"])){
+              todayList[0][i]["전일대비"] = yesterday[i]["incDec"]
+            }else{
+              todayList[0][i]["전일대비"] = todayList[0][i]["확진자수"]-yesterday[i]["defCnt"]
+            }
+            todayList[0][i]["업데이트날짜"] = todayList[1]["업데이트날짜"]
           }
-          // console.log('오늘',todayList[1]["확진자수"])
-          // console.log()
-          dispatch({type: 'FETCH_COVID_AREA', payload: res.data.response.body.items.item})
+          dispatch({type: 'FETCH_COVID_AREA', payload: todayList})
         });
       });
     }catch(error){

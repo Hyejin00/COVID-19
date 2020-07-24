@@ -31,7 +31,7 @@ export default function MapCardView(){
                   <Text style={styles.smallTitle}>총확진자</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>{info.defCnt}명</Text>
+                  <Text style={styles.smallData}>{info["확진자수"]}명</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -39,15 +39,7 @@ export default function MapCardView(){
                   <Text style={styles.smallTitle}>전일대비</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>+{info.incDec}명</Text>
-              </Row>
-            </Col>
-            <Col size={1} style={styles.smallCol}>
-              <Row style={styles.smallRow}>
-                  <Text style={styles.smallTitle}>격리중</Text>
-              </Row>
-              <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>{info.isolIngCnt}명</Text>
+                  <Text style={styles.smallData}>+{info["전일대비"]}명</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -55,7 +47,7 @@ export default function MapCardView(){
                   <Text style={styles.smallTitle}>사망자</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>{info.deathCnt}명</Text>
+                  <Text style={styles.smallData}>{info["사망자수"]}명</Text>
               </Row>
               <Row style={styles.smallRow}>
                   <Text style={styles.smallDataChanged}></Text>
