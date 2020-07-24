@@ -33,10 +33,11 @@ export default function NewsNavigator({ navigation, route }) {
             <TouchableWithoutFeedback
               onPress={()=>{navigation.openDrawer()}}>
                 <Ionicons
-                name= 'md-menu'
-                size={24}
-                color='black'
-                style={{marginLeft:20}}/>
+                  name= 'md-menu'
+                  size={24}
+                  color='black'
+                  style={{marginLeft:20}}
+                />
             </TouchableWithoutFeedback>
             )}
           }
