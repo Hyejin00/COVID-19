@@ -83,7 +83,7 @@ const getCOVIDCountryYesterday = async() =>{
 export function fetchAreaName (lat,lng) {
   return (dispatch) => {
     getAreaName(lat,lng).then((res)=>{
-      console.log(res);
+      console.log("여기다 시발",res.data.results[3]["address_components"][2]["long_name"]);
     })
   }
 }
