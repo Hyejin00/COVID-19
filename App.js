@@ -1,7 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
+import { Text, View, Image, StyleSheet, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from "redux-thunk";
 import { Provider } from 'react-redux';
@@ -24,35 +25,75 @@ export default function App() {
 
 const Drawer = createDrawerNavigator();
 
+function DrawerHeader(props) {
+  return(
+    <View style={styles.container}>
+      <View>
+        <Image
+          style={styles.drawerheader}
+          source={require('./assets/덕분에.png')}
+        />
+        <DrawerItem
+          label={() => <Text>Home</Text>}
+          onPress={() => props.navigation.navigate('Home')}
+          icon={() => <FontAwesome name="home" size={24} color="#aaa"/>}
+        />
+        <DrawerItem
+          label={() => <Text>News</Text>}
+          onPress={() => props.navigation.navigate('News')}
+          icon={() => <FontAwesome name="newspaper-o" size={20} color="#aaa"/>}
+        />
+      </View>
+      <Text style={styles.team}>Developed by 진지 0%</Text>
+    </View>
+  );
+}
+
 function RootNavigator() {
   return (
     <Provider store={store}>
       <Drawer.Navigator 
         initialRouteName="Home"
-        drawerContentOptions  ={{
+        drawerContentOptions={{
           activeTintColor: '#652f79', //글자색
           activeBackgroundColor: '#eee5e8' //바탕색 
         }}
+        drawerContent = {props => <DrawerHeader  {...props}/>}
       >
         <Drawer.Screen 
           name="Home" 
           component={HomeNavigator} 
-          options={{ 
-            drawerIcon: ({ focused, size }) => (
-              <FontAwesome name="home" size={size} color={focused ? "#652f79" : "#aaa"}/>
-            ) 
-          }}
         />
         <Drawer.Screen 
           name="News" 
-          component={NewsNavigator} 
-          options={{
-            drawerIcon: ({ focused, size }) => (
-              <FontAwesome name="newspaper-o" size={size} color={focused ? "#652f79" : "#aaa"}/>
-            ) 
-          }}  
+          component={NewsNavigator}  
         />
       </Drawer.Navigator>
     </Provider>
   );
 }
+
+const styles = StyleSheet.create({
+  drawerheader: {
+    marginTop: 25,
+    marginBottom: 10,
+    width: 'auto',
+    height: 180
+  },
+  team: {
+    textAlign: 'right',
+    position: 'absolute',
+    bottom: 0,
+    right: 0,
+    margin: 10,
+    color: '#ccc'
+  },
+  container:{
+    height: '100%'
+  }
+})
+
+// 배경색 
+// drawerStyle={{
+//   backgroundColor: '#ababab'
+// }}
