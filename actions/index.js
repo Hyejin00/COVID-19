@@ -35,7 +35,8 @@ const getAreaName = async(lat, lon) => {
   return await axios.get(AREA_NAME_API,{
     params:{
       key: AREA_API_KEY,
-      latlng: `${lat},${lon}`
+      latlng: `${lat},${lon}`,
+      language: 'ko'
     }
   })
 
@@ -83,7 +84,8 @@ const getCOVIDCountryYesterday = async() =>{
 export function fetchAreaName (lat,lng) {
   return (dispatch) => {
     getAreaName(lat,lng).then((res)=>{
-      console.log("여기다 시발",res.data.results[3]["address_components"][2]["long_name"]);
+      console.log(lat, lng);
+      console.log("여기다 시발",res.data.results[0]["address_components"][3]["long_name"]);
     })
   }
 }
