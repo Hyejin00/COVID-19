@@ -2,10 +2,10 @@ import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
 import { fetchMyAreaData, fetchAreaName } from '../actions/index';
-import { useDispatch, Alert } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
-import { StyleSheet, TouchableWithoutFeedback, View, Text } from 'react-native';
+import { StyleSheet, TouchableWithoutFeedback, Text,Alert } from 'react-native';
 
 import MapScreen from '../screens/MapScreen';
 import PlusScreen from '../screens/PlusScreen';
