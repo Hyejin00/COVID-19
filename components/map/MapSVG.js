@@ -267,6 +267,5 @@ export default function MapSVG(props) {
 const styles = StyleSheet.create({
   svgContainer:{
     alignItems: 'center',
-    marginTop: -80
   }
 });

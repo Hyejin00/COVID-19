@@ -18,7 +18,7 @@ export default function MapCardView({color}){
     <View style={styles.container}>
         <Card 
           title="국내 확진자 현황"
-          titleStyle={{color: 'white', marginBottom:-5}}
+          titleStyle={{color: 'white', marginBottom:-20}}
           dividerStyle={{height:0}}
           containerStyle={{backgroundColor: colors.map.maxColor, borderRadius: 12, 
                       borderColor:  colors.map.maxColor, height: '60%', marginTop: 40}}>
@@ -73,8 +73,9 @@ export default function MapCardView({color}){
 
 const styles = StyleSheet.create({
     container: {
-        height: 250,
-        marginTop: 20
+        height: '30%',
+        marginTop: 20,
+        marginBottom: -20
     },
     bigRow: {
       height: 35, 
