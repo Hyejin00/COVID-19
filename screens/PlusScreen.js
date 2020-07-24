@@ -13,7 +13,6 @@ export default function PlusScreen(){
     setIsLoading(true);
     AsyncStorage.getItem('MyArea').then(data =>{
       const myArea = JSON.parse(data || '[]');
-      console.log(myArea);
       setMyAreaList(myArea);
       setIsLoading(false);
     })
