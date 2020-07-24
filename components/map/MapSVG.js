@@ -1,11 +1,17 @@
 import React, {useState} from 'react';
 import { StyleSheet, View, TouchableWithoutFeedback } from 'react-native';
 import Constants from 'expo-constants';
+import { useSelector } from 'react-redux';
 
 import colors from '../../constants/Colors'
 import Svg, { Path,G,Text } from 'react-native-svg';
 
 export default function MapSVG(props) {
+
+  const stateFocus = useSelector(state => state.stateFocus);
+
+  console.log(stateFocus)
+
   const stateColors = {
     seoul: '#fff',
     incheon: '#fff',

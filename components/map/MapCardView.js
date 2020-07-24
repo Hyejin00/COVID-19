@@ -14,18 +14,14 @@ function addComma(num) {
 
 export default function MapCardView(){
 
-  const stateFocus = useSelector(state => state.stateFocus);
-
-  console.log(stateFocus)
-
   return(
     <View style={styles.container}>
         <Card 
           title="국내 확진자 현황"
           titleStyle={{color: 'white', marginBottom:-20}}
           dividerStyle={{height:0}}
-          containerStyle={{backgroundColor: colors.map.maxColor, borderRadius: 12, 
-                      borderColor:  colors.map.maxColor, height: '60%', marginTop: 40}}>
+          containerStyle={{backgroundColor: colors.map.cardColor, borderRadius: 12, 
+                      borderColor:  colors.map.cardColor, height: '60%', marginTop: 40}}>
         {/*react-native-elements Card*/}
           <Grid style={{ width: '100%' }}>
             <Col size={1.5} >
