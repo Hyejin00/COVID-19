@@ -22,9 +22,9 @@ export default {
     // maxColor: "#80B918",
     // minColor: "#CDF08D",
     maxColor: '#83a4d4',
-    minColor: '#83a4d4',
+    minColor: '#b6fbff',
     cardColor: '#5D88C8',
-    focused: '#fff'
+    focused: '#000'
   },
   news: {
     color: "#eee5e8"

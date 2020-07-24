@@ -13,26 +13,34 @@ function addComma(num) {
 }
 
 export default function MapCardView(){
+  const stateFocus = useSelector(state => state.stateFocus);
+  const areaData = useSelector(state => state.areaData);
 
+  const info = areaData[stateFocus];
+  console.log(info)
+  
   return(
     <View style={styles.container}>
         <Card 
-          title="국내 확진자 현황"
-          titleStyle={{color: 'white', marginBottom:-20}}
           dividerStyle={{height:0}}
           containerStyle={{backgroundColor: colors.map.cardColor, borderRadius: 12, 
-                      borderColor:  colors.map.cardColor, height: '60%', marginTop: 40}}>
+                      borderColor:  colors.map.cardColor, height: '53%'}}>
         {/*react-native-elements Card*/}
-          <Grid style={{ width: '100%' }}>
-            <Col size={1.5} >
-              <Row style={styles.bigRow}>
-                  <Text style={styles.confirmedNumTitle}>확진환자</Text>
+          <Grid>
+            <Col size={1} style={styles.smallCol}>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallTitle}>총확진자</Text>
               </Row>
-              <Row style={styles.bigRow}>
-                  <Text style={styles.confirmedNum}> </Text>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallData}>{info.defCnt}명</Text>
               </Row>
-              <Row style={styles.bigRow}>
-                  <Text style={styles.confirmedNumChanged}></Text>
+            </Col>
+            <Col size={1} style={styles.smallCol}>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallTitle}>전일대비</Text>
+              </Row>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallData}>+{info.incDec}명</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -40,18 +48,7 @@ export default function MapCardView(){
                   <Text style={styles.smallTitle}>격리중</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}></Text>
-              </Row>
-            </Col>
-            <Col size={1} style={styles.smallCol}>
-              <Row style={styles.smallRow}>
-                  <Text style={styles.smallTitle}>격리해제</Text>
-              </Row>
-              <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}></Text>
-              </Row>
-              <Row style={styles.smallRow}>
-                  <Text style={styles.smallDataChanged}></Text>
+                  <Text style={styles.smallData}>{info.isolIngCnt}명</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -59,7 +56,7 @@ export default function MapCardView(){
                   <Text style={styles.smallTitle}>사망자</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}></Text>
+                  <Text style={styles.smallData}>{info.deathCnt}명</Text>
               </Row>
               <Row style={styles.smallRow}>
                   <Text style={styles.smallDataChanged}></Text>
@@ -73,16 +70,9 @@ export default function MapCardView(){
 
 const styles = StyleSheet.create({
     container: {
-        height: '30%',
-        marginTop: 20,
-        marginBottom: -20,
+        height: '28%',
         width: '90%',
-        alignSelf: 'center'
-    },
-    bigRow: {
-      height: 35, 
-      justifyContent: 'center',
-      alignItems: 'center'
+        alignSelf: 'center',
     },
     smallRow: {
       height: 30, 
@@ -92,20 +82,6 @@ const styles = StyleSheet.create({
     smallCol:{
       marginRight:6,
       marginTop: 7
-    },
-    confirmedNumTitle: {
-      color: 'white',
-      fontSize: 20,
-    },
-    confirmedNum: {
-      color: 'white',
-      fontSize: 23,
-      fontWeight: '700'
-    },
-    confirmedNumChanged: {
-      color: 'white',
-      fontSize: 16,
-
     },
     smallTitle: {
       color: 'white',
