@@ -86,6 +86,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     right: 0,
     margin: 10,
+    marginBottom: 20,
     color: '#ccc'
   },
   container:{
