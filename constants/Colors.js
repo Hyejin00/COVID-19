@@ -24,5 +24,5 @@ export default {
   },
   news: {
     color: "#eee5e8"
-  }
+  },
 };
