@@ -22,6 +22,7 @@ export default function MapScreen(){
           style={styles.mapStyle}
           scrollEnabled={false}
           zoomEnabled={false}
+          moveOnMarkerPress={false}
           initialRegion={{
             latitude: 35.4,
             longitude: 127.8,
