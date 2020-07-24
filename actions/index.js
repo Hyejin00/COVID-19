@@ -66,13 +66,17 @@ const getCOVIDCountryYesterday = async() =>{
 // }
 
 export function fetchMyAreaData () {
-  const init = []
+  let init = []
   return (dispatch) => {
     AsyncStorage.getItem('MyArea').then(data =>{
       console.log('data',data);
-      const myArea = data !== '[]'?JSON.parse(data):['서울'];
-      console.log('mydata: ',myArea);
-      dispatch({type:'FETCH_MYAREA', payload: myArea})
+      if(data === '[]' || !data){
+        init = ['서울'];
+      }else{
+        init = JSON.parse(data);
+      }
+      console.log('mydata: ',init);
+      dispatch({type:'FETCH_MYAREA', payload: init})
     });
   }
 }
