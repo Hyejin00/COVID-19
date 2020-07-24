@@ -19,18 +19,20 @@ export default function PlusScreen(){
     });
   },[]);
 
-  const removeValue = async () => {
-    try {
-      await AsyncStorage.removeItem('MyArea')
-    } catch(e) {
-      // remove error
+  const handleDelClick = async( name ) => {
+    setIsLoading(true);
+    const myArea = myAreaList;
+    myArea.splice(myArea.indexOf(name),1);
+    try{
+      await AsyncStorage.setItem('MyArea', JSON.stringify(myArea));
+    } catch(e){
+      console.log(e);
     }
-  
-    console.log('Done.')
+    setIsLoading(false);
   }
 
   return(
-    isLoading?<Loading />:<FlatList data={myAreaList} renderItem={({ item }) => <AreaItem name = {item}/>} keyExtractor={item => item}
+    isLoading?<Loading />:<FlatList data={myAreaList} renderItem={({ item }) => <AreaItem name = {item} handleDelClick = { handleDelClick }/>} keyExtractor={item => item}
     />
   );
 }

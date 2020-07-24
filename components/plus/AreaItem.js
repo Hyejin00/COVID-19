@@ -1,12 +1,16 @@
 import * as React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; 
 
-export default function AreaItem({ name }){
+export default function AreaItem({ name, handleDelClick }){
   return(
     <View style = {styles.item_container}>
       <Text style = {styles.name_font}>{name}</Text>
-      <FontAwesome name="trash-o" size={24} color="#C0392B" />
+      <TouchableWithoutFeedback
+        onPress={() => {handleDelClick(name)}}
+      >
+        <FontAwesome name="trash-o" size={24} color="#C0392B" />
+      </TouchableWithoutFeedback>
     </View>
   );
 }
