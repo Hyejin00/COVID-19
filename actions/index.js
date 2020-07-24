@@ -1,4 +1,5 @@
 import axios from 'axios';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const NEWS_API = "https://openapi.naver.com/v1/search/news.json";
 const NEWS_ID = "dVWdGSs2FWC3OwDyBPI_";
@@ -12,7 +13,7 @@ const COVID_SERVICE_KEY = decodeURIComponent("x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfg
 
 const today = new Date();
 
-function yyyymmdd(dateIn) {
+const yyyymmdd = (dateIn) => {
   var yyyy = dateIn.getFullYear();
   var mm = dateIn.getMonth() + 1; // getMonth() is zero-based
   var dd = dateIn.getDate() -1;
@@ -63,6 +64,18 @@ const getCOVIDCountryYesterday = async() =>{
 //     }
 //   }
 // }
+
+export function fetchMyAreaData () {
+  const init = []
+  return (dispatch) => {
+    AsyncStorage.getItem('MyArea').then(data =>{
+      console.log('data',data);
+      const myArea = data !== '[]'?JSON.parse(data):['서울'];
+      console.log('mydata: ',myArea);
+      dispatch({type:'FETCH_MYAREA', payload: myArea})
+    });
+  }
+}
 
 export function fetchCOVIDCountry(){
   return (dispatch) => {

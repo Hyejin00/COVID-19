@@ -9,7 +9,7 @@ import colors from '../constants/Colors'
 import MyAreaStatus from '../components/home/MyAreaStatus';
 import CountryStatus from '../components/home/CountryStatus';
 import HomeHeader from '../components/home/HomeHeader';
-import { fetchCOVIDCountry, fetchCOVIDArea, fetchTodayCOVID } from '../actions';
+import { fetchCOVIDCountry, fetchCOVIDArea, fetchTodayCOVID, fetchMyAreaData } from '../actions';
 
 function getColor(incDec){
   if(incDec<=0){
@@ -30,6 +30,8 @@ export default function HomeScreen(){
 
   const myAreaData = useSelector(state => state.myAreaData);
 
+  const myAreaList = useSelector(state => state.myArea);
+
   const { width: windowWidth } = useWindowDimensions();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
@@ -44,6 +46,7 @@ export default function HomeScreen(){
     // dispatch(fetchTodayCOVID());
     dispatch(fetchCOVIDCountry());
     dispatch(fetchCOVIDArea());
+    dispatch(fetchMyAreaData());
   },[])
 
   const FadeInView = (props) => {
