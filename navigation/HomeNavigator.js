@@ -49,6 +49,16 @@ export default function HomeNavigator({ navigation, route }) {
         options={
           { 
             headerTitle: '지역선택',
+            headerRight: () => {
+              return(
+                <TouchableWithoutFeedback
+                  onPress={()=>{
+                    
+                  }}
+                >
+                  <Text style = {styles.fontRight}>저장</Text>
+                </TouchableWithoutFeedback>
+              )}
           }
         }
       />

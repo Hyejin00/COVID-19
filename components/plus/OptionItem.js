@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, TouchableHighlight, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
 
-export default function OptionItem({ name, handleClick }){
+export default function OptionItem({ name, index, handleClick }){
 
   const [isSelected, setIsSelected] = useState(false);
 
@@ -11,8 +11,8 @@ export default function OptionItem({ name, handleClick }){
       activeOpacity={0.6}
       underlayColor="#ccc"
       onPress={() => {
+        handleClick(index, !isSelected);
         setIsSelected((cur)=>!cur);
-        handleClick(name, isSelected);
       }}
     >
       <View style = {isSelected?{...styles.item_container,...{backgroundColor: '#EAF2F8'}}:{...styles.item_container,...{backgroundColor: '#FBFCFC'}}}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlatList, View, Button } from 'react-native';
+import { FlatList, View, Button, StyleSheet } from 'react-native';
 import OptionItem from '../components/plus/OptionItem';
 
 
@@ -7,30 +7,32 @@ const AreaList = ['서울', '경기도','인천','강원도','충청북도','세
 
 export default function EditScreen(){
 
-  const [myList, setMyList] = useState([]);
+  const [myList, setMyList] = useState(Array(AreaList.length).fill(false));
 
-  const handleClick = (name, check) => {
-    if (check){
-      setMyList(myList.push(name));
-    } else{
-      let list = myList;
-      list.splice(list.indexOf(name),1);
-      setMyList(list);
-    }
+  const handleClick = (i, checked) => {
+    let list = myList.slice();
+    list[i] = checked;
+    setMyList(list);
   }
 
   return (
-    <View>
-      <FlatList 
-        data={AreaList}
-        renderItem={({ item }) => <OptionItem name = {item} handleClick = { handleClick }/>}
-        keyExtractor={item => item}
-      />
+    <View style={styles.container}>
       <Button
           title="Press me"
           color="#f194ff"
           onPress={() => console.log(myList)}
       />
+      <FlatList 
+        data={AreaList}
+        renderItem={({ item, index }) => <OptionItem name = {item} handleClick = {handleClick} index = {index}/>}
+        keyExtractor={item => item}
+      />
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    display: 'flex'
+  }
+});
