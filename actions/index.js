@@ -173,10 +173,10 @@ export function fetchCOVIDNews(){
   }
 }
 
-export function setPage({pageNo}){
+export function setStateFocus({area}){
   return async (dispatch) => {
     try{
-      dispatch({type: 'SET_PAGE', payload: pageNo})
+      dispatch({type: 'SET_STATE_FOCUS', payload: area})
     }catch(error){
       console.error(error);
     }

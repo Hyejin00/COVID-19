@@ -35,8 +35,6 @@ export default function MyAreaStatus({area}){
   
   const { width: windowWidth } = useWindowDimensions();
 
-  const curPage = useSelector(state => state.curPage);
-
   return(
     <View
       style={{ 
