@@ -5,6 +5,9 @@ const NEWS_API = "https://openapi.naver.com/v1/search/news.json";
 const NEWS_ID = "dVWdGSs2FWC3OwDyBPI_";
 const NEWS_PW = "0Ja5lIgz1N";
 
+const AREA_API_KEY = "AIzaSyCDk2U3E-OQl-t1v5QSvl960Ob5b947pK8";
+const AREA_NAME_API = "https://maps.googleapis.com/maps/api/geocode/json";
+
 const COVID_API_COUNTRY = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson";
 const COVID_API_AREA = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?";
 const COVID_SERVICE_KEY = decodeURIComponent("x6dJYBesyJASIb%2Fp267HqOfG6XBiBrfgntc7M2Ih8WPpxISF6Q%2FTpuMO3f4ab2VfKVDQc1orY0mq38ZCl0AI0A%3D%3D");
@@ -25,6 +28,18 @@ const date = yyyymmdd(today);
 // const getTodayCOVID = async() =>{
 //   return await axios.get(TODAY_COVID_URL)
 // }
+
+
+
+const getAreaName = async(lat, lon) => {
+  return await axios.get(AREA_NAME_API,{
+    params:{
+      key: AREA_API_KEY,
+      latlng: `${lat},${lon}`
+    }
+  })
+
+}
 
 const getCOVIDCountry = async() =>{
   return await axios.get(COVID_API_COUNTRY,{
@@ -64,6 +79,14 @@ const getCOVIDCountryYesterday = async() =>{
 //     }
 //   }
 // }
+
+export function fetchAreaName (lat,lng) {
+  return (dispatch) => {
+    getAreaName(lat,lng).then((res)=>{
+      console.log(res);
+    })
+  }
+}
 
 export function fetchMyAreaData () {
   let init = []

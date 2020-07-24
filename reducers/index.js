@@ -52,6 +52,9 @@ const reducer = produce((state, action) => {
     case 'FETCH_MYAREA':
       state.myArea = action.payload;
       break;
+    case 'FETCH_AREANAME':
+      state.myArea = action.payload;
+      break;
     case 'SET_PAGE':
       state.curPage = action.payload;
       break;
