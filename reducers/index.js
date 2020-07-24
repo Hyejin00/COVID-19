@@ -50,6 +50,7 @@ const reducer = produce((state, action) => {
     //   state.myAreaData = myList;
     //   break;
     case 'FETCH_MYAREA':
+      console.log('넘어온 데이터',action.payload);
       state.myArea = action.payload;
       break;
     case 'FETCH_AREANAME':

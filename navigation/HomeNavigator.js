@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../screens/HomeScreen';
-import { fetchMyAreaData, fetchAreaName } from '../actions/index';
+import { fetchMyAreaData } from '../actions/index';
 import { useDispatch } from 'react-redux';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
@@ -26,13 +26,14 @@ export default function HomeNavigator({ navigation, route }) {
           onPress: async ()=> {
             let { status } = await Location.requestPermissionsAsync();
             if( status !== 'granted'){
-              dispatch(fetchAreaName(40.714224, -73.961452));
+              dispatch(fetchMyAreaData(40.714224, -73.961452));
             }
           }
         }]);
       } else{
         const { coords:{latitude,longitude} } = await Location.getCurrentPositionAsync({});
-        dispatch(fetchAreaName(latitude, longitude));
+        console.log('zz');
+        dispatch(fetchMyAreaData(latitude, longitude));
       }
     } catch (error) {
       console.log(error);
@@ -41,7 +42,6 @@ export default function HomeNavigator({ navigation, route }) {
   }
 
   useEffect(()=> {
-    dispatch(fetchMyAreaData());
     getLocation();
   });
 

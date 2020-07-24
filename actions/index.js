@@ -31,7 +31,7 @@ const date = yyyymmdd(today);
 
 
 
-const getAreaName = async(lat, lon) => {
+const getAreaName = async (lat, lon) => {
   return await axios.get(AREA_NAME_API,{
     params:{
       key: AREA_API_KEY,
@@ -81,26 +81,62 @@ const getCOVIDCountryYesterday = async() =>{
 //   }
 // }
 
-export function fetchAreaName (lat,lng) {
-  return (dispatch) => {
-    getAreaName(lat,lng).then((res)=>{
-      const area_name = res.data.results[0]["address_components"][3]["long_name"];
-      
-    })
+const nameFilter = (name) => {
+  switch(name){
+    case '경기도':
+      return '경기'
+    case '서울특별시':
+      return '서울'
+    case '강원도':
+      return '강원'
+    case '인천광역시':
+      return '인천'
+    case '충청북도':
+      return '충북'
+    case '대전광역시':
+      return '대전'
+    case '세종특별자치시':
+      return '세종'
+    case '충청남도':
+      return '충남'
+    case '전라북도':
+      return '전북'
+    case '광주광역시':
+      return '광주'
+    case '전라남도':
+      return '전남'
+    case '경상북도':
+      return '경북'
+    case '대구광역시':
+      return '대구'
+    case '울산광역시':
+      return '울산'
+    case '부산광역시':
+      return '부산'
+    case '경상남도':
+      return '경남'
+    case '제주특별자치도':
+      return '제주'
+    default:
+      return '서울'
   }
 }
 
-export function fetchMyAreaData () {
+export function fetchMyAreaData (lat,lng) {
   let init = []
   return (dispatch) => {
     AsyncStorage.getItem('MyArea').then(data =>{
-      console.log('data',data);
       if(data === '[]' || !data){
         init = ['서울'];
       }else{
         init = JSON.parse(data);
       }
-      dispatch({type:'FETCH_MYAREA', payload: init})
+      console.log('Area',init);
+      getAreaName(lat,lng).then((res)=>{
+        const area_name = res.data.results[0]["address_components"][3]["long_name"];
+        init.splice(0,0,nameFilter(area_name));
+        dispatch({type:'FETCH_MYAREA', payload: init});
+      });
     });
   }
 }
