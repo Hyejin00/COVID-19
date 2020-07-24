@@ -75,7 +75,9 @@ const styles = StyleSheet.create({
     container: {
         height: '30%',
         marginTop: 20,
-        marginBottom: -20
+        marginBottom: -20,
+        width: '90%',
+        alignSelf: 'center'
     },
     bigRow: {
       height: 35, 
