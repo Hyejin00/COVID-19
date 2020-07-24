@@ -34,12 +34,12 @@ function DrawerHeader(props) {
           source={require('./assets/덕분에.png')}
         />
         <DrawerItem
-          label={() => <Text>Home</Text>}
+          label={() => <Text>메인화면</Text>}
           onPress={() => props.navigation.navigate('Home')}
           icon={() => <FontAwesome name="home" size={24} color="#aaa"/>}
         />
         <DrawerItem
-          label={() => <Text>News</Text>}
+          label={() => <Text>코로나 뉴스</Text>}
           onPress={() => props.navigation.navigate('News')}
           icon={() => <FontAwesome name="newspaper-o" size={20} color="#aaa"/>}
         />
@@ -54,10 +54,6 @@ function RootNavigator() {
     <Provider store={store}>
       <Drawer.Navigator 
         initialRouteName="Home"
-        drawerContentOptions={{
-          activeTintColor: '#652f79', //글자색
-          activeBackgroundColor: '#eee5e8' //바탕색 
-        }}
         drawerContent = {props => <DrawerHeader  {...props}/>}
       >
         <Drawer.Screen 
@@ -94,7 +90,6 @@ const styles = StyleSheet.create({
   }
 })
 
-// 배경색 
 // drawerStyle={{
-//   backgroundColor: '#ababab'
+//   backgroundColor: '#83a4d4'
 // }}
