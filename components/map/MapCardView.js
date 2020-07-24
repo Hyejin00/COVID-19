@@ -12,7 +12,11 @@ function addComma(num) {
   return num.toString().replace(regexp, ',');
 }
 
-export default function MapCardView({color}){
+export default function MapCardView(){
+
+  const stateFocus = useSelector(state => state.stateFocus);
+
+  console.log(stateFocus)
 
   return(
     <View style={styles.container}>
@@ -75,7 +79,9 @@ const styles = StyleSheet.create({
     container: {
         height: '30%',
         marginTop: 20,
-        marginBottom: -20
+        marginBottom: -20,
+        width: '90%',
+        alignSelf: 'center'
     },
     bigRow: {
       height: 35, 

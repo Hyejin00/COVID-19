@@ -10,7 +10,7 @@ const baseState = {
   areaData: {},
   countryData: {},
   myAreaData: [],
-  curPage : 0,
+  stateFocus : '서울',
   myArea:['서울']
 };
 
@@ -55,8 +55,8 @@ const reducer = produce((state, action) => {
     case 'FETCH_AREANAME':
       state.myArea = action.payload;
       break;
-    case 'SET_PAGE':
-      state.curPage = action.payload;
+    case 'SET_STATE_FOCUS':
+      state.stateFocus = action.payload;
       break;
     case 'START_LOADING':
             state.loading = true;
