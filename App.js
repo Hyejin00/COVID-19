@@ -1,12 +1,14 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Text, View, Image, StyleSheet, Dimensions } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createDrawerNavigator, DrawerItem } from '@react-navigation/drawer';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from "redux-thunk";
 import { Provider } from 'react-redux';
-import { FontAwesome } from '@expo/vector-icons'; 
+import { FontAwesome } from '@expo/vector-icons';
+import * as Notifications from 'expo-notifications';
+import * as Permissions from 'expo-permissions';
 
 import HomeNavigator from './navigation/HomeNavigator';
 import NewsNavigator from './navigation/NewsNavigator';
@@ -15,6 +17,7 @@ import rootReducer from './reducers';
 const store = createStore(rootReducer, applyMiddleware(thunk));
 
 export default function App() {
+
   return (
     <NavigationContainer>
       <RootNavigator />
