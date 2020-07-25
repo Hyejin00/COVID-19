@@ -7,8 +7,6 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from "redux-thunk";
 import { Provider } from 'react-redux';
 import { FontAwesome } from '@expo/vector-icons';
-import * as Notifications from 'expo-notifications';
-import * as Permissions from 'expo-permissions';
 
 import HomeNavigator from './navigation/HomeNavigator';
 import NewsNavigator from './navigation/NewsNavigator';
