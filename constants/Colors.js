@@ -27,6 +27,9 @@ export default {
     focused: '#000'
   },
   news: {
-    color: "#eee5e8"
+    color: "#fff"
+  },
+  plus: {
+    color: "#fff"
   },
 };

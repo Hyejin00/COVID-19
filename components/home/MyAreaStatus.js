@@ -3,6 +3,8 @@ import {  Animated, StyleSheet, View, Text, ScrollView, useWindowDimensions } fr
 import { Entypo } from '@expo/vector-icons'; 
 import { AntDesign } from '@expo/vector-icons'; 
 import { useSelector, useDispatch } from 'react-redux';
+import { LineChart, Grid } from 'react-native-svg-charts'
+import * as shape from 'd3-shape'
 
 import { setPage } from '../../actions';
 
@@ -19,6 +21,8 @@ function Circle({data}){
     size = 120;
   }else if(data<=5){
     size = 60;
+  }else if(data<=20){
+    size = 40;
   }else if(data>20){
     size = 30;
   }else{
@@ -36,7 +40,9 @@ function Circle({data}){
 export default function MyAreaStatus({area}){
   
   const { width: windowWidth } = useWindowDimensions();
-
+  const areaData = useSelector(state => state.areaData);
+  console.log(areaData)
+  
   return(
     <View
       style={{ 
@@ -61,8 +67,16 @@ export default function MyAreaStatus({area}){
           <Entypo name="emoji-happy" size={120} color="white" />
         }
         </View>
+        {/* <LineChart
+          style={{ height: 200, width:320}}
+          data={data}
+          curve={shape.curveNatural}
+          svg={{ stroke: 'white', strokeWidth:3 }}
+          contentInset={{ top: 20, bottom: 20 }}
+        >
+        </LineChart> */}
         <Text style={styles.dateTime}>
-          Update: {area["업데이트날짜"]}
+          Update: {areaData["업데이트날짜"]["업데이트날짜"]}
         </Text>
     </View>
   );

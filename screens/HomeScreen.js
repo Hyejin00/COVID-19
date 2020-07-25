@@ -1,5 +1,5 @@
 import React, { useState , useRef, useEffect } from 'react';
-import { Animated, StyleSheet, RefreshControl, ScrollView, useWindowDimensions, View } from 'react-native';
+import { Animated, StyleSheet, RefreshControl, ScrollView, useWindowDimensions, View, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
@@ -9,7 +9,7 @@ import colors from '../constants/Colors'
 import MyAreaStatus from '../components/home/MyAreaStatus';
 import CountryStatus from '../components/home/CountryStatus';
 import HomeHeader from '../components/home/HomeHeader';
-import { fetchCOVIDCountry, fetchCOVIDArea, fetchTodayCOVID } from '../actions';
+import { fetchCOVIDCountry, fetchCOVIDArea, fetch6DayCOVIDArea } from '../actions';
 
 function getColor(incDec){
   if(incDec<=0){
@@ -31,19 +31,20 @@ export default function HomeScreen(){
   const myAreaData = useSelector(state => state.myAreaData);
 
   const myAreaList = useSelector(state => state.myArea);
-
+  console.log(myAreaData)
   const { width: windowWidth } = useWindowDimensions();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const onRefresh = async() =>{
     // dispatch(fetchCOVIDCountry());
-    dispatch(fetchCOVIDArea());
+    // dispatch(fetchCOVIDArea());
   }
   const dispatch = useDispatch();
   
   useEffect(()=> {
     // dispatch(fetchCOVIDCountry());
+    // dispatch(fetch6DayCOVIDArea());
     dispatch(fetchCOVIDArea());
   },[myAreaList])
 
@@ -93,7 +94,6 @@ export default function HomeScreen(){
         scrollEventThrottle={1}
       >
         {myAreaData.map((area, areaIndex) => {
-            console.log(area)
             return (
               <LinearGradient
                 style={styles.container}
