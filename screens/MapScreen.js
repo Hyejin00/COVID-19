@@ -3,6 +3,7 @@ import { StyleSheet, View, TouchableWithoutFeedback, Text } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useSelector } from 'react-redux';
 import Constants from 'expo-constants';
+import { Feather } from '@expo/vector-icons'; 
 
 import MapHeader from '../components/map/MapHeader';
 import MapCardView from '../components/map/MapCardView';
@@ -22,6 +23,7 @@ export default function MapScreen(props) {
 			<MapHeader/>
       <Text style={styles.areaTitle}>{info["지역이름"]} 확진자 현황</Text>
       <MapSVG/>
+      <Text style={styles.desc}><Feather name="info" size={17} color="#6D6D6D"/> 지역을 클릭하면 디테일한 데이터를 확인할 수 있어요!</Text>
       <MapCardView/>
     </LinearGradient>
   );
@@ -41,5 +43,11 @@ const styles = StyleSheet.create({
   },
   svgContainer:{
     alignItems: 'center'
+  },
+  desc:{
+    textAlign: 'center',
+    color: '#6D6D6D',
+    marginRight: 10,
+    marginTop: 4,
   }
 });

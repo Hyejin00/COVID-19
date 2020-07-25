@@ -369,6 +369,7 @@ const styles = StyleSheet.create({
   CheckBoxContainer:{
     display: 'flex',
     flexDirection: 'row',
-    marginTop: '-5%',
+    marginTop: '-7%',
+    marginBottom: '-4%',
   }
 });
