@@ -48,7 +48,7 @@ export default function HomeNavigator({ navigation, route }) {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
-        name=" "
+        name="HomeScreen"
         component={HomeScreen}
         options={{ headerShown: false }}
       />
