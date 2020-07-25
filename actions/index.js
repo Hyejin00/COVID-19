@@ -152,7 +152,7 @@ export function fetchMyAreaData (lat,lng) {
   return (dispatch) => {
     AsyncStorage.getItem('MyArea').then(data =>{
       if(data === '[]' || !data){
-        init = ['서울'];
+        init = [];
       }else{
         init = JSON.parse(data);
       }
