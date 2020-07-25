@@ -29,7 +29,7 @@ const reducer = produce((state, action) => {
       action.payload[0].map((area, i) => {
         state.areaData[AREA_NAME_PUBLIC[i]]=area
       })
-      
+      state.areaData["전국"] = action.payload[1];
       const myList = []
       state.myArea.forEach(area => {
         myList.push(state.areaData[area]);

@@ -27,11 +27,9 @@ function setTextSize(area, focusedArea){
   }
 }
 function setDataText(area, areaData, status){
-  console.log(status)
     if(status){
       return areaData[area]["전일대비"]
     }else{
-      console.log("확진자수는",areaData[area]["확진자수"])
       return areaData[area]["확진자수"]
     }
 }

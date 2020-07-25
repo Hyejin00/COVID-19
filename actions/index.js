@@ -210,10 +210,12 @@ export function fetchCOVIDArea(){
       getTodayCOVID().then((today)=>{
         var todayList = []
         var jsonData = JSON.parse(today.data.split('= ')[1]);
+        var allToday = jsonData[0];
         todayList.push(jsonData.slice(1,18));
         todayList.push(jsonData[18]);
         getCOVIDArea().then((res)=>{
-          var yesterday = res.data.response.body.items.item
+          var yesterday = res.data.response.body.items.item;
+          var allYesterday = yesterday[18];
           yesterday = yesterday.slice(1,18);
           yesterday = yesterday.reverse();
           for(var i=0; i<17; i++){
@@ -224,6 +226,14 @@ export function fetchCOVIDArea(){
             }
             todayList[0][i]["업데이트날짜"] = todayList[1]["업데이트날짜"]
           }
+          if(isSameDate(yesterday[0]["stdDay"],todayList[1]["업데이트날짜"])){
+            todayList[1] = allToday;
+            todayList[1]["전일대비"] = allYesterday["incDec"]
+          }else{
+            todayList[1] = allToday;
+            todayList[1]["전일대비"] = allToday["확진자수"]-allYesterday["defCnt"]
+          }
+          console.log(todayList[1])
           dispatch({type: 'FETCH_COVID_AREA', payload: todayList})
         });
       });
