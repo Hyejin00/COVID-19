@@ -2,6 +2,8 @@ import * as React from 'react';
 import { StyleSheet, View, Text, TouchableWithoutFeedback } from 'react-native';
 import { FontAwesome } from '@expo/vector-icons'; 
 
+import colors from '../../constants/Colors'
+
 export default function AreaItem({ name, handleDelClick }){
   return(
     <View style = {styles.item_container}>
@@ -25,7 +27,7 @@ const styles = StyleSheet.create({
     paddingEnd:20,
     borderBottomWidth:.5,
     borderColor: '#ccc',
-    backgroundColor: '#FBFCFC',
+    backgroundColor: colors.plus.color
   },
   name_font:{
     fontSize: 20,

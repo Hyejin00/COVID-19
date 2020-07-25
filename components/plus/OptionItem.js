@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { StyleSheet, TouchableHighlight, Text, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons'; 
+import { colors } from 'react-native-elements';
+
+import color from '../../constants/Colors'
 
 export default function OptionItem({ name, index, handleClick }){
 
@@ -32,6 +35,7 @@ const styles = StyleSheet.create({
     paddingEnd:20,
     borderBottomWidth:.5,
     borderColor: '#ccc',
+    backgroundColor: color.plus.color
   },
   name_font:{
     fontSize: 20,

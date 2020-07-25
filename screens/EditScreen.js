@@ -4,6 +4,8 @@ import OptionItem from '../components/plus/OptionItem';
 import AsyncStorage from '@react-native-community/async-storage';
 import Loading from '../components/Loading';
 
+import colors from '../constants/Colors'
+
 const AreaList = ['제주', '경남', '경북', '전남', '전북', '충남', '충북', '강원', '경기', '세종', '울산', '대전', '광주', '인천', '대구', '부산', '서울'];
 
 export default function EditScreen({navigation}){
@@ -56,7 +58,8 @@ export default function EditScreen({navigation}){
 const styles = StyleSheet.create({
   container: {
     display: 'flex',
-    flex: 1
+    flex: 1,
+    backgroundColor: colors.plus.color
   },
   save_button: {
     margin:4,

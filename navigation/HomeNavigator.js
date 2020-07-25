@@ -10,6 +10,7 @@ import { StyleSheet, TouchableWithoutFeedback, Text,Alert } from 'react-native';
 import MapScreen from '../screens/MapScreen';
 import PlusScreen from '../screens/PlusScreen';
 import EditScreen from '../screens/EditScreen';
+import colors from '../constants/Colors'
 
 const HomeStack = createStackNavigator();
 
@@ -47,7 +48,7 @@ export default function HomeNavigator({ navigation, route }) {
   return (
     <HomeStack.Navigator>
       <HomeStack.Screen
-        name="HomeScreen"
+        name=" "
         component={HomeScreen}
         options={{ headerShown: false }}
       />
@@ -61,6 +62,7 @@ export default function HomeNavigator({ navigation, route }) {
         component={PlusScreen}
         options={{ 
           headerTitle: '관심지역',
+          headerStyle: {backgroundColor: colors.plus.color},
           headerRight: () =>{
             return(
               <TouchableWithoutFeedback
