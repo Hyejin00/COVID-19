@@ -22,7 +22,7 @@ function Circle({data}){
   }else if(data<=5){
     size = 60;
   }else if(data<=20){
-    size = 40;
+    size = 50;
   }else if(data>20){
     size = 30;
   }else{
@@ -40,8 +40,7 @@ function Circle({data}){
 export default function MyAreaStatus({area}){
   
   const { width: windowWidth } = useWindowDimensions();
-  const areaData = useSelector(state => state.areaData);
-  console.log(areaData)
+  const data = [50, 10, 40, 95, -4, -24, 85, 91, 35, 53, -53, 24, 50, -20, -80]
   
   return(
     <View
@@ -76,7 +75,7 @@ export default function MyAreaStatus({area}){
         >
         </LineChart> */}
         <Text style={styles.dateTime}>
-          Update: {areaData["업데이트날짜"]["업데이트날짜"]}
+          Update: {area["업데이트날짜"]}
         </Text>
     </View>
   );

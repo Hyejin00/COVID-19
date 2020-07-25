@@ -67,44 +67,44 @@ const getAreaName = async (lat, lon) => {
 
 }
 
-// const getCOVIDCountry = async() =>{
-//   return await axios.get(COVID_API_COUNTRY,{
-//     params:{
-//       serviceKey: COVID_SERVICE_KEY,
-//       pageNo: '1',
-//       numOfRows: '10',
-//       startCreateDt: date,
-//       endCreateDt: date
-//     }
-//   })
-// }
+const getCOVIDCountry = async() =>{
+  return await axios.get(COVID_API_COUNTRY,{
+    params:{
+      serviceKey: COVID_SERVICE_KEY,
+      pageNo: '1',
+      numOfRows: '10',
+      startCreateDt: date,
+      endCreateDt: date
+    }
+  })
+}
 
-// const getCOVIDCountryYesterday = async() =>{
-//   return await axios.get(COVID_API_COUNTRY,{
-//     params:{
-//       serviceKey: COVID_SERVICE_KEY,
-//       pageNo: '1',
-//       numOfRows: '10',
-//       startCreateDt: date*1-1,
-//       endCreateDt: date*1-1
-//     }
-//   })
-// }
+const getCOVIDCountryYesterday = async() =>{
+  return await axios.get(COVID_API_COUNTRY,{
+    params:{
+      serviceKey: COVID_SERVICE_KEY,
+      pageNo: '1',
+      numOfRows: '10',
+      startCreateDt: date*1-1,
+      endCreateDt: date*1-1
+    }
+  })
+}
 
-// export function fetchTodayCOVID(){
-//   return (dispatch) => {
-//     try{
-//       getTodayCOVID().then((res)=>{
-//         var result = []
-//         var jsonData = JSON.parse(res.data.split('= ')[1]);
-//         result.push(jsonData.slice(0,18));
-//         result.push(jsonData[18]);
-//         dispatch({type: 'FETCH_TODAY_COVID', payload: result})
-//       });
-//     }catch(error){
-//     }
-//   }
-// }
+export function fetchTodayCOVID(){
+  return (dispatch) => {
+    try{
+      getTodayCOVID().then((res)=>{
+        var result = []
+        var jsonData = JSON.parse(res.data.split('= ')[1]);
+        result.push(jsonData.slice(0,18));
+        result.push(jsonData[18]);
+        dispatch({type: 'FETCH_TODAY_COVID', payload: result})
+      });
+    }catch(error){
+    }
+  }
+}
 
 const nameFilter = (name) => {
   switch(name){
@@ -165,136 +165,129 @@ export function fetchMyAreaData (lat,lng) {
   }
 }
 
-// export function fetchCOVIDCountry(){
-//   return (dispatch) => {
-//     try{
-//       getCOVIDCountryYesterday().then((resYesterday)=>{
-//         getCOVIDCountry().then((res)=>{
-//           const result = res.data.response.body.items.item; 
-//           const resultYesterday = resYesterday.data.response.body.items.item; 
-//           result.decideCntChanged = result.decideCnt - resultYesterday.decideCnt
-//           result.clearCntChanged = result.clearCnt - resultYesterday.clearCnt
-//           result.deathCntChanged = result.deathCnt - resultYesterday.deathCnt
-//           dispatch({type: 'FETCH_COVID_COUNTRY', payload: result})
-//         });
-//       });
-//     }catch(error){
-//     }
-//   }
-// }
+export function fetchCOVIDCountry(){
+  return (dispatch) => {
+    try{
+      getCOVIDCountryYesterday().then((resYesterday)=>{
+        getCOVIDCountry().then((res)=>{
+          const result = res.data.response.body.items.item; 
+          const resultYesterday = resYesterday.data.response.body.items.item; 
+          result.decideCntChanged = result.decideCnt - resultYesterday.decideCnt
+          result.clearCntChanged = result.clearCnt - resultYesterday.clearCnt
+          result.deathCntChanged = result.deathCnt - resultYesterday.deathCnt
+          dispatch({type: 'FETCH_COVID_COUNTRY', payload: result})
+        });
+      });
+    }catch(error){
+    }
+  }
+}
 
-// const getCOVIDArea = async() =>{
-//   return await axios.get(COVID_API_AREA,{
-//     params:{
-//       serviceKey: COVID_SERVICE_KEY,
-//       pageNo: '1',
-//       numOfRows: '10',
-//       startCreateDt: date,
-//       endCreateDt: date
-//     }
-//   })
-// }
+const getCOVIDArea = async() =>{
+  return await axios.get(COVID_API_AREA,{
+    params:{
+      serviceKey: COVID_SERVICE_KEY,
+      pageNo: '1',
+      numOfRows: '10',
+      startCreateDt: date,
+      endCreateDt: date
+    }
+  })
+}
 
-// const get6AreaCOVID = async() =>{
-//   return await axios.get(COVID_API_AREA,{
-//     params:{
-//       serviceKey: COVID_SERVICE_KEY,
-//       pageNo: '1',
-//       numOfRows: '10',
-//       startCreateDt: date5,
-//       endCreateDt: date
-//     }
-//   })
-// }
+const get6AreaCOVID = async() =>{
+  return await axios.get(COVID_API_AREA,{
+    params:{
+      serviceKey: COVID_SERVICE_KEY,
+      pageNo: '1',
+      numOfRows: '10',
+      startCreateDt: date5,
+      endCreateDt: date
+    }
+  })
+}
 
-// export function fetch6DayCOVIDArea(){
-//   return (dispatch) => {
-//     dispatch({ type: 'START_LOADING' });
-//     try{
-//       get6AreaCOVID().then((res)=>{
-//         var result = res.data.response.body.items.item;
-//         var result1 = result.slice(0,20)
-//         var result2 = result.slice(20,40)
-//         var result3 = result.slice(40,60)
-//         var result4 = result.slice(60,80)
-//         var result5 = result.slice(80,100)
-//         var result6 = result.slice(100,120)
-//         result = [result6,result5,result4,result3,result2,result1]
-//         dispatch({type: 'FETCH_6DAYS_AREA', payload: result})
-//       });
-//     }catch(error){
-//       console.log("에러!!!", error)
-//     }finally{
-//       dispatch({ type: 'END_LOADING' });
-//     }
-//   }
-// }
+export function fetch6DayCOVIDArea(){
+  return (dispatch) => {
+    dispatch({ type: 'START_LOADING' });
+    try{
+      get6AreaCOVID().then((res)=>{
+        var result = res.data.response.body.items.item;
+        var result1 = result.slice(0,20)
+        var result2 = result.slice(20,40)
+        var result3 = result.slice(40,60)
+        var result4 = result.slice(60,80)
+        var result5 = result.slice(80,100)
+        var result6 = result.slice(100,120)
+        result = [result6,result5,result4,result3,result2,result1]
+        dispatch({type: 'FETCH_6DAYS_AREA', payload: result})
+      });
+    }catch(error){
+      console.log("에러!!!", error)
+    }finally{
+      dispatch({ type: 'END_LOADING' });
+    }
+  }
+}
 
 
-// // "createDt": "2020-07-24 10:47:49.533",
-// //     "deathCnt": 0,
-// //     "defCnt": 26,
-// //     "gubun": "제주",
-// //     "gubunCn": "济州",
-// //     "gubunEn": "Jeju",
-// //     "incDec": 0,
-// //     "isolClearCnt": 18,
-// //     "isolIngCnt": 8,
-// //     "localOccCnt": 0,
-// //     "overFlowCnt": 0,
-// //     "qurRate": 3.88,
-// //     "seq": 3274,
-// //     "stdDay": "2020년 07월 24일 00시",
-// //     "updateDt": "null",
-// export function fetchCOVIDArea(){
-//   return (dispatch) => {
-//     dispatch({ type: 'START_LOADING' });
-//     try{
-//       getTodayCOVID().then((today)=>{
-//         var todayList = []
-//         var jsonData = JSON.parse(today.data.split('= ')[1]);
-//         var allToday = jsonData[0];
-//         todayList.push(jsonData.slice(1,18));
-//         todayList.push(jsonData[18]);
-//         getCOVIDArea().then((res)=>{
-//           console.log(res)
-//           var yesterday = res.data.response.body.items.item;
-//           var allYesterday = yesterday[18];
-//           yesterday = yesterday.slice(1,18);
-//           yesterday = yesterday.reverse();
-//           for(var i=0; i<17; i++){
-//             if(isSameDate(yesterday[0]["stdDay"],todayList[1]["업데이트날짜"])){
-//               todayList[0][i]["전일대비"] = yesterday[i]["incDec"]
-//             }else{
-//               todayList[0][i]["전일대비"] = todayList[0][i]["확진자수"]-yesterday[i]["defCnt"]
-//             }
-//             todayList[0][i]["업데이트날짜"] = todayList[1]["업데이트날짜"]
-//           }
-//           if(isSameDate(yesterday[0]["stdDay"],todayList[1]["업데이트날짜"])){
-//             todayList[1] = allToday;
-//             todayList[1]["전일대비"] = allYesterday["incDec"]
-//           }else{
-//             todayList[1] = allToday;
-//             todayList[1]["전일대비"] = allToday["확진자수"]-allYesterday["defCnt"]
-//           }
-//           dispatch({type: 'FETCH_COVID_AREA', payload: todayList})
-//         });
-//       });
-//     }catch(error){
-//       console.log("에러!!!", error)
-//     }finally{
-//       dispatch({ type: 'END_LOADING' });
-//     }
-//   }
-// }
-
+// "createDt": "2020-07-24 10:47:49.533",
+//     "deathCnt": 0,
+//     "defCnt": 26,
+//     "gubun": "제주",
+//     "gubunCn": "济州",
+//     "gubunEn": "Jeju",
+//     "incDec": 0,
+//     "isolClearCnt": 18,
+//     "isolIngCnt": 8,
+//     "localOccCnt": 0,
+//     "overFlowCnt": 0,
+//     "qurRate": 3.88,
+//     "seq": 3274,
+//     "stdDay": "2020년 07월 24일 00시",
+//     "updateDt": "null",
 export function fetchCOVIDArea(){
   return (dispatch) => {
     dispatch({ type: 'START_LOADING' });
-    dispatch({ type: 'FETCH_COVID_AREA' });
-    dispatch({ type: 'END_LOADING' })
+    try{
+      getTodayCOVID().then((today)=>{
+        var todayList = []
+        var jsonData = JSON.parse(today.data.split('= ')[1]);
+        var allToday = jsonData[0];
+        todayList.push(jsonData.slice(1,18));
+        todayList.push(jsonData[18]);
+        getCOVIDArea().then((res)=>{
+          console.log(res)
+          var yesterday = res.data.response.body.items.item;
+          var allYesterday = yesterday[18];
+          yesterday = yesterday.slice(1,18);
+          yesterday = yesterday.reverse();
+          for(var i=0; i<17; i++){
+            if(isSameDate(yesterday[0]["stdDay"],todayList[1]["업데이트날짜"])){
+              todayList[0][i]["전일대비"] = yesterday[i]["incDec"]
+            }else{
+              todayList[0][i]["전일대비"] = todayList[0][i]["확진자수"]-yesterday[i]["defCnt"]
+            }
+            todayList[0][i]["업데이트날짜"] = todayList[1]["업데이트날짜"]
+          }
+          if(isSameDate(yesterday[0]["stdDay"],todayList[1]["업데이트날짜"])){
+            todayList[1] = allToday;
+            todayList[1]["전일대비"] = allYesterday["incDec"]
+          }else{
+            todayList[1] = allToday;
+            todayList[1]["전일대비"] = allToday["확진자수"]-allYesterday["defCnt"]
+          }
+          dispatch({type: 'FETCH_COVID_AREA', payload: todayList})
+        });
+      });
+    }catch(error){
+      console.log("에러!!!", error)
+    }finally{
+      dispatch({ type: 'END_LOADING' });
+    }
   }
 }
+
 export function fetchCOVIDNews(){
   return async (dispatch) => {
     try{

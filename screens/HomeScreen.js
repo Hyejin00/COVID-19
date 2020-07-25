@@ -1,5 +1,5 @@
 import React, { useState , useRef, useEffect } from 'react';
-import { Animated, StyleSheet, RefreshControl, ScrollView, useWindowDimensions, View, Text } from 'react-native';
+import { Animated, StyleSheet, RefreshControl, ScrollView, useWindowDimensions, View } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useDispatch, useSelector } from 'react-redux';
 import { StatusBar } from 'expo-status-bar';
@@ -9,14 +9,14 @@ import colors from '../constants/Colors'
 import MyAreaStatus from '../components/home/MyAreaStatus';
 import CountryStatus from '../components/home/CountryStatus';
 import HomeHeader from '../components/home/HomeHeader';
-import { fetchCOVIDCountry, fetchCOVIDArea, fetch6DayCOVIDArea } from '../actions';
+import { fetchCOVIDCountry, fetchCOVIDArea, fetchTodayCOVID } from '../actions';
 
 function getColor(incDec){
   if(incDec<=0){
     return [colors.good.maxColor,colors.good.minColor]
-  }else if(incDec<10){
-    return [colors.bad1.maxColor,colors.bad1.minColor]
   }else if(incDec<20){
+    return [colors.bad1.maxColor,colors.bad1.minColor]
+  }else if(incDec<30){
     return [colors.bad2.maxColor,colors.bad2.minColor]
   }else{
     return [colors.bad3.maxColor,colors.bad3.minColor]
@@ -37,14 +37,13 @@ export default function HomeScreen(){
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const onRefresh = async() =>{
-    // dispatch(fetchCOVIDCountry());
-    // dispatch(fetchCOVIDArea());
+    dispatch(fetchCOVIDCountry());
+    dispatch(fetchCOVIDArea());
   }
   const dispatch = useDispatch();
   
   useEffect(()=> {
-    // dispatch(fetchCOVIDCountry());
-    // dispatch(fetch6DayCOVIDArea());
+    dispatch(fetchCOVIDCountry());
     dispatch(fetchCOVIDArea());
   },[myAreaList])
 
@@ -73,7 +72,6 @@ export default function HomeScreen(){
       </Animated.View>
     );
   }
-  
 
   return (
     <Animated.ScrollView

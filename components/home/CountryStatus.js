@@ -14,8 +14,8 @@ function addComma(num) {
 
 export default function CountryStatus({color}){
 
-  const areaData = useSelector(state => state.areaData);
-
+  const countryData = useSelector(state => state.countryData);
+  console.log(countryData)
   return(
     <View style={styles.container}>
         <Card 
@@ -31,10 +31,18 @@ export default function CountryStatus({color}){
                   <Text style={styles.confirmedNumTitle}>확진환자</Text>
               </Row>
               <Row style={styles.bigRow}>
-                  <Text style={styles.confirmedNum}>{addComma(areaData["전국"]["확진자수"])}</Text>
+                  <Text style={styles.confirmedNum}>{addComma(countryData.decideCnt)}</Text>
               </Row>
               <Row style={styles.bigRow}>
-                  <Text style={styles.confirmedNumChanged}>(+{areaData["전국"]["전일대비"]})</Text>
+                  <Text style={styles.confirmedNumChanged}>(+{countryData.decideCntChanged})</Text>
+              </Row>
+            </Col>
+            <Col size={1} style={styles.smallCol}>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallTitle}>격리중</Text>
+              </Row>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallData}>{addComma(countryData.careCnt)}</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -42,7 +50,10 @@ export default function CountryStatus({color}){
                   <Text style={styles.smallTitle}>격리해제</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>{addComma(areaData["전국"]["격리해제수"])}</Text>
+                  <Text style={styles.smallData}>{addComma(countryData.clearCnt)}</Text>
+              </Row>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallDataChanged}>(+{countryData.clearCntChanged})</Text>
               </Row>
             </Col>
             <Col size={1} style={styles.smallCol}>
@@ -50,7 +61,10 @@ export default function CountryStatus({color}){
                   <Text style={styles.smallTitle}>사망자</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>{addComma(areaData["전국"]["사망자수"])}</Text>
+                  <Text style={styles.smallData}>{addComma(countryData.deathCnt)}</Text>
+              </Row>
+              <Row style={styles.smallRow}>
+                  <Text style={styles.smallDataChanged}>(+{countryData.deathCntChanged})</Text>
               </Row>
             </Col>
           </Grid>
