@@ -62,7 +62,7 @@ export default function MyAreaStatus({area}){
         }
         </View>
         <Text style={styles.dateTime}>
-          {area["업데이트날짜"]}
+          Update: {area["업데이트날짜"]}
         </Text>
     </View>
   );

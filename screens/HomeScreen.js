@@ -37,13 +37,13 @@ export default function HomeScreen(){
   const [isRefreshing, setIsRefreshing] = useState(false);
 
   const onRefresh = async() =>{
-    dispatch(fetchCOVIDCountry());
+    // dispatch(fetchCOVIDCountry());
     dispatch(fetchCOVIDArea());
   }
   const dispatch = useDispatch();
   
   useEffect(()=> {
-    dispatch(fetchCOVIDCountry());
+    // dispatch(fetchCOVIDCountry());
     dispatch(fetchCOVIDArea());
   },[myAreaList])
 
