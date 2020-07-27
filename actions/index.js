@@ -153,7 +153,7 @@ export function fetchMyAreaData (lat,lng) {
         init = JSON.parse(data);
       }
       getAreaName(lat,lng).then((res)=>{
-        const area_name = res.data.results[0]["formatted_address"].split(" ")[1];
+        const area_name = res.data.results[1]["formatted_address"].split(" ")[1];
         console.log(area_name);
         init.splice(0,0,nameFilter(area_name));
         dispatch({type:'FETCH_MYAREA', payload: init});
