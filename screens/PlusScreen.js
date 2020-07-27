@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, FlatList,View } from 'react-native';
-import Loading from '../components/Loading';
+import MyLoading from '../components/MyLoading';
 import AreaItem from '../components/plus/AreaItem';
 import AsyncStorage from '@react-native-community/async-storage';
 
@@ -35,7 +35,7 @@ export default function PlusScreen(){
 
   return(
     <View style={styles.container}>
-      {isLoading?<Loading />:<FlatList data={myAreaList} renderItem={({ item }) => <AreaItem name = {item} handleDelClick = { handleDelClick }/>} keyExtractor={item => item}
+      {isLoading?<MyLoading />:<FlatList data={myAreaList} renderItem={({ item }) => <AreaItem name = {item} handleDelClick = { handleDelClick }/>} keyExtractor={item => item}
       />}
     </View>
   );
