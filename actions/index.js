@@ -23,15 +23,7 @@ const yyyymmdd = (dateIn) => {
   return String(10000 * yyyy + 100 * mm + dd); // Leading zeros for mm and dd
 }
 
-const yyyymmdd5 = (dateIn) => {
-  var yyyy = dateIn.getFullYear();
-  var mm = dateIn.getMonth() + 1; // getMonth() is zero-based
-  var dd = dateIn.getDate() -6;
-  return String(10000 * yyyy + 100 * mm + dd); // Leading zeros for mm and dd
-}
-
 const date = yyyymmdd(today);
-const date5 = yyyymmdd5(today);
 
 const getTodayCOVID = async() =>{
   return await axios.get(TODAY_COVID_URL)
@@ -42,9 +34,13 @@ function isSameDate(yesterday,today){
   var monthYes = yearYes[1].split("월")
   var dayYes = monthYes[1].split("일")
   var todayDate = today.split(".")
+  console.log(monthYes[0],todayDate[0],dayYes[0],24)
   var num = dayYes[0]*1
+  console.log(typeof num, num)
   if(monthYes[0]===todayDate[0]){
+    console.log("1")
     if(num===24){
+      console.log("2")
       return true
     }
   }else{
@@ -69,8 +65,8 @@ const getCOVIDCountry = async() =>{
       serviceKey: COVID_SERVICE_KEY,
       pageNo: '1',
       numOfRows: '10',
-      startCreateDt: date,
-      endCreateDt: date
+      startCreateDt: date*1+1,
+      endCreateDt: date*1+1
     }
   })
 }
@@ -81,8 +77,8 @@ const getCOVIDCountryYesterday = async() =>{
       serviceKey: COVID_SERVICE_KEY,
       pageNo: '1',
       numOfRows: '10',
-      startCreateDt: date*1-1,
-      endCreateDt: date*1-1
+      startCreateDt: date,
+      endCreateDt: date
     }
   })
 }
@@ -139,7 +135,7 @@ const nameFilter = (name) => {
     case '제주특별자치도':
       return '제주'
     default:
-      return '제주'
+      return '서울'
   }
 }
 
@@ -153,8 +149,12 @@ export function fetchMyAreaData (lat,lng) {
         init = JSON.parse(data);
       }
       getAreaName(lat,lng).then((res)=>{
+<<<<<<< HEAD
         const area_name = res.data.results[1]["formatted_address"].split(" ")[1];
         console.log(area_name);
+=======
+        const area_name = res.data.results[0]["address_components"][3]["long_name"];
+>>>>>>> 77573cf13dab3567762fa6fc909ff64d798f2df8
         init.splice(0,0,nameFilter(area_name));
         dispatch({type:'FETCH_MYAREA', payload: init});
       });
@@ -254,6 +254,7 @@ export function fetchCOVIDArea(){
         todayList.push(jsonData.slice(1,18));
         todayList.push(jsonData[18]);
         getCOVIDArea().then((res)=>{
+          console.log(res)
           var yesterday = res.data.response.body.items.item;
           var allYesterday = yesterday[18];
           yesterday = yesterday.slice(1,18);
