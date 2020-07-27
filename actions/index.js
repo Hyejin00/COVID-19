@@ -42,13 +42,9 @@ function isSameDate(yesterday,today){
   var monthYes = yearYes[1].split("월")
   var dayYes = monthYes[1].split("일")
   var todayDate = today.split(".")
-  console.log(monthYes[0],todayDate[0],dayYes[0],24)
   var num = dayYes[0]*1
-  console.log(typeof num, num)
   if(monthYes[0]===todayDate[0]){
-    console.log("1")
     if(num===24){
-      console.log("2")
       return true
     }
   }else{
@@ -143,7 +139,7 @@ const nameFilter = (name) => {
     case '제주특별자치도':
       return '제주'
     default:
-      return '서울'
+      return '제주'
   }
 }
 
@@ -157,7 +153,8 @@ export function fetchMyAreaData (lat,lng) {
         init = JSON.parse(data);
       }
       getAreaName(lat,lng).then((res)=>{
-        const area_name = res.data.results[0]["address_components"][3]["long_name"];
+        const area_name = res.data.results[0]["formatted_address"].split(" ")[1];
+        console.log(area_name);
         init.splice(0,0,nameFilter(area_name));
         dispatch({type:'FETCH_MYAREA', payload: init});
       });
@@ -257,7 +254,6 @@ export function fetchCOVIDArea(){
         todayList.push(jsonData.slice(1,18));
         todayList.push(jsonData[18]);
         getCOVIDArea().then((res)=>{
-          console.log(res)
           var yesterday = res.data.response.body.items.item;
           var allYesterday = yesterday[18];
           yesterday = yesterday.slice(1,18);

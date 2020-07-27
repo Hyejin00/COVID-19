@@ -31,7 +31,7 @@ export default function HomeScreen(){
   const myAreaData = useSelector(state => state.myAreaData);
 
   const myAreaList = useSelector(state => state.myArea);
-  console.log(myAreaData)
+
   const { width: windowWidth } = useWindowDimensions();
 
   const [isRefreshing, setIsRefreshing] = useState(false);
