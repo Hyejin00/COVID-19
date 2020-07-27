@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "Covid_19",
-    "slug": "Covid_19",
-    "version": "1.0.0",
+    "name": "오늘의 코로나",
+    "slug": "오늘의 코로나",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -25,7 +25,8 @@
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION"
       ],
-      "package": "com.covid19.jinji"
+      "package": "com.covid19.jinji",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
