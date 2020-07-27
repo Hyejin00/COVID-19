@@ -4,7 +4,7 @@ import { ActivityIndicator, StyleSheet, View, Text } from "react-native";
 export default function Loading(){
   return(
     <View style={styles.container}>
-      <Text style={styles.loading}>Today's Covid is Locating...</Text>
+      <Text style={styles.loading}>위치 찾는 중...</Text>
       <ActivityIndicator size="large" color="purple" />
     </View>
   );
