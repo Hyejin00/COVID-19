@@ -25,8 +25,7 @@
         "ACCESS_COARSE_LOCATION",
         "ACCESS_FINE_LOCATION"
       ],
-      "package": "com.covid19.jinji",
-      "versionCode": 2
+      "package": "com.covid19.jinji"
     },
     "web": {
       "favicon": "./assets/favicon.png"
