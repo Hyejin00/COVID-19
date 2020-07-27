@@ -47,7 +47,7 @@ export default function CountryStatus({color}){
             </Col>
             <Col size={1} style={styles.smallCol}>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallTitle}>격리해제</Text>
+                  <Text style={styles.smallTitle}>완치자</Text>
               </Row>
               <Row style={styles.smallRow}>
                   <Text style={styles.smallData}>{addComma(countryData.clearCnt)}</Text>
