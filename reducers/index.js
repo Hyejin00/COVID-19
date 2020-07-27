@@ -203,14 +203,6 @@ const reducer = produce((state, action) => {
       });
       state.myAreaData = myList;
       break;
-    // case 'FETCH_COVID_AREA':
-    //   const myList = []
-    //   console.log(state.myAreaData)
-    //   state.myArea.forEach(area => {
-    //     myList.push(state.areaData[area]);
-    //   });
-    //   state.myAreaData = myList;
-    //   break;
     case 'FETCH_6DAYS_AREA':
 
     case 'FETCH_MYAREA':

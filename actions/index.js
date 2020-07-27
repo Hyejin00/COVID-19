@@ -34,13 +34,9 @@ function isSameDate(yesterday,today){
   var monthYes = yearYes[1].split("월")
   var dayYes = monthYes[1].split("일")
   var todayDate = today.split(".")
-  console.log(monthYes[0],todayDate[0],dayYes[0],24)
   var num = dayYes[0]*1
-  console.log(typeof num, num)
   if(monthYes[0]===todayDate[0]){
-    console.log("1")
-    if(num===24){
-      console.log("2")
+    if(num===todayDate[1]){
       return true
     }
   }else{
@@ -142,6 +138,7 @@ const nameFilter = (name) => {
 export function fetchMyAreaData (lat,lng) {
   let init = []
   return (dispatch) => {
+    dispatch({ type: 'START_LOADING' });
     AsyncStorage.getItem('MyArea').then(data =>{
       if(data === '[]' || !data){
         init = [];
@@ -155,6 +152,7 @@ export function fetchMyAreaData (lat,lng) {
         dispatch({type:'FETCH_MYAREA', payload: init});
       });
     });
+    dispatch({ type: 'END_LOADING' });
   }
 }
 
@@ -188,41 +186,6 @@ const getCOVIDArea = async() =>{
   })
 }
 
-const get6AreaCOVID = async() =>{
-  return await axios.get(COVID_API_AREA,{
-    params:{
-      serviceKey: COVID_SERVICE_KEY,
-      pageNo: '1',
-      numOfRows: '10',
-      startCreateDt: date5,
-      endCreateDt: date
-    }
-  })
-}
-
-export function fetch6DayCOVIDArea(){
-  return (dispatch) => {
-    dispatch({ type: 'START_LOADING' });
-    try{
-      get6AreaCOVID().then((res)=>{
-        var result = res.data.response.body.items.item;
-        var result1 = result.slice(0,20)
-        var result2 = result.slice(20,40)
-        var result3 = result.slice(40,60)
-        var result4 = result.slice(60,80)
-        var result5 = result.slice(80,100)
-        var result6 = result.slice(100,120)
-        result = [result6,result5,result4,result3,result2,result1]
-        dispatch({type: 'FETCH_6DAYS_AREA', payload: result})
-      });
-    }catch(error){
-      console.log("에러!!!", error)
-    }finally{
-      dispatch({ type: 'END_LOADING' });
-    }
-  }
-}
-
 
 // "createDt": "2020-07-24 10:47:49.533",
 //     "deathCnt": 0,
@@ -250,7 +213,6 @@ export function fetchCOVIDArea(){
         todayList.push(jsonData.slice(1,18));
         todayList.push(jsonData[18]);
         getCOVIDArea().then((res)=>{
-          console.log(res)
           var yesterday = res.data.response.body.items.item;
           var allYesterday = yesterday[18];
           yesterday = yesterday.slice(1,18);
