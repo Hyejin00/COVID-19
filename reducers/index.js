@@ -177,7 +177,7 @@ const baseState = {
   countryData: {},
   myAreaData: [],
   stateFocus : '서울',
-  myArea:['서울'],
+  myArea:[],
   day6:[]
 };
 

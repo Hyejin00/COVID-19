@@ -10,6 +10,7 @@ import MyAreaStatus from '../components/home/MyAreaStatus';
 import CountryStatus from '../components/home/CountryStatus';
 import HomeHeader from '../components/home/HomeHeader';
 import { fetchCOVIDCountry, fetchCOVIDArea, fetchTodayCOVID } from '../actions';
+import Loading from '../components/Loading';
 
 function getColor(incDec){
   if(incDec<=0){
@@ -72,73 +73,68 @@ export default function HomeScreen(){
       </Animated.View>
     );
   }
-
-  if(isLoading){
-    return <Text>loading...</Text>
-  }else{
-    return (
-      <Animated.ScrollView
-          horizontal={true}
-          style={styles.scrollViewStyle}
-          pagingEnabled
-          showsHorizontalScrollIndicator={false}
-          onScroll={Animated.event(
-            [{
-              nativeEvent: {
-                contentOffset: {
-                  x: scrollX
-                },
+  return (
+    isLoading?<Loading />:<Animated.ScrollView
+        horizontal={true}
+        style={styles.scrollViewStyle}
+        pagingEnabled
+        showsHorizontalScrollIndicator={false}
+        onScroll={Animated.event(
+          [{
+            nativeEvent: {
+              contentOffset: {
+                x: scrollX
               },
-            }],
-            { useNativeDriver: false }
-            )}
-          scrollEventThrottle={1}
-        >
-          {myAreaData.map((area, areaIndex) => {
-              return (
-                <LinearGradient
-                  style={styles.container}
-                  // colors={["#83a4d4","#b6fbff"]}
-                  colors={getColor(area["전일대비"])}
-                  key={areaIndex}
-                >
-                <ScrollView
-                  contentContainerStyle={styles.scroll_container}
-                  refreshControl = {<RefreshControl refreshing={isLoading} onRefresh={ onRefresh }/>}
-                >
-                  <StatusBar style="light"/>
-                  <HomeHeader/>
-                  <FadeInView>
-                    <MyAreaStatus area={area}/>
-                    <View style={styles.indicatorContainer}>
-                      {myAreaData.map((area, areaIndex) => {
-                        const width = scrollX.interpolate({
-                          inputRange: [
-                            windowWidth * (areaIndex - 1),
-                            windowWidth * areaIndex,
-                            windowWidth * (areaIndex + 1)
-                          ],
-                          outputRange: [8, 16, 8],
-                          extrapolate: "clamp"
-                        });
-                        return (
-                          <Animated.View
-                            key={areaIndex}
-                            style={[styles.normalDot, { width }]}
-                          />
-                        );
-                      })}
-                    </View>
-                  </FadeInView>
-                  <CountryStatus color={getColor(area["전일대비"])}/>
-                </ScrollView>
-              </LinearGradient>
-              );
-            })}
-        
-        </Animated.ScrollView>
-    );
-  }
+            },
+          }],
+          { useNativeDriver: false }
+          )}
+        scrollEventThrottle={1}
+      >
+        {myAreaData.map((area, areaIndex) => {
+            return (
+              <LinearGradient
+                style={styles.container}
+                // colors={["#83a4d4","#b6fbff"]}
+                colors={getColor(area["전일대비"])}
+                key={areaIndex}
+              >
+              <ScrollView
+                contentContainerStyle={styles.scroll_container}
+                refreshControl = {<RefreshControl refreshing={isLoading} onRefresh={ onRefresh }/>}
+              >
+                <StatusBar style="light"/>
+                <HomeHeader/>
+                <FadeInView>
+                  <MyAreaStatus area={area}/>
+                  <View style={styles.indicatorContainer}>
+                    {myAreaData.map((area, areaIndex) => {
+                      const width = scrollX.interpolate({
+                        inputRange: [
+                          windowWidth * (areaIndex - 1),
+                          windowWidth * areaIndex,
+                          windowWidth * (areaIndex + 1)
+                        ],
+                        outputRange: [8, 16, 8],
+                        extrapolate: "clamp"
+                      });
+                      return (
+                        <Animated.View
+                          key={areaIndex}
+                          style={[styles.normalDot, { width }]}
+                        />
+                      );
+                    })}
+                  </View>
+                </FadeInView>
+                <CountryStatus color={getColor(area["전일대비"])}/>
+              </ScrollView>
+            </LinearGradient>
+            );
+          })}
+      
+      </Animated.ScrollView>
+  );
 }
 
 const styles = StyleSheet.create({

@@ -150,9 +150,9 @@ export function fetchMyAreaData (lat,lng) {
         console.log(area_name);
         init.splice(0,0,nameFilter(area_name));
         dispatch({type:'FETCH_MYAREA', payload: init});
+        dispatch({ type: 'END_LOADING' });
       });
     });
-    dispatch({ type: 'END_LOADING' });
   }
 }
 
