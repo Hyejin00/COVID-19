@@ -23,7 +23,7 @@ function setTextSize(area, focusedArea){
   if(area==focusedArea){
     return '11'
   }else{
-    return '8'
+    return '6'
   }
 }
 function setDataText(area, areaData, status){
@@ -305,56 +305,56 @@ export default function MapSVG(props) {
         </TouchableWithoutFeedback>
         </G>
         <G id="layer_2">
-          <Text x="70" y="35" stroke="rgba(0,0,0,0)"  fontWeight="600" fill={setTextColor("강원",stateFocus)} fontSize={setTextSize("강원",stateFocus)} >강원도</Text>
-          <Text x="75" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("강원",stateFocus)} fontSize={setTextSize("강원",stateFocus)} >{setDataText("강원", areaData, status)} 명</Text>
+          <Text x="75" y="35" stroke="rgba(0,0,0,0)"  fontWeight="600" fill={setTextColor("강원",stateFocus)} fontSize={setTextSize("강원",stateFocus)} >강원도</Text>
+          <Text x="78" y="45" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("강원",stateFocus)} fontSize={setTextSize("강원",stateFocus)} >{setDataText("강원", areaData, status)} 명</Text>
 
-          <Text x="86" y="97" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경북",stateFocus)} fontSize={setTextSize("경북",stateFocus)} >{setDataText("경북", areaData, status)} 명</Text>
+          <Text x="90" y="97" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경북",stateFocus)} fontSize={setTextSize("경북",stateFocus)} >{setDataText("경북", areaData, status)} 명</Text>
           <Text x="90" y="87" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경북",stateFocus)} fontSize={setTextSize("경북",stateFocus)} >경북</Text>
 
-          <Text x="68" y="145" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경남",stateFocus)} fontSize={setTextSize("경남",stateFocus)} >{setDataText("경남", areaData, status)} 명</Text>
+          <Text x="72" y="145" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경남",stateFocus)} fontSize={setTextSize("경남",stateFocus)} >{setDataText("경남", areaData, status)} 명</Text>
           <Text x="72" y="135" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경남",stateFocus)} fontSize={setTextSize("경남",stateFocus)} >경남</Text>
           
-          <Text x="36" y="125" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("전북",stateFocus)} fontSize={setTextSize("전북",stateFocus)} >{setDataText("전북", areaData, status)} 명</Text>
+          <Text x="38" y="125" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("전북",stateFocus)} fontSize={setTextSize("전북",stateFocus)} >{setDataText("전북", areaData, status)} 명</Text>
           <Text x="38" y="115" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("전북",stateFocus)} fontSize={setTextSize("전북",stateFocus)} >전북</Text>
           
-          <Text x="22" y="170" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("전남",stateFocus)} fontSize={setTextSize("전남",stateFocus)} >{setDataText("전남", areaData, status)} 명</Text>
+          <Text x="23" y="170" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("전남",stateFocus)} fontSize={setTextSize("전남",stateFocus)} >{setDataText("전남", areaData, status)} 명</Text>
           <Text x="23" y="160" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("전남",stateFocus)} fontSize={setTextSize("전남",stateFocus)} >전남</Text>
           
-          <Text x="17" y="200" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("제주",stateFocus)} fontSize={setTextSize("제주",stateFocus)} >{setDataText("제주", areaData, status)} 명</Text>
-          <Text x="17" y="190" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("제주",stateFocus)} fontSize={setTextSize("제주",stateFocus)} >제주</Text>
+          <Text x="20" y="200" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("제주",stateFocus)} fontSize={setTextSize("제주",stateFocus)} >{setDataText("제주", areaData, status)} 명</Text>
+          <Text x="20" y="190" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("제주",stateFocus)} fontSize={setTextSize("제주",stateFocus)} >제주</Text>
           
-          <Text x="17" y="94" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("충남",stateFocus)} fontSize={setTextSize("충남",stateFocus)} >{setDataText("충남", areaData, status)} 명</Text>
+          <Text x="21" y="94" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("충남",stateFocus)} fontSize={setTextSize("충남",stateFocus)} >{setDataText("충남", areaData, status)} 명</Text>
           <Text x="21" y="84" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("충남",stateFocus)} fontSize={setTextSize("충남",stateFocus)} >충남</Text>
 
-          <Text x="56" y="81" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("충북",stateFocus)} fontSize={setTextSize("충북",stateFocus)} >{setDataText("충북", areaData, status)} 명</Text>
-          <Text x="57" y="71" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("충북",stateFocus)} fontSize={setTextSize("충북",stateFocus)} >충북</Text>
+          <Text x="61" y="81" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("충북",stateFocus)} fontSize={setTextSize("충북",stateFocus)} >{setDataText("충북", areaData, status)} 명</Text>
+          <Text x="61" y="71" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("충북",stateFocus)} fontSize={setTextSize("충북",stateFocus)} >충북</Text>
 
-          <Text x="31" y="29" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경기",stateFocus)} fontSize={setTextSize("경기",stateFocus)} >{setDataText("경기", areaData, status)} 명</Text>
-          <Text x="28" y="20" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경기",stateFocus)} fontSize={setTextSize("경기",stateFocus)} >경기도</Text>
+          <Text x="37" y="29" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경기",stateFocus)} fontSize={setTextSize("경기",stateFocus)} >{setDataText("경기", areaData, status)} 명</Text>
+          <Text x="34" y="20" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("경기",stateFocus)} fontSize={setTextSize("경기",stateFocus)} >경기도</Text>
           
-          <Text x="30" y="52" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("서울",stateFocus)} fontSize={setTextSize("서울",stateFocus)} >{setDataText("서울", areaData, status)} 명</Text>
-          <Text x="32" y="42" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("서울",stateFocus)} fontSize={setTextSize("서울",stateFocus)} >서울</Text>
+          <Text x="37" y="50" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("서울",stateFocus)} fontSize={setTextSize("서울",stateFocus)} >{setDataText("서울", areaData, status)} 명</Text>
+          <Text x="37" y="40" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("서울",stateFocus)} fontSize={setTextSize("서울",stateFocus)} >서울</Text>
           
-          <Text x="80" y="122" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대구",stateFocus)} fontSize={setTextSize("대구",stateFocus)} >{setDataText("대구", areaData, status)} 명</Text>
-          <Text x="85" y="112" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대구",stateFocus)} fontSize={setTextSize("대구",stateFocus)} >대구</Text>
+          <Text x="89" y="122" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대구",stateFocus)} fontSize={setTextSize("대구",stateFocus)} >{setDataText("대구", areaData, status)} 명</Text>
+          <Text x="89" y="112" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대구",stateFocus)} fontSize={setTextSize("대구",stateFocus)} >대구</Text>
           
-          <Text x="38" y="85" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("세종",stateFocus)} fontSize={setTextSize("세종",stateFocus)} >{setDataText("세종", areaData, status)} 명</Text>
-          <Text x="38" y="76" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("세종",stateFocus)} fontSize={setTextSize("세종",stateFocus)} >세종</Text>
+          <Text x="42" y="83" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("세종",stateFocus)} fontSize={setTextSize("세종",stateFocus)} >{setDataText("세종", areaData, status)} 명</Text>
+          <Text x="42" y="73" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("세종",stateFocus)} fontSize={setTextSize("세종",stateFocus)} >세종</Text>
           
-          <Text x="24" y="150" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("광주",stateFocus)} fontSize={setTextSize("광주",stateFocus)} >{setDataText("광주", areaData, status)} 명</Text>
-          <Text x="26" y="140" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("광주",stateFocus)} fontSize={setTextSize("광주",stateFocus)} >광주</Text>
+          <Text x="32" y="149" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("광주",stateFocus)} fontSize={setTextSize("광주",stateFocus)} >{setDataText("광주", areaData, status)} 명</Text>
+          <Text x="32" y="139" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("광주",stateFocus)} fontSize={setTextSize("광주",stateFocus)} >광주</Text>
           
           <Text x="110" y="134" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("울산",stateFocus)} fontSize={setTextSize("울산",stateFocus)} >{setDataText("울산", areaData, status)} 명</Text>
           <Text x="110" y="124" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("울산",stateFocus)} fontSize={setTextSize("울산",stateFocus)} >울산</Text>
           
-          <Text x="94" y="150" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("부산",stateFocus)} fontSize={setTextSize("부산",stateFocus)} >{setDataText("부산", areaData, status)} 명</Text>
+          <Text x="96" y="150" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("부산",stateFocus)} fontSize={setTextSize("부산",stateFocus)} >{setDataText("부산", areaData, status)} 명</Text>
           <Text x="96" y="140" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("부산",stateFocus)} fontSize={setTextSize("부산",stateFocus)} >부산</Text>
           
-          <Text x="43" y="106" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대전",stateFocus)} fontSize={setTextSize("대전",stateFocus)} >{setDataText("대전", areaData, status)} 명</Text>
-          <Text x="44" y="97" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대전",stateFocus)} fontSize={setTextSize("대전",stateFocus)} >대전</Text>
+          <Text x="50" y="104" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대전",stateFocus)} fontSize={setTextSize("대전",stateFocus)} >{setDataText("대전", areaData, status)} 명</Text>
+          <Text x="50" y="94" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("대전",stateFocus)} fontSize={setTextSize("대전",stateFocus)} >대전</Text>
           
-          <Text x="9" y="47" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("인천",stateFocus)} fontSize={setTextSize("인천",stateFocus)} >{setDataText("인천", areaData, status)} 명</Text>
-          <Text x="9" y="37" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("인천",stateFocus)} fontSize={setTextSize("인천",stateFocus)} >인천</Text>
+          <Text x="16" y="47" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("인천",stateFocus)} fontSize={setTextSize("인천",stateFocus)} >{setDataText("인천", areaData, status)} 명</Text>
+          <Text x="16" y="37" stroke="rgba(0,0,0,0)" fontWeight="600" fill={setTextColor("인천",stateFocus)} fontSize={setTextSize("인천",stateFocus)} >인천</Text>
         </G>
       </Svg>
     </View>

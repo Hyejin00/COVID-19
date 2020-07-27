@@ -24,7 +24,7 @@ export default {
     maxColor: '#83a4d4',
     minColor: '#b6fbff',
     cardColor: '#5D88C8',
-    focused: '#000'
+    focused: '#3B3B3B'
   },
   news: {
     color: "#fff"
