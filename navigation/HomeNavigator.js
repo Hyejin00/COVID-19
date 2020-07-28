@@ -33,7 +33,7 @@ export default function HomeNavigator({ navigation, route }) {
         }]);
       } else{
         const { coords:{latitude,longitude} } = await Location.getCurrentPositionAsync({});
-        // console.log(latitude, longitude);
+        console.log(latitude, longitude);
         dispatch(fetchMyAreaData(latitude, longitude));
       }
     } catch (error) {
