@@ -10,7 +10,7 @@ const AREA_NAME_API = "https://maps.googleapis.com/maps/api/geocode/json";
 
 const COVID_API_COUNTRY = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19InfStateJson";
 const COVID_API_AREA = "http://openapi.data.go.kr/openapi/service/rest/Covid19/getCovid19SidoInfStateJson?";
-const COVID_SERVICE_KEY = decodeURIComponent("4mAPrFWRnG4ZBGzWUvRRwCoJNTDotde8GxqUd3G1LaZvnlEK3G35JttF9SFiK0VNSV8p76itFIdkVLgjCIkFxg%3D%3D");
+const COVID_SERVICE_KEY = decodeURIComponent("r7zXKs3lwjDpt%2Bf%2FCEZ1ecUCpSPe9yKngfa%2BDNLy8L3DNUtfUdB%2FziCZpGnK1zsLDycqCDyhdiZh3JegWPKfCA%3D%3D");
 
 const TODAY_COVID_URL = "https://livecorona.co.kr/data/koreaRegionalData.js";
 
