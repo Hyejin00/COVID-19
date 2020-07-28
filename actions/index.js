@@ -170,18 +170,28 @@ export function fetchCOVIDCountry(){
             if(todayDate[0]*1===today.getMonth() + 1){
               if(todayDate[1]*1===today.getDate()){
                 result = jsonData[0];
+                console.log(result)
                 result["확진자전일대비"] = result["확진자수"] - resultYesterday.decideCnt
                 result["격리해제전일대비"] = result["격리해제수"] - resultYesterday.clearCnt
                 result["사망자전일대비"] = result["사망자수"] - resultYesterday.deathCnt
+              }else{
+                result["확진자수"] = resultYesterday.decideCnt;
+                result["확진자전일대비"] = resultYesterday.decideCnt - resultYesterday2.decideCnt;
+                result["격리해제"] = resultYesterday.clearCnt;
+                result["격리해제전일대비"] = resultYesterday.clearCnt - resultYesterday2.clearCnt;
+                result["사망자수"] = resultYesterday.deathCnt;
+                result["사망자전일대비"] = resultYesterday.deathCnt - resultYesterday2.deathCnt;
+                result["격리중"] =  resultYesterday.careCnt;
               }
+            }else{
+              result["확진자수"] = resultYesterday.decideCnt;
+              result["확진자전일대비"] = resultYesterday.decideCnt - resultYesterday2.decideCnt;
+              result["격리해제"] = resultYesterday.clearCnt;
+              result["격리해제전일대비"] = resultYesterday.clearCnt - resultYesterday2.clearCnt;
+              result["사망자수"] = resultYesterday.deathCnt;
+              result["사망자전일대비"] = resultYesterday.deathCnt - resultYesterday2.deathCnt;
+              result["격리중"] =  resultYesterday.careCnt;
             }
-            result["확진자수"] = resultYesterday.decideCnt;
-            result["확진자전일대비"] = resultYesterday.decideCnt - resultYesterday2.decideCnt;
-            result["격리해제"] = resultYesterday.clearCnt;
-            result["격리해제전일대비"] = resultYesterday.clearCnt - resultYesterday2.clearCnt;
-            result["사망자수"] = resultYesterday.deathCnt;
-            result["사망자전일대비"] = resultYesterday.deathCnt - resultYesterday2.deathCnt;
-            result["격리중"] =  resultYesterday.careCnt;
             dispatch({type: 'FETCH_COVID_COUNTRY', payload: result})
           });
         });
