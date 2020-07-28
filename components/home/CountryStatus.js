@@ -15,7 +15,6 @@ function addComma(num) {
 export default function CountryStatus({color}){
 
   const countryData = useSelector(state => state.countryData);
-  console.log(countryData)
   return(
     <View style={styles.container}>
         <Card 

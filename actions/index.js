@@ -29,14 +29,10 @@ const getTodayCOVID = async() =>{
   return await axios.get(TODAY_COVID_URL)
 }
 
-function isSameDate(yesterday,today){
-  var yearYes = yesterday.split("년")
-  var monthYes = yearYes[1].split("월")
-  var dayYes = monthYes[1].split("일")
-  var todayDate = today.split(".")
-  var num = dayYes[0]*1
-  if(monthYes[0]===todayDate[0]){
-    if(num===todayDate[1]){
+function isSameDate(todayDate){
+  var todayDate = todayDate.split(".")
+  if(today.getMonth()+1===todayDate[0]*1){
+    if(today.getDate()===todayDate[1]*1){
       return true
     }
   }else{
@@ -207,22 +203,6 @@ const getCOVIDArea = async() =>{
   })
 }
 
-
-// "createDt": "2020-07-24 10:47:49.533",
-//     "deathCnt": 0,
-//     "defCnt": 26,
-//     "gubun": "제주",
-//     "gubunCn": "济州",
-//     "gubunEn": "Jeju",
-//     "incDec": 0,
-//     "isolClearCnt": 18,
-//     "isolIngCnt": 8,
-//     "localOccCnt": 0,
-//     "overFlowCnt": 0,
-//     "qurRate": 3.88,
-//     "seq": 3274,
-//     "stdDay": "2020년 07월 24일 00시",
-//     "updateDt": "null",
 export function fetchCOVIDArea(){
   return (dispatch) => {
     dispatch({ type: 'START_LOADING' });
@@ -230,29 +210,22 @@ export function fetchCOVIDArea(){
       getTodayCOVID().then((today)=>{
         var todayList = []
         var jsonData = JSON.parse(today.data.split('= ')[1]);
-        var allToday = jsonData[0];
         todayList.push(jsonData.slice(1,18));
         todayList.push(jsonData[18]);
         getCOVIDArea().then((res)=>{
           var yesterday = res.data.response.body.items.item;
-          var allYesterday = yesterday[18];
+          console.log(yesterday)
           yesterday = yesterday.slice(1,18);
           yesterday = yesterday.reverse();
           for(var i=0; i<17; i++){
-            if(isSameDate(yesterday[0]["stdDay"],todayList[1]["업데이트날짜"])){
-              todayList[0][i]["전일대비"] = yesterday[i]["incDec"]
+            if(isSameDate(todayList[1]["업데이트날짜"])){
+              todayList[0][i]["전일대비"] = yesterday[i]["incDec"]-yesterday[i]["defCnt"]
             }else{
-              todayList[0][i]["전일대비"] = todayList[0][i]["확진자수"]-yesterday[i]["defCnt"]
+              todayList[0][i]["전일대비"] = yesterday[i]["incDec"]
             }
             todayList[0][i]["업데이트날짜"] = todayList[1]["업데이트날짜"]
           }
-          if(isSameDate(yesterday[0]["stdDay"],todayList[1]["업데이트날짜"])){
-            todayList[1] = allToday;
-            todayList[1]["전일대비"] = allYesterday["incDec"]
-          }else{
-            todayList[1] = allToday;
-            todayList[1]["전일대비"] = allToday["확진자수"]-allYesterday["defCnt"]
-          }
+          console.log("오늘",todayList)
           dispatch({type: 'FETCH_COVID_AREA', payload: todayList})
         });
       });
