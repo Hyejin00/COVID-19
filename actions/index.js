@@ -56,15 +56,7 @@ const getAreaName = async (lat, lon) => {
 }
 
 const getCOVIDCountry = async() =>{
-  return await axios.get(COVID_API_COUNTRY,{
-    params:{
-      serviceKey: COVID_SERVICE_KEY,
-      pageNo: '1',
-      numOfRows: '10',
-      startCreateDt: date*1+1,
-      endCreateDt: date*1+1
-    }
-  })
+  return await axios.get(TODAY_COVID_URL)
 }
 
 const getCOVIDCountryYesterday = async() =>{
@@ -75,6 +67,18 @@ const getCOVIDCountryYesterday = async() =>{
       numOfRows: '10',
       startCreateDt: date,
       endCreateDt: date
+    }
+  })
+}
+
+const getCOVIDCountryYesterday2 = async() =>{
+  return await axios.get(COVID_API_COUNTRY,{
+    params:{
+      serviceKey: COVID_SERVICE_KEY,
+      pageNo: '1',
+      numOfRows: '10',
+      startCreateDt: date*1-1,
+      endCreateDt: date*1-1
     }
   })
 }
@@ -159,14 +163,31 @@ export function fetchMyAreaData (lat,lng) {
 export function fetchCOVIDCountry(){
   return (dispatch) => {
     try{
-      getCOVIDCountryYesterday().then((resYesterday)=>{
-        getCOVIDCountry().then((res)=>{
-          const result = res.data.response.body.items.item; 
-          const resultYesterday = resYesterday.data.response.body.items.item; 
-          result.decideCntChanged = result.decideCnt - resultYesterday.decideCnt
-          result.clearCntChanged = result.clearCnt - resultYesterday.clearCnt
-          result.deathCntChanged = result.deathCnt - resultYesterday.deathCnt
-          dispatch({type: 'FETCH_COVID_COUNTRY', payload: result})
+      getCOVIDCountryYesterday2().then((resYesterday2)=>{
+        const resultYesterday2 = resYesterday2.data.response.body.items.item;
+        getCOVIDCountryYesterday().then((resYesterday)=>{
+          getCOVIDCountry().then((res)=>{
+            var jsonData = JSON.parse(res.data.split('= ')[1]);
+            const todayDate = jsonData[18]["업데이트날짜"].split(".");
+            var result= {};
+            const resultYesterday = resYesterday.data.response.body.items.item; 
+            if(todayDate[0]*1===today.getMonth() + 1){
+              if(todayDate[1]*1===today.getDate()){
+                result = jsonData[0];
+                result["확진자전일대비"] = result["확진자수"] - resultYesterday.decideCnt
+                result["격리해제전일대비"] = result["격리해제수"] - resultYesterday.clearCnt
+                result["사망자전일대비"] = result["사망자수"] - resultYesterday.deathCnt
+              }
+            }
+            result["확진자수"] = resultYesterday.decideCnt;
+            result["확진자전일대비"] = resultYesterday.decideCnt - resultYesterday2.decideCnt;
+            result["격리해제"] = resultYesterday.clearCnt;
+            result["격리해제전일대비"] = resultYesterday.clearCnt - resultYesterday2.clearCnt;
+            result["사망자수"] = resultYesterday.deathCnt;
+            result["사망자전일대비"] = resultYesterday.deathCnt - resultYesterday2.deathCnt;
+            result["격리중"] =  resultYesterday.careCnt;
+            dispatch({type: 'FETCH_COVID_COUNTRY', payload: result})
+          });
         });
       });
     }catch(error){
