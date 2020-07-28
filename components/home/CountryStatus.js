@@ -36,20 +36,20 @@ export default function CountryStatus({color}){
                   <Text style={styles.confirmedNumChanged}>(+{countryData["확진자전일대비"]})</Text>
               </Row>
             </Col>
-            <Col size={1} style={styles.smallCol}>
+            {/* <Col size={1} style={styles.smallCol}>
               <Row style={styles.smallRow}>
                   <Text style={styles.smallTitle}>격리중</Text>
               </Row>
               <Row style={styles.smallRow}>
                   <Text style={styles.smallData}>{addComma(countryData["격리중"])}</Text>
               </Row>
-            </Col>
+            </Col> */}
             <Col size={1} style={styles.smallCol}>
               <Row style={styles.smallRow}>
                   <Text style={styles.smallTitle}>완치자</Text>
               </Row>
               <Row style={styles.smallRow}>
-                  <Text style={styles.smallData}>{addComma(countryData["격리해제"])}</Text>
+                  <Text style={styles.smallData}>{addComma(countryData["격리해제수"])}</Text>
               </Row>
               <Row style={styles.smallRow}>
                   <Text style={styles.smallDataChanged}>(+{countryData["격리해제전일대비"]})</Text>
