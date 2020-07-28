@@ -36,7 +36,9 @@ function setDataText(area, areaData, status){
 
 function setFillColor(area, areaData, status){
   if(status){
-    if(areaData[area]["전일대비"]<5){
+    if(areaData[area]["전일대비"]===0){
+      return `rgba(157,0,0,${0})`
+    }else if(areaData[area]["전일대비"]<5){
       return `rgba(157,0,0,${0.1})`
     }else if(areaData[area]["전일대비"]<10){
       return `rgba(157,0,0,${0.2})`

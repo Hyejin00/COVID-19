@@ -170,7 +170,6 @@ export function fetchCOVIDCountry(){
             if(todayDate[0]*1===today.getMonth() + 1){
               if(todayDate[1]*1===today.getDate()){
                 result = jsonData[0];
-                console.log(result)
                 result["확진자전일대비"] = result["확진자수"] - resultYesterday.decideCnt
                 result["격리해제전일대비"] = result["격리해제수"] - resultYesterday.clearCnt
                 result["사망자전일대비"] = result["사망자수"] - resultYesterday.deathCnt
@@ -228,7 +227,7 @@ export function fetchCOVIDArea(){
           yesterday = yesterday.reverse();
           for(var i=0; i<17; i++){
             if(isSameDate(todayList[1]["업데이트날짜"])){
-              todayList[0][i]["전일대비"] = yesterday[i]["incDec"]-yesterday[i]["defCnt"]
+              todayList[0][i]["전일대비"] = todayList[0][i]["확진자수"]-yesterday[i]["defCnt"]
             }else{
               todayList[0][i]["전일대비"] = yesterday[i]["incDec"]
             }
