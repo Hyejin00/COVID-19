@@ -147,7 +147,7 @@ export function fetchMyAreaData (lat,lng) {
       }
       getAreaName(lat,lng).then((res)=>{
         const area_name = res.data.results[1]["formatted_address"].split(" ")[1];
-        console.log(area_name);
+        // console.log(area_name);
         init.splice(0,0,nameFilter(area_name));
         dispatch({type:'FETCH_MYAREA', payload: init});
         dispatch({ type: 'END_LOADING' });
@@ -214,7 +214,6 @@ export function fetchCOVIDArea(){
         todayList.push(jsonData[18]);
         getCOVIDArea().then((res)=>{
           var yesterday = res.data.response.body.items.item;
-          console.log(yesterday)
           yesterday = yesterday.slice(1,18);
           yesterday = yesterday.reverse();
           for(var i=0; i<17; i++){
@@ -225,7 +224,6 @@ export function fetchCOVIDArea(){
             }
             todayList[0][i]["업데이트날짜"] = todayList[1]["업데이트날짜"]
           }
-          console.log("오늘",todayList)
           dispatch({type: 'FETCH_COVID_AREA', payload: todayList})
         });
       });
